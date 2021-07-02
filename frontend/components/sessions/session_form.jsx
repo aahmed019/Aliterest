@@ -36,7 +36,7 @@ export default class SessionForm extends React.Component{
                 <div>
 
                 <input type="text" className="sessionInput"
-                value={this.state.email}
+                defaultValue ={this.state.email}
                 placeholder="Email address..."
                 onChange = {this.updateInput('email')}
                 />
@@ -45,7 +45,7 @@ export default class SessionForm extends React.Component{
                     <>
                         <br /> <br />
                         <input type="text" className="sessionInput"
-                        value={this.state.f_name}
+                        defaultValue ={this.state.f_name}
                         placeholder="First Name..."
                         onChange = {this.updateInput('f_name')}
                         />
@@ -53,7 +53,7 @@ export default class SessionForm extends React.Component{
                         <br /><br />
 
                         <input type="text" className="sessionInput"
-                        value={this.state.l_name}
+                        defaultValue ={this.state.l_name}
                         placeholder="Last Name..."
                         onChange = {this.updateInput('l_name')}
                 />
@@ -64,7 +64,7 @@ export default class SessionForm extends React.Component{
                 <br />
                 
                 <input type="password" className="sessionInput"
-                value={this.state.password}
+                defaultValue ={this.state.password}
                 placeholder="Password..."
                 onChange = {this.updateInput('password')}
                 />
