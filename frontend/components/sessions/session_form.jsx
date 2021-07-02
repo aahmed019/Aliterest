@@ -3,13 +3,16 @@ import React from 'react'
 export default class SessionForm extends React.Component{
     constructor(props){
         super(props)
+        this.newState = Object.assign({}, this.props.information)
         this.state = this.props.information
+        // this.state = this.props.information
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(e){
         e.preventDefault()
         this.props.authAction(this.state)
+        this.setState(this.newState)
     }
 
     renderErrors(){
@@ -36,7 +39,7 @@ export default class SessionForm extends React.Component{
                 <div>
 
                 <input type="text" className="sessionInput"
-                defaultValue ={this.state.email}
+                value={this.state.email}
                 placeholder="Email address..."
                 onChange = {this.updateInput('email')}
                 />
@@ -45,7 +48,7 @@ export default class SessionForm extends React.Component{
                     <>
                         <br /> <br />
                         <input type="text" className="sessionInput"
-                        defaultValue ={this.state.f_name}
+                        value ={this.state.f_name}
                         placeholder="First Name..."
                         onChange = {this.updateInput('f_name')}
                         />
@@ -53,7 +56,7 @@ export default class SessionForm extends React.Component{
                         <br /><br />
 
                         <input type="text" className="sessionInput"
-                        defaultValue ={this.state.l_name}
+                        value ={this.state.l_name}
                         placeholder="Last Name..."
                         onChange = {this.updateInput('l_name')}
                 />
@@ -64,7 +67,7 @@ export default class SessionForm extends React.Component{
                 <br />
                 
                 <input type="password" className="sessionInput"
-                defaultValue ={this.state.password}
+                value ={this.state.password}
                 placeholder="Password..."
                 onChange = {this.updateInput('password')}
                 />

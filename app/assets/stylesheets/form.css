@@ -20,6 +20,6 @@
 
 .formButton:hover{
     box-shadow: 0px 5px 5px #888888;
-    width: 100px;
+    width: 1000px;
     transition: 0.3s;
 }

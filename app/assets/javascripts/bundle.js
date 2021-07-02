@@ -348,9 +348,7 @@ var mSTP = function mSTP(_ref) {
     errors: errors.session,
     information: {
       email: "",
-      password: "",
-      f_name: "",
-      l_name: ""
+      password: ""
     },
     formType: "Login",
     altLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
@@ -420,7 +418,9 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SessionForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.information;
+    _this.newState = Object.assign({}, _this.props.information);
+    _this.state = _this.props.information; // this.state = this.props.information
+
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -430,6 +430,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       this.props.authAction(this.state);
+      this.setState(this.newState);
     }
   }, {
     key: "renderErrors",
@@ -520,7 +521,9 @@ var mSTP = function mSTP(_ref) {
     errors: errors.session,
     information: {
       email: "",
-      password: ""
+      password: "",
+      f_name: "",
+      l_name: ""
     },
     formType: "Sign Up",
     altLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {

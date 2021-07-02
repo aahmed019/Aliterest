@@ -9,8 +9,6 @@ const mSTP = ({errors}) => ({
     information: {
         email: "",
         password: "",
-        f_name: "",
-        l_name: ""
     },
     formType: "Login",
     altLink: <Link to="/signup">Sign Up</Link>

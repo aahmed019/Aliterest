@@ -8,7 +8,9 @@ const mSTP = ({errors}) => ({
     errors: errors.session,
     information: {
         email: "",
-        password: ""
+        password: "",
+        f_name: "",
+        l_name: ""
     },
     formType: "Sign Up",
     altLink: <Link to="/login">Login</Link>
