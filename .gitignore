@@ -1,0 +1,7 @@
+node_modules/
+budle.js
+budle.js.map
+.byebug_history
+.DS_Store
+npm-debug.log
+master.key
