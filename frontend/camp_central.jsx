@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    delete window.current_user
+
     const store = configureStore(preloadedState)
     window.store = store
 
