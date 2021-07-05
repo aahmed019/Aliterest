@@ -15,6 +15,13 @@ export default class SessionForm extends React.Component{
         this.setState(this.newState)
     }
 
+    demoLogin(demoUser){
+        return e => {
+            e.preventDefault()
+            this.props.authAction(demoUser)
+        }
+    }
+
     renderErrors(){
         return(
             <ul>
@@ -32,6 +39,10 @@ export default class SessionForm extends React.Component{
     }
 
     render(){
+        const demoUser = {
+            email: "jack@fakeemail.com",
+            password: "test123"
+        }
         return(
             <form onSubmit={this.handleSubmit} className="form">
                 <h2>{this.props.formType}</h2>
@@ -76,7 +87,10 @@ export default class SessionForm extends React.Component{
                 <br />
 
                 <button className="formButton">{this.props.formType}</button>
-                <br /> <br />
+                <br />
+                <br />
+                {this.props.formType === "Login" ? <button className="formButton" onClick={this.demoLogin(demoUser)}>DEMO</button> : ""}
+                <br />
                 <p>{this.props.formType === "Sign Up" ? "Already have an account?" : "New user?" } {this.props.altLink}! </p> 
 
                 </div>
