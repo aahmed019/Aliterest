@@ -1,4 +1,6 @@
 import React from 'react'
+import LocationsIndexItem from './locations_index_item'
+
 
 export default class LocationsIndex extends React.Component{
     constructor(props){
@@ -10,17 +12,12 @@ export default class LocationsIndex extends React.Component{
     }
 
     render(){
-        const locations = this.props.locations.map((location) => {
-            return (
-                <ul>
-                    <li>{location.title}</li>
-                    <li>{location.description}</li>
-                    <li>{location.price}</li>
-                </ul>
+        const locations = this.props.locations.map((location, i) => (
+            <LocationsIndexItem location = {location} key={`location-${i}`} />
             )
-        })
+        )
         return(
-            <div>
+            <div className="locations-index">
                 {locations}
             </div>
         )

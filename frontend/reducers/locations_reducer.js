@@ -6,7 +6,8 @@ const locationReducer = (state = {}, action) => {
     case RECEIVE_LOCATIONS:
         return action.locations
     case RECEIVE_LOCATION:
-        return action.location
+        const newState = {[action.location.id]: action.location}
+        return Object.assign({}, state, newState)
     default:
         return state;
     }
