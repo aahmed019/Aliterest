@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { closeModal, openModal } from "../../actions/modal_action";
 import { signup } from "../../actions/session_actions";
 import SessionForm from "./session_form";
 
@@ -13,11 +13,14 @@ const mSTP = ({errors}) => ({
         l_name: ""
     },
     formType: "Sign Up",
-    altLink: <Link to="/login">Login</Link>
 })
 
 const mDTP = dispatch => ({
-    authAction: user => dispatch(signup(user))
+    authAction: user => dispatch(signup(user)),
+    otherModal: (
+        <button onClick ={() => dispatch(openModal('login'))}>Login</button>
+    ),
+    closeModal: () => dispatch(closeModal())
 })
 
 export default connect(mSTP, mDTP)(SessionForm)

@@ -5,7 +5,6 @@ export default class SessionForm extends React.Component{
         super(props)
         this.newState = Object.assign({}, this.props.information)
         this.state = this.props.information
-        // this.state = this.props.information
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
@@ -19,7 +18,7 @@ export default class SessionForm extends React.Component{
     demoLogin(demoUser){
         return e => {
             e.preventDefault()
-            this.props.authAction(demoUser)
+            this.props.authAction(demoUser).then(this.props.closeModal)
         }
     }
 
@@ -96,7 +95,7 @@ export default class SessionForm extends React.Component{
                 <br />
                 {this.props.formType === "Login" ? <button className="formButton" onClick={this.demoLogin(demoUser)}>DEMO</button> : ""}
                 <br />
-                <p>{this.props.formType === "Sign Up" ? "Already have an account?" : "New user?" } {this.props.altLink}! </p> 
+                <p>{this.props.formType === "Sign Up" ? "Already have an account?" : "New user?" } {this.props.otherModal} </p> 
 
                 </div>
             </form>

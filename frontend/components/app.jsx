@@ -5,9 +5,11 @@ import Home from "./home";
 import LoginFormContainer from "./sessions/login_form_container"
 import NavBarContainer from "./sessions/Nav/navbar_container";
 import SignupFormContainer from "./sessions/signup_form_container"
+import Modal from './modal/modal'
 
 const App = () => (
     <div>
+        <Modal/>
         <Switch>
             <Route exact path ="/" component={NavBarContainer}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
@@ -15,7 +17,6 @@ const App = () => (
         </Switch>
         
         <ProtectedRoute path= "/" component={Home}/>
-        
     </div>
   );
   
