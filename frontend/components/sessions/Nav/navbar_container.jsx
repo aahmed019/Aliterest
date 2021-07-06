@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
+import { openModal } from '../../../actions/modal_actions';
 import { login, logout } from '../../../actions/session_actions'
-
 
 const NavBarContainer = (props) =>{
     console.log(props)
@@ -17,8 +17,8 @@ const NavBarContainer = (props) =>{
                 </div> 
                 :
                 <div>
-                    <button><Link to ="/login">Login</Link></button>
-                    <button><Link to ="/signup">Sign Up</Link></button>
+                    <button onClick={() => props.openModal('login')}>Login</button>
+                    <button onClick={() => props.openModal('signup')}>Sign Up</button>
                 </div>
             }
         </div>
@@ -31,7 +31,8 @@ const mSTP = (state) => ({
 
 const mDTP = dispatch => ({
     login: user => dispatch(login(user)),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    openModal: modalType => dispatch(openModal(modalType)),
 })
 
 export default connect(mSTP, mDTP)(NavBarContainer)

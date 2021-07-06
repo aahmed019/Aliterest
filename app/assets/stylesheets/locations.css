@@ -1,0 +1,10 @@
+.locations-index{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}

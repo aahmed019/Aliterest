@@ -13,10 +13,11 @@
 #  updated_at  :datetime         not null
 #
 class Location < ApplicationRecord
-    validates :title, :price, :host_id presence: true
+    validates :title, :price, :host_id, presence: true
     validates :longitude, :latitude, presence: true
 
     belongs_to :host,
         foreign_key: :host_id,
         class_name: :User
+        
 end

@@ -5,17 +5,23 @@ import Home from "./home";
 import LoginFormContainer from "./sessions/login_form_container"
 import NavBarContainer from "./sessions/Nav/navbar_container";
 import SignupFormContainer from "./sessions/signup_form_container"
+import Modal from './modal/modal'
+import LocationsIndexContainer from "./locations/locations_index_container";
+import LocationShowContainer from "./locations/location_show_container";
+
 
 const App = () => (
     <div>
-        <Switch>
-            <Route exact path ="/" component={NavBarContainer}/>
-            <AuthRoute exact path="/login" component={LoginFormContainer} />
-            <AuthRoute exact path="/signup" component={SignupFormContainer} />
-        </Switch>
-        
+        <Modal/>
+
+        <Route exact path ="/" component={NavBarContainer}/>
         <ProtectedRoute path= "/" component={Home}/>
-        
+
+        <Switch>
+            <Route exact path="/" component={LocationsIndexContainer} />
+            <Route exact path="/locations/:locationId" component={LocationShowContainer} />
+        </Switch>
+
     </div>
   );
   
