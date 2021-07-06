@@ -6,7 +6,7 @@ import LoginFormContainer from "./sessions/login_form_container"
 import NavBarContainer from "./sessions/Nav/navbar_container";
 import SignupFormContainer from "./sessions/signup_form_container"
 import Modal from './modal/modal'
-
+import LocationsIndexContainer from "./locations/locations_container";
 const App = () => (
     <div>
         <Modal/>
@@ -15,8 +15,8 @@ const App = () => (
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
         </Switch>
-        
         <ProtectedRoute path= "/" component={Home}/>
+        <Route path="/" component={LocationsIndexContainer} />
     </div>
   );
   
