@@ -7950,3 +7950,182 @@ Processing by Api::LocationsController#index as */*
 Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/" for ::1 at 2021-07-06 19:16:26 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 262ms (Views: 259.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:16:27 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (20.0ms)
+Completed 200 OK in 29ms (Views: 18.9ms | ActiveRecord: 7.1ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-06 19:16:55 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"dssaddasdasd", "password"=>"[FILTERED]"}, "default"=>{"format"=>:json}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dssaddasdasd"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:25
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-06 19:17:02 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"dsfdsfsfdf", "password"=>"[FILTERED]"}, "default"=>{"format"=>:json}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dsfdsfsfdf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:25
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-06 19:17:04 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"fdsfsdffsd", "password"=>"[FILTERED]"}, "default"=>{"format"=>:json}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "fdsfsdffsd"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:25
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-06 19:17:06 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"fdsfs", "password"=>"[FILTERED]"}, "default"=>{"format"=>:json}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "fdsfs"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:25
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2021-07-06 19:20:56 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 21ms (Views: 19.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:20:56 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (4.1ms)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2021-07-06 19:21:15 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 19ms (Views: 18.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:21:16 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (3.8ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2021-07-06 19:21:44 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 17ms (Views: 15.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:21:44 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (4.3ms)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-06 19:22:03 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 19ms (Views: 18.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:22:03 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (4.7ms)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2021-07-06 19:22:15 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 25ms (Views: 24.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:22:15 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (7.0ms)
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-06 19:22:32 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 17ms (Views: 16.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 19:22:32 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (4.6ms)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 1.0ms)
+
+
