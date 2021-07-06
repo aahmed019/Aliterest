@@ -18,16 +18,18 @@ const receiveErrors = (errors) => ({
     errors
 })
 
-export const signup = userInfo => dispatch => SessionUtil.signup(userInfo)
-.then(
-    user => dispatch(receiveCurrentUser(user)),
-    errors => dispatch(receiveErrors(errors.responseJSON))
-    )
+export const signup = userInfo => dispatch => {
+    return SessionUtil.signup(userInfo)
+        .then(
+            user => dispatch(receiveCurrentUser(user)),
+            errors => dispatch(receiveErrors(errors.responseJSON))
+            )
+}
 
 export const login = userInfo => dispatch => SessionUtil.login(userInfo)
 .then(
-    user => dispatch(receiveCurrentUser(user)),
-    errors => dispatch(receiveErrors(errors.responseJSON))
+    user => (console.log(user), dispatch(receiveCurrentUser(user))),
+    errors => (dispatch(receiveErrors(errors.responseJSON)))
     )
 
 export const logout = () => dispatch => SessionUtil.logout()

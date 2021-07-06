@@ -239,7 +239,7 @@ var signup = function signup(userInfo) {
 var login = function login(userInfo) {
   return function (dispatch) {
     return _util_session__WEBPACK_IMPORTED_MODULE_0__.login(userInfo).then(function (user) {
-      return dispatch(receiveCurrentUser(user));
+      return console.log(user), dispatch(receiveCurrentUser(user));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -527,7 +527,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.authAction(this.state);
+      var user = Object.assign({}, this.state);
+      this.props.authAction(user);
       this.setState(this.newState);
     }
   }, {
@@ -542,11 +543,14 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {}
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: "error-".concat(i)
+          key: i
         }, error);
       }));
     }
@@ -753,7 +757,6 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ERRORS:
-      // debugger
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
