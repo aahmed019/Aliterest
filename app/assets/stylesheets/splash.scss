@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+.splash{
+    text-align: center;
+    padding-bottom: 65px;
+    > h1{
+        font-size: 64px;
+        font-weight: 300;
+        font-family: Playfair Display;
+    }
+
+    > h3{
+        font-size: 25px;
+        font-weight: 200;
+        font-family: Playfair Display;
+    }
+}
