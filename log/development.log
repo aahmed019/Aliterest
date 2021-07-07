@@ -8129,3 +8129,48 @@ Processing by Api::LocationsController#index as */*
 Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 1.0ms)
 
 
+Started GET "/" for ::1 at 2021-07-06 20:31:22 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/aahmed/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 642ms (Views: 638.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 20:31:23 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (33.3ms)
+Completed 200 OK in 50ms (Views: 38.1ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/api/locations/1" for ::1 at 2021-07-06 20:31:25 -0400
+Processing by Api::LocationsController#show as */*
+  Parameters: {"default"=>{"format"=>:json}, "id"=>"1"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/locations_controller.rb:18
+  Rendering api/locations/show.json.jbuilder
+  Rendered api/locations/show.json.jbuilder (0.7ms)
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/locations" for ::1 at 2021-07-06 20:31:29 -0400
+Processing by Api::LocationsController#index as */*
+  Parameters: {"default"=>{"format"=>:json}}
+  Rendering api/locations/index.json.jbuilder
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/locations/index.json.jbuilder:1
+  Rendered api/locations/index.json.jbuilder (4.4ms)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 1.0ms)
+
+
