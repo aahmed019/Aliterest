@@ -49,7 +49,8 @@ export default class SessionForm extends React.Component{
         }
         return(
             <form onSubmit={this.handleSubmit} className="form">
-                <h2>{this.props.formType}</h2>
+                <h1>Welcome back!</h1>
+                <h3>Let's get you adventuring.</h3>
                 {this.renderErrors()}
                 <div>
 
@@ -93,10 +94,10 @@ export default class SessionForm extends React.Component{
                 <button className="formButton">{this.props.formType}</button>
                 <br />
                 <br />
-                {this.props.formType === "Login" ? <button className="formButton" onClick={this.demoLogin(demoUser)}>DEMO</button> : ""}
+                {/* {this.props.formType === "Login" ? <button className="formButton" onClick={this.demoLogin(demoUser)}>DEMO</button> : ""} */}
                 <br />
-                <p>{this.props.formType === "Sign Up" ? "Already have an account?" : "New user?" } {this.props.otherModal} </p> 
-
+                <br />
+                <p>{this.props.formType === "Sign Up" ? "Already have an account?" : "Don't have an account?" } {this.props.otherModal} </p> 
                 </div>
             </form>
         )

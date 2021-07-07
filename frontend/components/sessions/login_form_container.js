@@ -16,7 +16,7 @@ const mSTP = ({errors}) => ({
 const mDTP = dispatch => ({
     authAction: user => dispatch(login(user)),
     otherModal: (
-        <button onClick ={() => dispatch(openModal('signup'))}>Sign Up</button>
+        <a onClick ={() => dispatch(openModal('signup'))}>Sign Up</a>
     ),
     closeModal: () => dispatch(closeModal())
 })

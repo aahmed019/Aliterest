@@ -7,17 +7,24 @@ import { login, logout } from '../../../actions/session_actions'
 const NavBarContainer = (props) =>{
     return(
         <div className="navbar">
-            <div>
-                <img src="https://cdn.discordapp.com/attachments/163769380222664704/861317010285527080/CampCentral_logo-removebg-preview.png" alt="Logo" style={{width: '125px'}}/>
-            </div>
+            
+            <Link to ="/" className="logo">CampCentral</Link>
+
             {props.user ?
-                <div>
-                    <button><Link to ="/" onClick={props.logout}>Logout</Link></button>
+                <div className="dropdown">
+                    <i className="far fa-user-circle profileIcon"></i>
+                    <div className="dropdown-content">
+                        <li onClick={props.logout}>Account</li>
+                        <li onClick={props.logout}>Help</li>
+                        <li onClick={props.logout}>About</li>
+                        <li onClick={props.logout}>Logout</li>
+                    </div>
                 </div> 
                 :
                 <div>
-                    <button onClick={() => props.openModal('login')}>Login</button>
-                    <button onClick={() => props.openModal('signup')}>Sign Up</button>
+                    <button className ="navButton" onClick={() => props.openModal('login')}>Login</button>
+                    <button className ="navButton" onClick={() => props.openModal('signup')}>Sign Up</button>
+                    <button className ="navButton demo" onClick={() => props.login({email: 'jack@fakeemail.com', password:'test123'})}>Demo</button>
                 </div>
             }
         </div>
