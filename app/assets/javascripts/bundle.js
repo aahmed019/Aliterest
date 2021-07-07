@@ -973,7 +973,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentWillUnmount",
-    value: function componentWillUnmount() {}
+    value: function componentWillUnmount() {//not used yet
+    }
   }, {
     key: "renderErrors",
     value: function renderErrors() {

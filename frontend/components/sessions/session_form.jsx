@@ -23,7 +23,7 @@ export default class SessionForm extends React.Component{
     }
 
     componentWillUnmount(){
-        
+        //not used yet
     }
 
     renderErrors(){
