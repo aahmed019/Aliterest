@@ -5,6 +5,7 @@ import { openModal } from '../../../actions/modal_actions';
 import { login, logout } from '../../../actions/session_actions'
 
 const NavBarContainer = (props) =>{
+    console.log(props.user)
     return(
         <div className="navbar">
             
@@ -12,6 +13,7 @@ const NavBarContainer = (props) =>{
 
             {props.user ?
                 <div className="dropdown">
+                    <p>{props.user.f_name} {props.user.l_name}</p>
                     <i className="far fa-user-circle profileIcon"></i>
                     <div className="dropdown-content">
                         <li onClick={props.logout}>Account</li>
