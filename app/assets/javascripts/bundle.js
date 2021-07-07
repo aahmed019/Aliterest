@@ -279,7 +279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "login": () => (/* binding */ login),
-/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */   "logout": () => (/* binding */ logout),
+/* harmony export */   "removeErrors": () => (/* binding */ removeErrors)
 /* harmony export */ });
 /* harmony import */ var _util_session__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session */ "./frontend/util/session.js");
 
@@ -330,6 +331,11 @@ var logout = function logout() {
     return _util_session__WEBPACK_IMPORTED_MODULE_0__.logout().then(function () {
       return dispatch(logoutCurrentUser());
     });
+  };
+};
+var removeErrors = function removeErrors() {
+  return function (dispatch) {
+    return dispatch(receiveErrors([]));
   };
 };
 
@@ -477,7 +483,7 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       console.log(this.props);
       if (this.props.location === undefined) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://picsum.photos/400/400/?random",
+        src: "https://picsum.photos/400",
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, this.props.host_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, this.props.location.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "lat: ", this.props.location.latitude), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "long: ", this.props.location.longitude), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "price: ", this.props.location.price));
     }
@@ -909,6 +915,9 @@ var mDTP = function mDTP(dispatch) {
     }, "Sign Up"),
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    removeErrors: function removeErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeErrors)());
     }
   };
 };
@@ -977,7 +986,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.authAction(user);
+      this.props.authAction(user).then(this.props.closeModal);
       this.setState(this.newState);
     }
   }, {
@@ -993,7 +1002,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentWillUnmount",
-    value: function componentWillUnmount() {//not used yet
+    value: function componentWillUnmount() {
+      this.props.removeErrors();
     }
   }, {
     key: "renderErrors",
@@ -1108,6 +1118,9 @@ var mDTP = function mDTP(dispatch) {
     }, "Login"),
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    removeErrors: function removeErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeErrors)());
     }
   };
 };

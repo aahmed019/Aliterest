@@ -11,7 +11,7 @@ export default class SessionForm extends React.Component{
     handleSubmit(e){
         e.preventDefault()
         const user = Object.assign({}, this.state);
-        this.props.authAction(user)
+        this.props.authAction(user).then(this.props.closeModal)
         this.setState(this.newState)
     }
 
@@ -23,7 +23,7 @@ export default class SessionForm extends React.Component{
     }
 
     componentWillUnmount(){
-        //not used yet
+        this.props.removeErrors()
     }
 
     renderErrors(){

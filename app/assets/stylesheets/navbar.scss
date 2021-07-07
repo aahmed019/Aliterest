@@ -72,25 +72,13 @@
                 border-bottom: 1px solid black;
             }
       }
-
-
-      .dropdown-content a:hover {
-        background-color: #ddd;
-      }
     
     .dropdown:hover .dropdown-content {
         visibility: visible;
         opacity: 1;
       }
-    
-    .dropdown:hover .dropbtn {
-        background-color: #dad6d6;
-      }
 
 }
-
-
-
 .navbar button{
     margin: 10px;
 }

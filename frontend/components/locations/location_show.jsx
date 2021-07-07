@@ -15,7 +15,7 @@ export default class LocationShow extends React.Component{
         if(this.props.location === undefined) return null
         return(
             <div>
-                <img src="https://picsum.photos/400/400/?random" alt="" />
+                <img src="https://picsum.photos/400" alt="" />
                 <h2>{this.props.host_id}</h2>
                 <h2>{this.props.location.description}</h2>
                 <h2>lat: {this.props.location.latitude}</h2>
