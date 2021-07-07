@@ -13,9 +13,10 @@ import LocationShowContainer from "./locations/location_show_container";
 const App = () => (
     <div>
         <Modal/>
-
-        <Route exact path ="/" component={NavBarContainer}/>
+        <Route path ="/" component={NavBarContainer}/>
         <ProtectedRoute path= "/" component={Home}/>
+
+        <h1 style={{paddingTop:'150px'}}>Hello there I am a h1 tag</h1>
 
         <Switch>
             <Route exact path="/" component={LocationsIndexContainer} />

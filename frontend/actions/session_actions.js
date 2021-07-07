@@ -35,3 +35,4 @@ export const login = userInfo => dispatch => SessionUtil.login(userInfo)
 export const logout = () => dispatch => SessionUtil.logout()
 .then(() => dispatch(logoutCurrentUser()))
 
+export const removeErrors = () => dispatch => dispatch(receiveErrors([]))

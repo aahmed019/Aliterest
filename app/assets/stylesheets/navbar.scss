@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
+
+.navbar{
+    padding-left: 72px;
+    padding-right: 72px;
+    display: flex;
+    position: fixed;
+    top:0 ;
+    align-items: center;
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    z-index: 1000;
+    background-color: whitesmoke;
+
+    .logo{
+        color: black;
+        text-decoration: none;
+        font-size: 32px;
+        font-family: 'Uchen', serif;
+    }
+
+    .navButton{
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        padding: 0px;
+    }
+
+    .navButton:hover{
+        border-bottom: 2px solid #40D9AC;
+        overflow: hidden;
+        // width: inherit;
+    }
+
+    .demo{
+        border: 3px solid #40D9AC;
+        border-radius: 5px;
+        color: white;
+        background-color: #40D9AC;
+        font-weight: bold;
+        padding: 6px;
+    }
+
+    .profileIcon{
+        font-size: 50px;
+    }
+
+    .dropdown{
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        visibility: hidden;
+        opacity: 0;
+        padding-left: 14px;
+        position: absolute;
+        background-color: whitesmoke;
+        list-style: none;
+        z-index: 1;
+        right: 0;
+        top: 50px;
+        transition: visibility 0s, opacity .35s ease-in-out;
+
+            li{
+                margin:0;
+                font-size: 30px;
+                padding: 14px 0;
+                border-bottom: 1px solid black;
+            }
+      }
+    
+    .dropdown:hover .dropdown-content {
+        visibility: visible;
+        opacity: 1;
+      }
+
+}
+.navbar button{
+    margin: 10px;
+}

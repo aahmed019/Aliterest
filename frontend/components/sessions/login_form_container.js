@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { closeModal, openModal } from "../../actions/modal_actions";
-import { login } from "../../actions/session_actions";
+import { login, removeErrors } from "../../actions/session_actions";
 import SessionForm from "./session_form";
 
 const mSTP = ({errors}) => ({
@@ -16,9 +16,10 @@ const mSTP = ({errors}) => ({
 const mDTP = dispatch => ({
     authAction: user => dispatch(login(user)),
     otherModal: (
-        <button onClick ={() => dispatch(openModal('signup'))}>Sign Up</button>
+        <a onClick ={() => dispatch(openModal('signup'))}>Sign Up</a>
     ),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    removeErrors: () => dispatch(removeErrors())
 })
 
 export default connect(mSTP, mDTP)(SessionForm)
