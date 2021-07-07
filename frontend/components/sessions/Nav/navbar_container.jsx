@@ -5,7 +5,6 @@ import { openModal } from '../../../actions/modal_actions';
 import { login, logout } from '../../../actions/session_actions'
 
 const NavBarContainer = (props) =>{
-    console.log(props)
     return(
         <div className="navbar">
             <div>
