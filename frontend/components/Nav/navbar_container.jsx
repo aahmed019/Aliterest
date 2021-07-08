@@ -6,6 +6,13 @@ import { login, logout } from '../../actions/session_actions'
 
 const NavBarContainer = (props) =>{
     console.log(props.user)
+
+    window.onscroll = function () {
+        if($(window).scrollTop() >= 0){
+            $(".navbar").css("position", "fixed");
+        }
+    }
+    
     return(
         <div className="navbar">
             

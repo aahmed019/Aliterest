@@ -37,13 +37,13 @@
     font-family: 'Roboto', sans-serif;
     width: 100%;
     min-width: fit-content;
-    border: 1px solid black;
+    // border: 1px solid black;
     display: flex;
     justify-content: center;
 
     .info{
         width: 800px;
-        border: 1px solid black;
+        border: 1px solid transparent;
         height: inherit;
     }
 
@@ -74,16 +74,17 @@
 
     .details{
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         text-align: center;
         margin-top: 10px;
-        padding-bottom: 10px;
         justify-content: space-evenly;
         border-bottom: 1px solid lightgray;
         .info-card {
             width: 200px;
             height: 300px;
             padding: 15px;
+            margin-bottom: 15px;
             font-size: .6rem;
             line-height: 2;
             position: relative;
@@ -100,6 +101,7 @@
 
     .features{
         > h3{
+            margin-top: 15px;
             font-size: 1.5em;
             font-weight: bold;
         }

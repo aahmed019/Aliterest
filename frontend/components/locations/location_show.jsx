@@ -12,6 +12,7 @@ export default class LocationShow extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.fetchLocation(this.props.ownProps.match.params.locationId);
     this.scrollFunc();
   }
@@ -25,7 +26,10 @@ export default class LocationShow extends React.Component {
     }
   }
 
-  handleSubmit() {}
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log("test");
+  }
 
   handleInput(field) {
     return (e) => {
@@ -45,7 +49,10 @@ export default class LocationShow extends React.Component {
 
   scrollFunc() {
     window.onscroll = function () {
-      if ($(window).scrollTop() >= 450 && $(window).scrollTop() <= 975) {
+      if ($(window).scrollTop() >= 0) {
+        $(".navbar").css("position", "absolute");
+      }
+      if ($(window).scrollTop() >= 450 && $(window)) {
         $(".price-show-container").css("position", "fixed");
         $(".price-show-container").css("transform", "translateY(-175%)");
       } else {
@@ -99,127 +106,242 @@ export default class LocationShow extends React.Component {
 
             <div className="host">
               <div className="host-info">
-                    <div>
-                        <img src="https://picsum.photos/100" style={{borderRadius:'50%'}} />
-                    </div>
-                    <div>
-                        <p>Hosted by</p>
-                        <h1>{this.props.location.f_name} {this.props.location.l_name}</h1>
-                    </div>
+                <div>
+                  <img
+                    src="https://picsum.photos/100"
+                    style={{ borderRadius: "50%" }}
+                  />
+                </div>
+                <div>
+                  <p>Hosted by</p>
+                  <h1>
+                    {this.props.location.f_name} {this.props.location.l_name}
+                  </h1>
+                </div>
               </div>
               <div className="location-desc">
-                        <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1>
-                </div>
+                <h1>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </h1>
+              </div>
             </div>
             <div className="details">
-                    <div className="info-card">
-                        <div className="title">Campsite area</div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                    </div>
+              {/* Campsite details */}
+              <div className="info-card">
+                <div className="title">Campsite area</div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+              </div>
 
-                    <div className="info-card">
-                        <div className="title">Essentials</div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                    </div>
+              <div className="info-card">
+                <div className="title">Essentials</div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+              </div>
 
-                    <div className="info-card">
-                        <div className="title">Amenities</div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                        <div className="info-element">
-                            <div>icon</div>
-                            <div>information</div>
-                        </div>
-                    </div>
+              <div className="info-card">
+                <div className="title">Amenities</div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+                <div className="info-element">
+                  <div>icon</div>
+                  <div>information</div>
+                </div>
+              </div>
+            </div>
+            {/* END OF CAMPSITE DETAILS */}
 
+            <div className="features">
+              {/* ACTIVITY */}
+              <h3>Activities</h3>
+              <p>Just some things you might wanna try</p>
+
+              <div className="details">
+                <div className="info-card">
+                  <div className="title">Activity 1</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
                 </div>
 
-                <div className="features">
-                    <h3>Activities</h3>
-                    <p>Just some things you might wanna try</p>
-
-                    <div className="details">
-                        <div className="info-card">
-                            <div className="title">Campsite area</div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                        </div>
-
-                        <div className="info-card">
-                            <div className="title">Essentials</div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                        </div>
-
-                        <div className="info-card">
-                            <div className="title">Amenities</div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                            <div className="info-element">
-                                <div>icon</div>
-                                <div>information</div>
-                            </div>
-                        </div>
-
-                        
-
-                    </div>
-
+                <div className="info-card">
+                  <div className="title">Activity 2</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
                 </div>
+
+                <div className="info-card">
+                  <div className="title">Activity 3</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="title">Activity 4</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="title">Activity 5</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="title">Activity 6</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* TERRAIN */}
+              <h3>Terrain</h3>
+              <p>The world around you</p>
+              <div className="details">
+                <div className="info-card">
+                  <div className="title">Forest</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="title">Welands</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="title">Farm</div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                  <div className="info-element">
+                    <div>icon</div>
+                    <div>information</div>
+                  </div>
+                </div>
+              </div>
+              {/* END OF TERRAIN */}
+            </div>
+            {/* END OF ACTIVITIES */}
           </div>
 
           <div>

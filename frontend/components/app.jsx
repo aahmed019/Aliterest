@@ -16,7 +16,7 @@ const App = () => (
         <Route path ="/" component={NavBarContainer}/>
 
 
-        <h1 style={{paddingTop:'150px'}}></h1>
+        <h1 style={{paddingTop:'120px'}}></h1>
         <Route exact path= "/" component={Splash}/>
         <Route exact path="/" component={LocationsIndexContainer} />
         <Route exact path="/locations/:locationId" component={LocationShowContainer} />
