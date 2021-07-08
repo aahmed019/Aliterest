@@ -13,7 +13,7 @@ export default class LocationShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchLocation(this.props.ownProps.match.params.locationId);
-    this.scrollFunc()
+    this.scrollFunc();
   }
 
   componentDidUpdate(prevProps) {
@@ -43,21 +43,19 @@ export default class LocationShow extends React.Component {
     };
   }
 
-  scrollFunc(){
+  scrollFunc() {
     window.onscroll = function () {
-        if ($(window).scrollTop() >= 450 && $(window).scrollTop() <= 975) {
-          $(".price-show-container").css("position", "fixed")
-          $(".price-show-container").css("transform", "translateY(-175%)")
-        } else {
-          $(".price-show-container").css("position", "absolute")
-          $(".price-show-container").css("transform", "translateY(0%)")
-        }
+      if ($(window).scrollTop() >= 450 && $(window).scrollTop() <= 975) {
+        $(".price-show-container").css("position", "fixed");
+        $(".price-show-container").css("transform", "translateY(-175%)");
+      } else {
+        $(".price-show-container").css("position", "absolute");
+        $(".price-show-container").css("transform", "translateY(0%)");
       }
-  
+    };
   }
 
   render() {
-    
     console.log(this.state);
     if (this.props.location === undefined) return null;
 
@@ -94,78 +92,200 @@ export default class LocationShow extends React.Component {
         </div>
 
         <div className="show-page-content">
-          <div className="desc">
-
-            <div className ="title">
-                <h1>{this.props.location.title}</h1>
+          <div className="info">
+            <div className="title">
+              <h1>{this.props.location.title}</h1>
             </div>
 
+            <div className="host">
+              <div className="host-info">
+                    <div>
+                        <img src="https://picsum.photos/100" style={{borderRadius:'50%'}} />
+                    </div>
+                    <div>
+                        <p>Hosted by</p>
+                        <h1>{this.props.location.f_name} {this.props.location.l_name}</h1>
+                    </div>
+              </div>
+              <div className="location-desc">
+                        <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1>
+                </div>
+            </div>
+            <div className="details">
+                    <div className="info-card">
+                        <div className="title">Campsite area</div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                    </div>
+
+                    <div className="info-card">
+                        <div className="title">Essentials</div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                    </div>
+
+                    <div className="info-card">
+                        <div className="title">Amenities</div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                        <div className="info-element">
+                            <div>icon</div>
+                            <div>information</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="features">
+                    <h3>Activities</h3>
+                    <p>Just some things you might wanna try</p>
+
+                    <div className="details">
+                        <div className="info-card">
+                            <div className="title">Campsite area</div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                        </div>
+
+                        <div className="info-card">
+                            <div className="title">Essentials</div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                        </div>
+
+                        <div className="info-card">
+                            <div className="title">Amenities</div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                            <div className="info-element">
+                                <div>icon</div>
+                                <div>information</div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
           </div>
 
-        <div>
-          <div className="price-show-container">
-            <div className="price">
-              <h1> ${price}</h1>
-              <p>
-                average per night ({guests} {guests > 1 ? "guests" : "guest"})
-              </p>
-            </div>
-            <form onSubmit={this.handleSubmit} className="show-page-form">
-              <div id="date-form">
-                <div className="dates">
-                  <div className="input-group">
-                    <label className="form-label" htmlFor="checkin">
-                      Check in:
-                    </label>
-                    <input
-                      className="form-control side-by-side"
-                      type="date"
-                      id="checkin"
-                      onChange={this.handleDate("start")}
-                    />
-                  </div>
-
-                  <div className="input-group ">
-                    <label className="form-label" htmlFor="checkout">
-                      Check out:
-                    </label>
-                    <input
-                      className="form-control"
-                      type="date"
-                      id="checkout"
-                      onChange={this.handleDate("end")}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="guests">
-                <label htmlFor="guests_amount">Guests: </label>
-                <select
-                  className="guest-select"
-                  onChange={this.handleInput("guests")}
-                >
-                  <option value="1" defaultValue>
-                    1 guest
-                  </option>
-                  <option value="2">2 guests</option>
-                  <option value="3">3 guests</option>
-                  <option value="4">4 guests</option>
-                </select>
-              </div>
-
-              <div className="subtotal">
+          <div>
+            <div className="price-show-container">
+              <div className="price">
+                <h1> ${price}</h1>
                 <p>
-                  Subtotal: $
-                  {days * price * guests > 0 ? days * price * guests : 0}
+                  average per night ({guests} {guests > 1 ? "guests" : "guest"})
                 </p>
               </div>
-              <div className="book-button">
-                <button>Book!</button>
-              </div>
-            </form>
+              <form onSubmit={this.handleSubmit} className="show-page-form">
+                <div id="date-form">
+                  <div className="dates">
+                    <div className="input-group">
+                      <label className="form-label" htmlFor="checkin">
+                        Check in:
+                      </label>
+                      <input
+                        className="form-control side-by-side"
+                        type="date"
+                        id="checkin"
+                        onChange={this.handleDate("start")}
+                      />
+                    </div>
+
+                    <div className="input-group ">
+                      <label className="form-label" htmlFor="checkout">
+                        Check out:
+                      </label>
+                      <input
+                        className="form-control"
+                        type="date"
+                        id="checkout"
+                        onChange={this.handleDate("end")}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="guests">
+                  <label htmlFor="guests_amount">Guests: </label>
+                  <select
+                    className="guest-select"
+                    onChange={this.handleInput("guests")}
+                  >
+                    <option value="1" defaultValue>
+                      1 guest
+                    </option>
+                    <option value="2">2 guests</option>
+                    <option value="3">3 guests</option>
+                    <option value="4">4 guests</option>
+                  </select>
+                </div>
+
+                <div className="subtotal">
+                  <p>
+                    Subtotal: $
+                    {days * price * guests > 0 ? days * price * guests : 0}
+                  </p>
+                </div>
+                <div className="book-button">
+                  <button>Book!</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     );

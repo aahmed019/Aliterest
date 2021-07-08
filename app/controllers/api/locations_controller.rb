@@ -1,14 +1,14 @@
 class Api::LocationsController < ApplicationController
 
     def index
-       @locations = Location.all.includes(:host)
+       @locations = Location.all
        render 'api/locations/index'
     end
 
     def show
-        @location = Location.find_by(id: params[:id])
+        @location = Location.includes(:host).find_by(id: params[:id])
         if @location
-            render '/api/locations/show'
+            render 'api/locations/show'
         else
             render json: ['cannot find location'], status: 400
         end

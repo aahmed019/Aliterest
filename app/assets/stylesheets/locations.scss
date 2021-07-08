@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .locations-index{
     position: relative;
     display: flex;
@@ -24,12 +26,180 @@
         padding: 20px;
         height: 550px;
         width: 550px;
-        
     }
-    
-    
 }
 
 .show_location{
     font-size: 45px;
+}
+
+.show-page-content{
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    min-width: fit-content;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+
+    .info{
+        width: 800px;
+        border: 1px solid black;
+        height: inherit;
+    }
+
+    .title{
+        font-size: 2.5em;
+    }
+
+    .host{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        padding: 5px;
+        border-bottom: 1px solid lightgray;
+
+        .host-info{
+            display: flex;
+            align-items: center;
+            width: 30%;
+            padding-right: 10px;
+        }
+
+        .location-desc{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    .details{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin-top: 10px;
+        padding-bottom: 10px;
+        justify-content: space-evenly;
+        border-bottom: 1px solid lightgray;
+        .info-card {
+            width: 200px;
+            height: 300px;
+            padding: 15px;
+            font-size: .6rem;
+            line-height: 2;
+            position: relative;
+            flex-wrap: wrap;
+            border: 1px solid lightgray;
+
+            .info-element{
+                font-size: 15px;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+    }
+
+    .features{
+        > h3{
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        >p{
+            margin-top: 8px;
+            font-size: 15px;
+        }
+    }
+
+}
+
+
+
+.price-show-container{
+    background-color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 300px;
+    border: 1px lightgray solid;
+    height: 260px;
+
+    input:focus, select:focus{
+        outline: none;   
+    }
+}
+
+.price{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+
+    > h1{
+        margin: 0;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    > p{
+        font-size: 14px;
+    }
+}
+
+.dates{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px lightgray solid;
+}
+
+.guests{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 40px;
+    border-top: 1px lightgray solid;
+
+    > select{
+        text-align: center; 
+        height: 100%;
+        width: 100%;
+        font-size: 15px;
+        border: none;
+    }
+}
+
+.subtotal{
+    display: flex;
+    border-top: 1px lightgray solid;
+    flex-direction: column;
+    height: 60px;
+    justify-content: space-around;
+}
+
+.book-button{
+
+    >button{
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+    }
+
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-top: 1px lightgray solid;
+    border: 3px solid #40D9AC;
+    color: white;
+    background-color: #40D9AC;
+
+}
+
+.book-button:hover{
+    background-color: white;
+    color: #40D9AC
 }
