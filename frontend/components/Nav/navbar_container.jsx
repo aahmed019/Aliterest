@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
-import { openModal } from '../../../actions/modal_actions';
-import { login, logout } from '../../../actions/session_actions'
+import { openModal } from '../../actions/modal_actions';
+import { login, logout } from '../../actions/session_actions'
 
 const NavBarContainer = (props) =>{
     console.log(props.user)

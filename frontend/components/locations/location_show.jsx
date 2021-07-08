@@ -93,11 +93,6 @@ export default class LocationShow extends React.Component{
                     </form>
 
 
-
-                    
-
-                    
-
                 </div>
 
             </div>
