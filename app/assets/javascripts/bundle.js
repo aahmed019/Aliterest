@@ -451,8 +451,7 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       start: null,
-      end: null,
-      days: 0
+      end: null
     };
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     return _this;
@@ -477,16 +476,6 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
 
       return function (e) {
         _this2.setState(_defineProperty({}, field, new Date(e.target.value)));
-
-        var _this2$state = _this2.state,
-            start = _this2$state.start,
-            end = _this2$state.end;
-
-        if (start && end) {
-          _this2.setState({
-            days: _this2.getDifferenceInDays(start, end)
-          });
-        }
       };
     }
   }, {
@@ -500,7 +489,17 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log(this.props);
       if (this.props.location === undefined) return null;
-      var days = this.state.days;
+      var price = this.props.location.price;
+      var _this$state = this.state,
+          start = _this$state.start,
+          end = _this$state.end;
+      var days = 0;
+
+      if (start, end) {
+        var diff_time = end.getTime() - start.getTime();
+        days = diff_time / (1000 * 3600 * 24);
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "showpage_imgContainer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -525,7 +524,7 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " TO:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "date",
         onChange: this.handleInput('end')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Price: ", days)));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "days: ", days > 0 ? days : 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "price: ", days * price > 0 ? days * price : 0)));
     }
   }]);
 

@@ -6,7 +6,6 @@ export default class LocationShow extends React.Component{
         this.state = {
             start: null,
             end: null,
-            days: 0
         }
         this.handleInput = this.handleInput.bind(this)
     }
@@ -26,14 +25,6 @@ export default class LocationShow extends React.Component{
             this.setState({
                 [field]: new Date(e.target.value)
             })
-
-            const {start, end} = this.state
-
-            if(start && end){
-                this.setState({
-                    days: this.getDifferenceInDays(start, end)
-                })
-            }
         }
         
     }
@@ -47,7 +38,13 @@ export default class LocationShow extends React.Component{
         console.log(this.props)
         if(this.props.location === undefined) return null
 
-        const {days} = this.state
+        const { price } = this.props.location
+        const { start, end } = this.state
+        let days = 0
+        if(start, end){
+            let diff_time = end.getTime() - start.getTime()
+            days = diff_time / (1000 * 3600 * 24)
+        }
 
         return(
             <div>
@@ -72,7 +69,9 @@ export default class LocationShow extends React.Component{
                         <input type="date" onChange={this.handleInput('end')} />
                     </label>
 
-                    <h1>Price: {days}</h1>
+                    <h1>days: {days > 0 ? days : 0}</h1>
+                    <h1>price: {days * price > 0 ? days * price : 0}</h1>
+
                 </div>
 
             </div>
