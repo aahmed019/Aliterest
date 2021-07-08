@@ -37,11 +37,12 @@
 
     .demo{
         border: 3px solid #40D9AC;
-        border-radius: 5px;
+        border-radius: 20px;
+        padding: 5px;
         color: white;
         background-color: #40D9AC;
-        font-weight: bold;
-        padding: 6px;
+        padding: 5px 20px;
+        // padding-right: 10px;
     }
 
     .profileIcon{
