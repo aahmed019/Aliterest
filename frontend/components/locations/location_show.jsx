@@ -342,6 +342,10 @@ export default class LocationShow extends React.Component {
               {/* END OF TERRAIN */}
             </div>
             {/* END OF ACTIVITIES */}
+            <div className="reviews">
+                <h3>Reviews</h3>
+                <p>Coming soon!</p>
+            </div>
           </div>
 
           <div>
@@ -408,6 +412,7 @@ export default class LocationShow extends React.Component {
               </form>
             </div>
           </div>
+
         </div>
       </div>
     );
