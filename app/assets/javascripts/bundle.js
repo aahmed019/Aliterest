@@ -493,6 +493,8 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       var days = 0;
 
       if (start, end) {
+        console.log(start.getTime());
+        console.log(end.getTime());
         var diff_time = end.getTime() - start.getTime();
         days = diff_time / (1000 * 3600 * 24);
       }

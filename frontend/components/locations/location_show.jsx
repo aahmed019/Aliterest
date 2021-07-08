@@ -41,6 +41,8 @@ export default class LocationShow extends React.Component{
         const { start, end } = this.state
         let days = 0
         if(start, end){
+            console.log(start.getTime())
+            console.log(end.getTime())
             let diff_time = end.getTime() - start.getTime()
             days = diff_time / (1000 * 3600 * 24)
         }
