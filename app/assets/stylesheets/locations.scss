@@ -10,14 +10,14 @@
     background-repeat: no-repeat;
 }
 
-.showpage_imgContainer{
+.showpage-img-container{
     display: flex;
     justify-content: center;
     width: 100%;
     overflow: hidden;
     padding: 20px;
 
-    .showpage_img{
+    .showpage-img{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
