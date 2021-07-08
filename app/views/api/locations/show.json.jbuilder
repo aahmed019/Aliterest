@@ -1,1 +1,1 @@
-json.extract! @location, :id, :title, :description, :price, :longitude, :latitude, :host_id
+json.extract! @location, :id, :title, :description, :price, :lng, :lat, :host_id

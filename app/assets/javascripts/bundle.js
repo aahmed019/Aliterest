@@ -382,9 +382,10 @@ var App = function App() {
       paddingTop: '150px'
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    exact: true,
     path: "/",
     component: _splash__WEBPACK_IMPORTED_MODULE_2__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
     exact: true,
     path: "/",
     component: _locations_locations_index_container__WEBPACK_IMPORTED_MODULE_7__.default
@@ -392,7 +393,7 @@ var App = function App() {
     exact: true,
     path: "/locations/:locationId",
     component: _locations_location_show_container__WEBPACK_IMPORTED_MODULE_8__.default
-  })));
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -412,6 +413,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -446,24 +449,83 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, LocationShow);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.location;
+    _this.state = {
+      start: null,
+      end: null,
+      days: 0
+    };
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(LocationShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLocation(this.props.locationId);
+      this.props.fetchLocation(this.props.ownProps.match.params.locationId);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.ownProps.match.params.locationId !== prevProps.ownProps.match.params.locationId) {
+        this.props.fetchLocation(this.props.ownProps.match.params.locationId);
+      }
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, new Date(e.target.value)));
+
+        var _this2$state = _this2.state,
+            start = _this2$state.start,
+            end = _this2$state.end;
+
+        if (start && end) {
+          _this2.setState({
+            days: _this2.getDifferenceInDays(start, end)
+          });
+        }
+      };
+    }
+  }, {
+    key: "getDifferenceInDays",
+    value: function getDifferenceInDays(date1, date2) {
+      var diffInMs = Math.abs(date2 - date1);
+      return diffInMs / (1000 * 60 * 60 * 24);
     }
   }, {
     key: "render",
     value: function render() {
       console.log(this.props);
       if (this.props.location === undefined) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://picsum.photos/400",
+      var days = this.state.days;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "showpage_imgContainer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "showpage_img",
+        src: "https://picsum.photos/550",
         alt: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, this.props.host_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, this.props.location.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "lat: ", this.props.location.lat), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "long: ", this.props.location.lng), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "price: ", this.props.location.price));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "showpage_img",
+        src: "https://picsum.photos/550",
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "showpage_img",
+        src: "https://picsum.photos/550",
+        alt: ""
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+        className: "show_location"
+      }, this.props.location.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "price_container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " FROM:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "date",
+        onChange: this.handleInput('start')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " TO:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "date",
+        onChange: this.handleInput('end')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Price: ", days)));
     }
   }]);
 
@@ -496,7 +558,7 @@ var mSTP = function mSTP(_ref, ownProps) {
   var entities = _ref.entities;
   return {
     location: entities.locations[ownProps.match.params.locationId],
-    locationId: parseInt(ownProps.match.params.locationId)
+    ownProps: ownProps
   };
 };
 
@@ -37988,13 +38050,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _actions_location_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/location_actions */ "./frontend/actions/location_actions.js");
+/* harmony import */ var _util_locations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/locations */ "./frontend/util/locations.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
+ // import { getLocation, getLocations } from "./actions/location_actions";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -38015,9 +38078,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   delete window.current_user;
   var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_4__.default)(preloadedState);
-  window.store = store;
-  window.get = _actions_location_actions__WEBPACK_IMPORTED_MODULE_5__.getLocations;
-  window.getlocation = _actions_location_actions__WEBPACK_IMPORTED_MODULE_5__.getLocation;
+  window.store = store; // window.get = getLocations
+
+  window.getlocation = _util_locations__WEBPACK_IMPORTED_MODULE_5__.getLocation;
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__.default, {
     store: store

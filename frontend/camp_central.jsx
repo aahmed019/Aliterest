@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { login, logout } from "./actions/session_actions";
 import Root from "./components/root";
 import configureStore from "./store/store";
-import { getLocation, getLocations } from "./actions/location_actions";
+// import { getLocation, getLocations } from "./actions/location_actions";
+import { getLocation } from './util/locations'
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const store = configureStore(preloadedState)
     window.store = store
-    window.get = getLocations
+    // window.get = getLocations
     window.getlocation = getLocation
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store}/>, root);

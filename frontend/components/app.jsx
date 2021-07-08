@@ -17,13 +17,10 @@ const App = () => (
 
 
         <h1 style={{paddingTop:'150px'}}></h1>
-        <Route path= "/" component={Splash}/>
-
-
-        <Switch>
-            <Route exact path="/" component={LocationsIndexContainer} />
-            <Route exact path="/locations/:locationId" component={LocationShowContainer} />
-        </Switch>
+        <Route exact path= "/" component={Splash}/>
+        <Route exact path="/" component={LocationsIndexContainer} />
+        <Route exact path="/locations/:locationId" component={LocationShowContainer} />
+       
 
     </div>
   );

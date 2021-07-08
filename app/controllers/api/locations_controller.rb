@@ -5,15 +5,6 @@ class Api::LocationsController < ApplicationController
        render 'api/locations/index'
     end
 
-    def create
-        # @location = Location.new(location_params)
-        # if @location.save
-        #     render '/api/locations/show'
-        # else
-        #     render json: @location.errors.full_messages, status: 400
-        # end
-    end
-
     def show
         @location = Location.find_by(id: params[:id])
         if @location
@@ -24,7 +15,7 @@ class Api::LocationsController < ApplicationController
     end
 
     def location_params
-        params.require(:location).permit(:title, :description, :price, :longitude, :latitude, :host_id)
+        params.require(:location).permit(:title, :description, :price, :lng, :lat, :host_id)
     end
 
 end

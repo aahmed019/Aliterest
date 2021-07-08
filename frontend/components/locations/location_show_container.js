@@ -4,7 +4,7 @@ import LocationShow from "./location_show";
 
 const mSTP = ({entities}, ownProps) => ({
     location: entities.locations[ownProps.match.params.locationId],
-    locationId: parseInt(ownProps.match.params.locationId)
+    ownProps
 })
 
 const mDTP = dispatch => ({
