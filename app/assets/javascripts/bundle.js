@@ -470,6 +470,9 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {}
+  }, {
     key: "handleInput",
     value: function handleInput(field) {
       var _this2 = this;
@@ -477,12 +480,6 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         _this2.setState(_defineProperty({}, field, new Date(e.target.value)));
       };
-    }
-  }, {
-    key: "getDifferenceInDays",
-    value: function getDifferenceInDays(date1, date2) {
-      var diffInMs = Math.abs(date2 - date1);
-      return diffInMs / (1000 * 60 * 60 * 24);
     }
   }, {
     key: "render",
@@ -519,14 +516,25 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
         className: "show_location"
       }, this.props.location.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "price_container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " FROM:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        className: "booking_container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "show_price_container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " Check in:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "date",
         onChange: this.handleInput('start')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " TO:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " Check out:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "date",
         onChange: this.handleInput('end')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "days: ", days > 0 ? days : 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "price: ", days * price > 0 ? days * price : 0)));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "guests",
+        className: "form-label"
+      }, "Guests"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "number",
+        id: "guests",
+        className: "form-control"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "days: ", days > 0 ? days : 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "price: ", days * price > 0 ? days * price : 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Book"))));
     }
   }]);
 

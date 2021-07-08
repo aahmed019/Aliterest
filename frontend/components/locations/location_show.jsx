@@ -17,7 +17,12 @@ export default class LocationShow extends React.Component{
 
     componentDidUpdate(prevProps) {
         if (this.props.ownProps.match.params.locationId !== prevProps.ownProps.match.params.locationId) {
-            this.props.fetchLocation(this.props.ownProps.match.params.locationId);}    
+            this.props.fetchLocation(this.props.ownProps.match.params.locationId);
+        }    
+    }
+
+    handleSubmit(){
+
     }
 
     handleInput(field){
@@ -25,13 +30,7 @@ export default class LocationShow extends React.Component{
             this.setState({
                 [field]: new Date(e.target.value)
             })
-        }
-        
-    }
-
-    getDifferenceInDays(date1, date2) {
-        const diffInMs = Math.abs(date2 - date1);
-        return diffInMs / (1000 * 60 * 60 * 24)
+        }    
     }
 
     render(){
@@ -62,17 +61,42 @@ export default class LocationShow extends React.Component{
 
                 <h1 className="show_location">{this.props.location.title}</h1>
 
-                <div className="price_container">
-                    <label > FROM:
-                        <input type="date" onChange={this.handleInput('start')} />
-                    </label>
+                <div className="booking_container">
 
-                    <label > TO:
-                        <input type="date" onChange={this.handleInput('end')} />
-                    </label>
+                    <div className ="show_price_container">
+                        <h3>{price}</h3>
+                    </div>
 
-                    <h1>days: {days > 0 ? days : 0}</h1>
-                    <h1>price: {days * price > 0 ? days * price : 0}</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <label> Check in:
+                            <input type="date" onChange={this.handleInput('start')} />
+                        </label>
+
+                        <br />
+                        <br />
+
+                        <label > Check out:
+                            <input type="date" onChange={this.handleInput('end')} />
+                        </label>
+
+                        <br />
+                        <br />
+
+                        <label htmlFor="guests" className="form-label">Guests</label>
+                        <input type="number" id="guests" className="form-control"/>
+
+                        <h1>days: {days > 0 ? days : 0}</h1>
+                        <h1>price: {days * price > 0 ? days * price : 0}</h1>
+
+                        <button>Book</button>
+
+                    </form>
+
+
+
+                    
+
+                    
 
                 </div>
 

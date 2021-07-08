@@ -14,7 +14,7 @@
 #
 class Location < ApplicationRecord
     validates :title, :price, :host_id, presence: true
-    validates :longitude, :latitude, presence: true
+    validates :lng, :lat, presence: true
 
     belongs_to :host,
         foreign_key: :host_id,
