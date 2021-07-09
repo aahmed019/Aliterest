@@ -20,9 +20,8 @@ const App = () => (
         <Route exact path= "/" component={Splash}/>
         <Route exact path="/" component={LocationsIndexContainer} />
         <Route exact path="/locations/:locationId" component={LocationShowContainer} />
-       
 
     </div>
-  );
-  
-  export default App;
+);
+
+export default App;

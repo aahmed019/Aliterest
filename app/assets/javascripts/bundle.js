@@ -265,6 +265,99 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/review_action.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/review_action.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "CREATE_REVIEW": () => (/* binding */ CREATE_REVIEW),
+/* harmony export */   "UPDATE_REVIEW": () => (/* binding */ UPDATE_REVIEW),
+/* harmony export */   "REMOVE_REVIEW": () => (/* binding */ REMOVE_REVIEW),
+/* harmony export */   "RECEIVE_REVIEW_ERRORS": () => (/* binding */ RECEIVE_REVIEW_ERRORS),
+/* harmony export */   "getReviews": () => (/* binding */ getReviews),
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "updateReview": () => (/* binding */ updateReview),
+/* harmony export */   "deleteReview": () => (/* binding */ deleteReview),
+/* harmony export */   "removeErrors": () => (/* binding */ removeErrors)
+/* harmony export */ });
+/* harmony import */ var _util_review__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review */ "./frontend/util/review.js");
+
+var RECEIVE_REVIEW = "RECEIVE_REVIEW";
+var CREATE_REVIEW = "CREATE_REVIEW";
+var UPDATE_REVIEW = "UPDATE_REVIEW";
+var REMOVE_REVIEW = "REMOVE_REVIEW";
+var RECEIVE_REVIEW_ERRORS = "RECEIVE_REVIEW_ERRORS";
+
+var receiveReview = function receiveReview(review) {
+  return {
+    type: RECEIVE_CURRENT_USER,
+    review: review
+  };
+};
+
+var removeReview = function removeReview(reviewId) {
+  return {
+    type: REMOVE_REVIEW,
+    reviewId: reviewId
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_REVIEW_ERRORS,
+    errors: errors
+  };
+};
+
+var getReviews = function getReviews(locationId) {
+  return function (dispatch) {
+    return _util_review__WEBPACK_IMPORTED_MODULE_0__.getReviews(locationId).then(function (review) {
+      return dispatch(receiveReview(review));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var createReview = function createReview(formData) {
+  return function (dispatch) {
+    return _util_review__WEBPACK_IMPORTED_MODULE_0__.createReview(formData).then(function (review) {
+      return dispatch(receiveReview(review));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var updateReview = function updateReview(formData) {
+  return function (dispatch) {
+    return _util_review__WEBPACK_IMPORTED_MODULE_0__.updateReview(formData).then(function (review) {
+      return dispatch(receiveReview(review));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var deleteReview = function deleteReview(review_id) {
+  return function (dispatch) {
+    return _util_review__WEBPACK_IMPORTED_MODULE_0__.deleteReview(review_id).then(function () {
+      return dispatch(removeReview(review_id));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var removeErrors = function removeErrors() {
+  return function (dispatch) {
+    return dispatch(receiveErrors([]));
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -599,7 +692,7 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
           $(".navbar").css("position", "absolute");
         }
 
-        if ($(window).scrollTop() >= 700 && $(window)) {
+        if ($(window).scrollTop() >= 715 && $(window)) {
           $(".price-show-container").css("position", "fixed");
           $(".price-show-container").css("transform", "translateY(-275%)");
         } else {
@@ -1751,6 +1844,52 @@ var getLocations = function getLocations() {
 var getLocation = function getLocation(locationId) {
   return $.ajax({
     url: "/api/locations/".concat(locationId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/review.js":
+/*!*********************************!*\
+  !*** ./frontend/util/review.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getReviews": () => (/* binding */ getReviews),
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "updateReview": () => (/* binding */ updateReview),
+/* harmony export */   "deleteReview": () => (/* binding */ deleteReview)
+/* harmony export */ });
+var getReviews = function getReviews(location_id) {
+  return $.ajax({
+    url: "api/reviews/".concat(location_id)
+  });
+};
+var createReview = function createReview(review) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/reviews",
+    data: {
+      review: review
+    }
+  });
+};
+var updateReview = function updateReview(review) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/reviews/".concat(review.id),
+    data: {
+      review: review
+    }
+  });
+};
+var deleteReview = function deleteReview(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/reviews/".concat(id)
   });
 };
 
@@ -38273,11 +38412,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _util_locations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/locations */ "./frontend/util/locations.js");
+/* harmony import */ var _actions_review_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/review_action */ "./frontend/actions/review_action.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _util_locations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/locations */ "./frontend/util/locations.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -38287,8 +38428,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login;
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.logout;
+  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.login;
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.logout;
   var preloadedState = undefined;
 
   if (window.current_user) {
@@ -38303,12 +38444,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   delete window.current_user;
-  var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_4__.default)(preloadedState);
+  var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_5__.default)(preloadedState);
   window.store = store; // window.get = getLocations
 
-  window.getlocation = _util_locations__WEBPACK_IMPORTED_MODULE_5__.getLocation;
+  window.getReviews = _actions_review_action__WEBPACK_IMPORTED_MODULE_2__.getReviews;
+  window.getlocation = _util_locations__WEBPACK_IMPORTED_MODULE_6__.getLocation;
   var root = document.getElementById("root");
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__.default, {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_4__.default, {
     store: store
   }), root);
 });

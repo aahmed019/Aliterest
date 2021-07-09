@@ -20,6 +20,5 @@ class Review < ApplicationRecord
     belongs_to :location,
         foreign_key: :location_id,
         class_name: :Location
-
-        
+  
 end

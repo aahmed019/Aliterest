@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import { createReview, deleteReview, getReviews, updateReview } from "./actions/review_action";
 import { login, logout } from "./actions/session_actions";
 import Root from "./components/root";
 import configureStore from "./store/store";
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const store = configureStore(preloadedState)
     window.store = store
     // window.get = getLocations
+    window.getReviews = getReviews
     window.getlocation = getLocation
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store}/>, root);
