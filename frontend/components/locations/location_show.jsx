@@ -1,4 +1,5 @@
 import React from "react";
+import ReviewFormContainer from "../reviews/review_container";
 
 export default class LocationShow extends React.Component {
     constructor(props) {
@@ -28,7 +29,6 @@ export default class LocationShow extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log("test");
     }
 
     handleInput(field) {
@@ -63,15 +63,13 @@ export default class LocationShow extends React.Component {
     }
 
     render() {
-    console.log(this.state);
+
     if (this.props.location === undefined) return null;
 
     const { price } = this.props.location;
     const { start, end, guests } = this.state;
     let days = 0;
     if ((start, end)) {
-        console.log(start.getTime());
-        console.log(end.getTime());
         let diff_time = end.getTime() - start.getTime();
         days = diff_time / (1000 * 3600 * 24);
     }
@@ -344,7 +342,7 @@ export default class LocationShow extends React.Component {
             {/* END OF ACTIVITIES */}
                 <div className="reviews">
                     <h3>Reviews</h3>
-                    <p>Coming soon!</p>
+                    <ReviewFormContainer locationId={this.props.ownProps.match.params.locationId}/>
                 </div>
             </div>
 

@@ -1,2 +1,7 @@
-json.extract! @reviews, :id, :title, :body
+# json.extract! @reviews, :id, :title, :body
 
+@reviews.each do |review|
+    json.set! review.id do 
+        json.extract! review, :id, :title, :body
+    end
+end

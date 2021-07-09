@@ -28,7 +28,7 @@ export const signup = userInfo => dispatch => {
 
 export const login = userInfo => dispatch => SessionUtil.login(userInfo)
 .then(
-    user => (console.log(user), dispatch(receiveCurrentUser(user))),
+    user =>  dispatch(receiveCurrentUser(user)),
     errors => (dispatch(receiveErrors(errors.responseJSON)))
     )
 

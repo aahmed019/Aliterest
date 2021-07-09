@@ -6,9 +6,9 @@ export const UPDATE_REVIEW = "UPDATE_REVIEW"
 export const REMOVE_REVIEW = "REMOVE_REVIEW"
 export const RECEIVE_REVIEW_ERRORS = "RECEIVE_REVIEW_ERRORS"
 
-const receiveReview = (review) => ({
-    type: RECEIVE_CURRENT_USER,
-    review
+const receiveReview = (reviews) => ({
+    type: RECEIVE_REVIEW,
+    reviews
 })
 
 const removeReview = (reviewId) => ({
