@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router";
 import { AuthRoute, ProtectedRoute } from "../util/route.util";
 import Splash from "./splash";
 import LoginFormContainer from "./sessions/login_form_container"
-import NavBarContainer from "./sessions/Nav/navbar_container";
+import NavBarContainer from "./Nav/navbar_container";
 import SignupFormContainer from "./sessions/signup_form_container"
 import Modal from './modal/modal'
 import LocationsIndexContainer from "./locations/locations_index_container";
@@ -16,7 +16,7 @@ const App = () => (
         <Route path ="/" component={NavBarContainer}/>
 
 
-        <h1 style={{paddingTop:'150px'}}></h1>
+        <h1 style={{paddingTop:'120px'}}></h1>
         <Route exact path= "/" component={Splash}/>
         <Route exact path="/" component={LocationsIndexContainer} />
         <Route exact path="/locations/:locationId" component={LocationShowContainer} />
