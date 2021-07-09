@@ -3,7 +3,7 @@ import React from 'react'
 export default class ReviewForm extends React.Component{
     constructor(props){
         super(props)
-        this.newState = Object.assign({}, this.props.information)
+        this.newState = Object.assign({}, this.props.review)
         this.state = this.props.review
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -14,8 +14,8 @@ export default class ReviewForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        const review = Object.assign({}, this.state);
-        this.props.authAction(review)
+        const review = Object.assign({}, this.state, {location_id: this.props.locationId});
+        this.props.postReview(review)
         this.setState(this.newState)
     }
 
@@ -24,12 +24,11 @@ export default class ReviewForm extends React.Component{
     }
 
     render(){
-        console.log(this.props)
         const reviews = this.props.reviews.map((review) => (
-            <div>
+            <div key ={review.id} >
                 <h2>{review.title}</h2>
                 <h4>{review.body}</h4>
-                
+                <button onClick={() => this.props.removeReview(review.id) }></button>
             </div>
         ))
         return(
@@ -45,7 +44,7 @@ export default class ReviewForm extends React.Component{
                     onChange = {this.updateInput('title')}
                     />
                     <br /><br />
-                    <input type="password" className="sessionInput"
+                    <input type="text" className="sessionInput"
                     value ={this.state.body}
                     placeholder="type out your review here..."
                     onChange = {this.updateInput('body')}

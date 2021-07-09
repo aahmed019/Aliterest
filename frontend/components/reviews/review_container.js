@@ -17,7 +17,7 @@ const mDTP = dispatch => ({
     fetchReviews: (locationId) => dispatch(getReviews(locationId)),
     postReview: (formData) => dispatch(createReview(formData)),
     patchReview: (formData) => dispatch(updateReview(formData)),
-    removeReviews: (reviewId) => dispatch(deleteReview(reviewId)),
+    removeReview: (reviewId) => dispatch(deleteReview(reviewId)),
     removeErrors: () => dispatch(removeErrors())
 })
 

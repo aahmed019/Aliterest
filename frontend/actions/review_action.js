@@ -1,14 +1,19 @@
 import * as ReviewUtil from '../util/review'
 
+export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS"
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
-export const CREATE_REVIEW = "CREATE_REVIEW"
 export const UPDATE_REVIEW = "UPDATE_REVIEW"
 export const REMOVE_REVIEW = "REMOVE_REVIEW"
 export const RECEIVE_REVIEW_ERRORS = "RECEIVE_REVIEW_ERRORS"
 
-const receiveReview = (reviews) => ({
-    type: RECEIVE_REVIEW,
+const receiveReviews = (reviews) => ({
+    type: RECEIVE_REVIEWS,
     reviews
+})
+
+const receiveReview = (review) => ({
+    type: RECEIVE_REVIEW,
+    review
 })
 
 const removeReview = (reviewId) => ({
@@ -26,7 +31,7 @@ const receiveErrors = (errors) => ({
 export const getReviews = locationId => dispatch => {
     return ReviewUtil.getReviews(locationId)
         .then(
-            review => dispatch(receiveReview(review)),
+            review => dispatch(receiveReviews(review)),
             errors => dispatch(receiveErrors(errors.responseJSON))
             )
 }

@@ -13,6 +13,7 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         if @review.save
+            render json: {id: @review.id, title: @review.title, body: @review.body}
         else
             render json: @review.errors.full_messages, status: 422
         end
@@ -29,6 +30,7 @@ class Api::ReviewsController < ApplicationController
     def destroy
         @review = Review.find_by(id: params[:id])
         if @review.destroy
+            render json: ["deleted"]
         else
             render json: @review.errors.full_messages, status: 422
         end
