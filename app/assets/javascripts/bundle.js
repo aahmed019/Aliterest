@@ -599,9 +599,9 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
           $(".navbar").css("position", "absolute");
         }
 
-        if ($(window).scrollTop() >= 450 && $(window)) {
+        if ($(window).scrollTop() >= 700 && $(window)) {
           $(".price-show-container").css("position", "fixed");
-          $(".price-show-container").css("transform", "translateY(-175%)");
+          $(".price-show-container").css("transform", "translateY(-275%)");
         } else {
           $(".price-show-container").css("position", "absolute");
           $(".price-show-container").css("transform", "translateY(0%)");

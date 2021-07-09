@@ -6,8 +6,8 @@
 #  title       :string           not null
 #  description :text
 #  price       :integer          not null
-#  longitude   :string           not null
-#  latitude    :string           not null
+#  lng         :string           not null
+#  lat         :string           not null
 #  host_id     :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
