@@ -28,36 +28,40 @@ export default class ReviewForm extends React.Component{
             <div key ={review.id} >
                 <h2>{review.title}</h2>
                 <h4>{review.body}</h4>
-                <button onClick={() => this.props.removeReview(review.id) }></button>
+                <button onClick={() => this.props.removeReview(review.id) }>Delete Review</button>
+                {/* <button onClick={() => this.props.patchReview() }>Edit Review</button> */}
             </div>
         ))
         return(
-            <form onSubmit={this.handleSubmit} className="form">
-
-                <div>
+            <div>
                     <ul>
                         {reviews}
                     </ul>
-                    <input type="text" className="sessionInput"
-                    value={this.state.title}
-                    placeholder="Title"
-                    onChange = {this.updateInput('title')}
-                    />
-                    <br /><br />
-                    <input type="text" className="sessionInput"
-                    value ={this.state.body}
-                    placeholder="type out your review here..."
-                    onChange = {this.updateInput('body')}
-                    />
+            
+                <form onSubmit={this.handleSubmit} className="form">
 
-                    <br />
-                    <br />
+                    <div>
+                        <input type="text" className="sessionInput"
+                        value={this.state.title}
+                        placeholder="Title"
+                        onChange = {this.updateInput('title')}
+                        />
+                        <br /><br />
+                        <input type="text" className="sessionInput"
+                        value ={this.state.body}
+                        placeholder="type out your review here..."
+                        onChange = {this.updateInput('body')}
+                        />
 
-                    <button className="formButton">{this.props.formType}</button>
-                    <br />
-                    <br />
-                </div>
-            </form>
+                        <br />
+                        <br />
+
+                        <button className="formButton">{this.props.formType}</button>
+                        <br />
+                        <br />
+                    </div>
+                </form>
+            </div>
         )
     }
 }

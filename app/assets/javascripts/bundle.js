@@ -1352,12 +1352,12 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this3.props.removeReview(review.id);
           }
-        }));
+        }, "Delete Review"));
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "sessionInput",
         value: this.state.title,
@@ -1371,7 +1371,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.updateInput('body')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "formButton"
-      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
+      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null))));
     }
   }]);
 
@@ -1850,9 +1850,8 @@ var reviewReducer = function reviewReducer() {
       return Object.assign({}, newState, _defineProperty({}, action.review.id, action.review));
 
     case _actions_review_action__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW:
-      debugger;
-      delete newState[action.review.id];
-      return {};
+      delete newState[action.reviewId];
+      return newState;
 
     default:
       return state;
