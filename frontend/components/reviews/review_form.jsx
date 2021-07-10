@@ -24,12 +24,14 @@ export default class ReviewForm extends React.Component{
     }
 
     render(){
+        const {patchReview} = this.props
+        const {closeModal} = this.props
         const reviews = this.props.reviews.map((review) => (
             <div key ={review.id} >
                 <h2>{review.title}</h2>
                 <h4>{review.body}</h4>
                 <button onClick={() => this.props.removeReview(review.id) }>Delete Review</button>
-                {/* <button onClick={() => this.props.patchReview() }>Edit Review</button> */}
+                <button onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }>Edit Review</button>
             </div>
         ))
         return(

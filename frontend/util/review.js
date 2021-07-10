@@ -12,13 +12,13 @@ export const createReview = review => (
     })
 )
 
-export const updateReview = review => (
-    $.ajax({
-        method: "POST",
-        url: `/api/reviews/${review.id}`,
+export const updateReview = review => {
+    return $.ajax({
+        method: "PATCH",
+        url: `/api/reviews/${review}`,
         data: {review}
     })
-)
+}
 
 export const deleteReview = id => (
     $.ajax({

@@ -19,12 +19,13 @@ class Api::ReviewsController < ApplicationController
         end
     end
 
-    def edit
-        @review = Review.find_by(id: params[:id])
-    end
-
     def update
-        # if @review.update(review_params)
+        @review = Review.find_by(id: review_params[:id])
+        if @review.update(review_params)
+            render json: {id: @review.id, title: @review.title, body: @review.body}
+        else
+            render json: ["FAIL"]
+        end
     end
 
     def destroy
@@ -37,6 +38,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:title, :body, :author_id, :location_id)
+        params.require(:review).permit(:id, :title, :body, :author_id, :location_id)
     end
 end
