@@ -12,13 +12,14 @@ export const createReview = review => (
     })
 )
 
-export const updateReview = review => {
-    return $.ajax({
+export const updateReview = review => (
+    $.ajax({
         method: "PATCH",
+        //broken here
         url: `/api/reviews/${review}`,
         data: {review}
     })
-}
+)
 
 export const deleteReview = id => (
     $.ajax({

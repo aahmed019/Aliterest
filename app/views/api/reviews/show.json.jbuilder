@@ -2,6 +2,6 @@
 
 @reviews.each do |review|
     json.set! review.id do 
-        json.extract! review, :id, :title, :body
+        json.extract! review, :id, :title, :body, :author_id
     end
 end

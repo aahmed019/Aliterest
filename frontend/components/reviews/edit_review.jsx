@@ -9,8 +9,7 @@ export default class EditReview extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        const review = Object.assign({}, this.state);
-        this.state.patchReview(review).then(this.state.closeModal)
+        this.state.patchReview(this.state).then(this.state.closeModal)
     }
 
     updateInput(field){

@@ -344,8 +344,6 @@ var updateReview = function updateReview(formData) {
   return function (dispatch) {
     return _util_review__WEBPACK_IMPORTED_MODULE_0__.updateReview(formData).then(function (review) {
       return dispatch(receiveReview(review));
-    }, function (errors) {
-      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -1272,8 +1270,7 @@ var EditReview = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var review = Object.assign({}, this.state);
-      this.state.patchReview(review).then(this.state.closeModal);
+      this.state.patchReview(this.state).then(this.state.closeModal);
     }
   }, {
     key: "updateInput",
@@ -1468,6 +1465,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, review.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, review.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           onClick: function onClick() {
             return _this3.props.removeReview(review.id);
+          },
+          style: {
+            display: review.author_id === _this3.state.author_id ? 'block' : 'none'
           }
         }, "Delete Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           onClick: function onClick() {
@@ -1476,6 +1476,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
             }, {
               closeModal: closeModal
             }));
+          },
+          style: {
+            display: review.author_id === _this3.state.author_id ? 'block' : 'none'
           }
         }, "Edit Review"));
       });
@@ -1962,8 +1965,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_review_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/review_action */ "./frontend/actions/review_action.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 var reviewReducer = function reviewReducer() {
@@ -1977,7 +1978,8 @@ var reviewReducer = function reviewReducer() {
       return action.reviews;
 
     case _actions_review_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW:
-      return Object.assign({}, newState, _defineProperty({}, action.review.id, action.review));
+      newState[action.review.id] = action.review;
+      return newState;
 
     case _actions_review_action__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW:
       delete newState[action.reviewId];
@@ -2239,6 +2241,7 @@ var createReview = function createReview(review) {
 var updateReview = function updateReview(review) {
   return $.ajax({
     method: "PATCH",
+    //broken here
     url: "/api/reviews/".concat(review),
     data: {
       review: review

@@ -48,7 +48,6 @@ export const updateReview = formData => dispatch => {
     return ReviewUtil.updateReview(formData)
         .then(
             review =>  dispatch(receiveReview(review)),
-            errors => dispatch(receiveErrors(errors.responseJSON))
             )
 }
 

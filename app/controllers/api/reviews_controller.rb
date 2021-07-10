@@ -21,7 +21,7 @@ class Api::ReviewsController < ApplicationController
 
     def update
         @review = Review.find_by(id: review_params[:id])
-        if @review.update(review_params)
+        if @review && @review.update(review_params)
             render json: {id: @review.id, title: @review.title, body: @review.body}
         else
             render json: ["FAIL"]
