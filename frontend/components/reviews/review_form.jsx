@@ -27,10 +27,17 @@ export default class ReviewForm extends React.Component{
         const {patchReview} = this.props
         const {closeModal} = this.props
         const reviews = this.props.reviews.map((review) => (
-            
-            <div key ={review.id} >
-                <h2>{review.title}</h2>
-                <h4>{review.body}</h4>
+            <div key ={review.id} className = "review">
+                <div className ="user-photo">
+                <img
+                        src="https://picsum.photos/100"
+                        style={{ borderRadius: "50%" }}
+                    />
+                    <p>{review.f_name} {review.l_name} </p>
+                </div>
+                <div className="review-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, tenetur nemo. Aperiam repellat reiciendis dolorum laudantium dolor necessitatibus hic. Quam cupiditate molestiae omnis at provident dolores aperiam nobis cum harum!</p>
+                </div>
                 <button 
                 onClick={() => this.props.removeReview(review.id) }
                 style={{display: review.author_id === this.state.author_id ? 'block' : 'none' }}
@@ -46,10 +53,8 @@ export default class ReviewForm extends React.Component{
             </div>
         ))
         return(
-            <div>
-                    <ul>
-                        {reviews}
-                    </ul>
+            <div className ="review-container">
+                {reviews}
             
                 <form onSubmit={this.handleSubmit} className="form">
 

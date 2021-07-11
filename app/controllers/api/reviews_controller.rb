@@ -6,7 +6,7 @@ class Api::ReviewsController < ApplicationController
     # end
 
     def show
-        @reviews = Review.all.where(location_id: params[:id])
+        @reviews = Review.all.includes(:user).where(location_id: params[:id])
         render 'api/reviews/show'
     end
     

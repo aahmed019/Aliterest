@@ -11,7 +11,7 @@ import LocationShowContainer from "./locations/location_show_container";
 
 
 const App = () => (
-    <div>
+    <div className="webpage">
         <Modal/>
         <Route path ="/" component={NavBarContainer}/>
 
