@@ -11,7 +11,7 @@ import LocationShowContainer from "./locations/location_show_container";
 
 
 const App = () => (
-    <div>
+    <div className="webpage">
         <Modal/>
         <Route path ="/" component={NavBarContainer}/>
 
@@ -20,9 +20,8 @@ const App = () => (
         <Route exact path= "/" component={Splash}/>
         <Route exact path="/" component={LocationsIndexContainer} />
         <Route exact path="/locations/:locationId" component={LocationShowContainer} />
-       
 
     </div>
-  );
-  
-  export default App;
+);
+
+export default App;

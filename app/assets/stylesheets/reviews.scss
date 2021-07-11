@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+
+.review{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 15px ;
+    padding-bottom: 25px;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    text-align: center;
+    
+    .review-body{
+        width: 600px;
+        font-size: 15px;
+    }
+}

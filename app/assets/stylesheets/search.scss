@@ -1,0 +1,22 @@
+.search-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 65%;
+    padding-top: 30px;
+    height: 130px;
+    border-radius: 60px;
+    background-color: rgb(243, 242, 239);
+    border: 1px solid black;
+
+    .search-form{
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.search{
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+}
