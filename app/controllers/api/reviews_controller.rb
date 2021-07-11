@@ -13,7 +13,7 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         if @review.save
-            render json: {id: @review.id, title: @review.title, body: @review.body}
+            render json: {id: @review.id, body: @review.body}
         else
             render json: @review.errors.full_messages, status: 422
         end
@@ -22,7 +22,7 @@ class Api::ReviewsController < ApplicationController
     def update
         @review = Review.find_by(id: review_params[:id])
         if @review && @review.update(review_params)
-            render json: {id: @review.id, title: @review.title, body: @review.body}
+            render json: {id: @review.id, body: @review.body}
         else
             render json: ["FAIL"]
         end
@@ -38,6 +38,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:id, :title, :body, :author_id, :location_id)
+        params.require(:review).permit(:id, :body, :author_id, :location_id)
     end
 end

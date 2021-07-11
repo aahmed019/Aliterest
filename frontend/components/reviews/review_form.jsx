@@ -36,7 +36,7 @@ export default class ReviewForm extends React.Component{
                     <p>{review.f_name} {review.l_name} </p>
                 </div>
                 <div className="review-body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, tenetur nemo. Aperiam repellat reiciendis dolorum laudantium dolor necessitatibus hic. Quam cupiditate molestiae omnis at provident dolores aperiam nobis cum harum!</p>
+                    <p>{review.body}</p>
                 </div>
                 <button 
                 onClick={() => this.props.removeReview(review.id) }
@@ -59,12 +59,6 @@ export default class ReviewForm extends React.Component{
                 <form onSubmit={this.handleSubmit} className="form">
 
                     <div>
-                        <input type="text" className="sessionInput"
-                        value={this.state.title}
-                        placeholder="Title"
-                        onChange = {this.updateInput('title')}
-                        />
-                        <br /><br />
                         <input type="text" className="sessionInput"
                         value ={this.state.body}
                         placeholder="type out your review here..."

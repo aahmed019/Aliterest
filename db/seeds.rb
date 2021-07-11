@@ -20,14 +20,14 @@ loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, 
 loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '42.3658', lng: '71.0263', host_id: 2})
 loc5 = Location.create({title: 'Demo 5 Title', description: 'fifth', price: 40, lat: '42.3658', lng: '71.0263', host_id: 1})
 
-review1 = Review.create({title: "Great Place!", body: "I really enjoyed the property and the host was wonderful", author_id: 2 , location_id: 1})
+review1 = Review.create({body: "I really enjoyed the property and the host was wonderful", author_id: 2 , location_id: 1})
 
-review2 = Review.create({title: "Awesome place!", body: "Jack really did a great job on the property, 10/10", author_id: 3, location_id: 1})
+review2 = Review.create({body: "Jack really did a great job on the property, 10/10", author_id: 3, location_id: 1})
 
 
 
-review3 = Review.create({title: "Great Place!", body: "I really enjoyed the property and the host was wonderful", author_id: 1, location_id: 2})
+review3 = Review.create({body: "I really enjoyed the property and the host was wonderful", author_id: 1, location_id: 2})
 
-review4 = Review.create({title: "Great Place Again!", body: "Sam, you're that guy", author_id: 1, location_id: 2})
+review4 = Review.create({body: "Sam, you're that guy", author_id: 1, location_id: 2})
 
-review5 = Review.create({title: "Awesome place!", body: "Sam, really did a great job on the property, 10/10", author_id: 3, location_id: 2})
+review5 = Review.create({body: "Sam, really did a great job on the property, 10/10", author_id: 3, location_id: 2})

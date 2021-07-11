@@ -7,7 +7,6 @@ import ReviewForm from "./review_form";
 const mSTP = (state, ownProps) => ({
     reviews: Object.values(state.entities.reviews),
     review: {
-        title: "",
         body: "",
         author_id: state.session.id,
     },

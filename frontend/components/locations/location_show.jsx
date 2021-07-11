@@ -149,7 +149,7 @@ export default class LocationShow extends React.Component {
                 </div>
 
                 <div className="info-card">
-                    <div className="title">Essentials</div>
+                    <div className="title">Activities</div>
                     <div className="info-element">
                     <div>icon</div>
                     <div>information</div>
