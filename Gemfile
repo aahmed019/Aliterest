@@ -41,6 +41,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'aws-sdk-s3'
 end
 
 group :development do

@@ -5,17 +5,33 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'open-uri'
 
 
 User.destroy_all
 Location.destroy_all
-LocationAmenity.destroy_all
-LocationActivity.destroy_all
+Review.destroy_all
 Amenity.destroy_all
 Activity.destroy_all
+Terrain.destroy_all
+LocationAmenity.destroy_all
+LocationActivity.destroy_all
+LocationTerrain.destroy_all
+
+# ActiveStorage::Attachment.all.each { |attachment| attachment.purge }
+User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
+Location.connection.execute('ALTER SEQUENCE locations_id_seq RESTART WITH 1')
+Review.connection.execute('ALTER SEQUENCE reviews_id_seq RESTART WITH 1')
+Amenity.connection.execute('ALTER SEQUENCE amenities_id_seq RESTART WITH 1')
+Activity.connection.execute('ALTER SEQUENCE activities_id_seq RESTART WITH 1')
+Terrain.connection.execute('ALTER SEQUENCE terrains_id_seq RESTART WITH 1')
+LocationAmenity.connection.execute('ALTER SEQUENCE location_amenities_id_seq RESTART WITH 1')
+LocationActivity.connection.execute('ALTER SEQUENCE location_activities_id_seq RESTART WITH 1')
+LocationTerrain.connection.execute('ALTER SEQUENCE location_terrains_id_seq RESTART WITH 1')
+
 
 #Users
-jack = User.create({email: 'jack@fakeemail.com', f_name: 'Jack', l_name: 'Liu',  password: 'test123'})
+jack = User.create({email: 'jack@fakeemail.com', f_name: 'Jac', l_name: 'Liu',  password: 'test123'})
 sam = User.create({email: 'sam@fakeemail.com', f_name: 'Sam', l_name: 'Sacco',  password: 'test123'})
 justin = User.create({email: 'justin@fakeemail.com', f_name: 'Justin', l_name: 'Meyer',  password: 'test123'})
 
@@ -24,7 +40,7 @@ justin = User.create({email: 'justin@fakeemail.com', f_name: 'Justin', l_name: '
 loc1 = Location.create({title: 'Demo 1 Title', description: 'first', price: 20, lat: '41.3129', lng: '74.0063', host_id: 1})
 loc2 = Location.create({title: 'Demo 2 Title', description: 'second', price: 25, lat: '42.3658', lng: '71.0263', host_id: 2})
 loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, lat: '41.3129', lng: '74.0063', host_id: 3})
-loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '42.3658', lng: '71.0263', host_id: 2})
+loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '42.3658', lng: '71.0263', host_id: 1})
 
 #Reviews
 review1 = Review.create({body: "I really enjoyed the property and the host was wonderful", author_id: 2 , location_id: 1})
@@ -101,3 +117,20 @@ lac9 = LocationTerrain.create({location_id: 3, terrain_id: 3})
 lac10 = LocationTerrain.create({location_id: 4, terrain_id: 1})
 lac11 = LocationTerrain.create({location_id: 4, terrain_id: 2})
 lac12 = LocationTerrain.create({location_id: 4, terrain_id: 3})
+
+#images
+f1 = File.open('app/assets/images/s1.jpg')
+f2 = File.open('app/assets/images/s2.jpg')
+f3 = File.open('app/assets/images/s3.jpg')
+
+f4 = File.open('app/assets/images/tele1.jpg')
+f5 = File.open('app/assets/images/tele2.jpg')
+f6 = File.open('app/assets/images/tele3.jpg')
+
+loc1.photos.attach(io: f1, filename: 's1.jpg')
+loc1.photos.attach(io: f2, filename: 's2.jpg')
+loc1.photos.attach(io: f3, filename: 's3.jpg')
+
+loc2.photos.attach(io: f4, filename: 'tele1.jpg')
+loc2.photos.attach(io: f5, filename: 'tele2.jpg')
+loc2.photos.attach(io: f6, filename: 'tele3.jpg')

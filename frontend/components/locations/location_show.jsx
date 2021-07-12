@@ -94,6 +94,16 @@ export default class LocationShow extends React.Component {
             </div>
         </div>
     ))
+
+    const photos = this.props.location.photos.map((photo_url, i) => {
+        {console.log(photo_url)}
+        return <img
+            key ={`photo-${i}`}
+            className="showpage-img"
+            src={photo_url}
+            alt="location_photo"
+        />
+    })
     
     const { price } = this.props.location;
     const { start, end, guests } = this.state;
@@ -108,25 +118,7 @@ export default class LocationShow extends React.Component {
     return (
         <div>
         <div className="showpage-img-container">
-            <img
-            className="showpage-img"
-            src="https://picsum.photos/550"
-            alt=""
-            />
-
-            <img
-            className="showpage-img"
-            src="https://picsum.photos/550"
-            alt=""
-            />
-
-            <img
-            className="showpage-img"
-            src="https://picsum.photos/550"
-            alt=""
-            />
-
-            
+            {photos}
         </div>
 
         <div className="show-page-content">

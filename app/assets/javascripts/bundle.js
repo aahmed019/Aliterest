@@ -742,6 +742,17 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
           className: "info-element"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, terrain.description)));
       });
+      var photos = this.props.location.photos.map(function (photo_url, i) {
+        {
+          console.log(photo_url);
+        }
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          key: "photo-".concat(i),
+          className: "showpage-img",
+          src: photo_url,
+          alt: "location_photo"
+        });
+      });
       var price = this.props.location.price;
       var _this$state = this.state,
           start = _this$state.start,
@@ -756,19 +767,7 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "showpage-img-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "showpage-img",
-        src: "https://picsum.photos/550",
-        alt: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "showpage-img",
-        src: "https://picsum.photos/550",
-        alt: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "showpage-img",
-        src: "https://picsum.photos/550",
-        alt: ""
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, photos), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-page-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "info"
