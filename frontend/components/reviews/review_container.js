@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import { getReviews, createReview, updateReview, deleteReview, removeErrors } from "../../actions/review_action";
 import ReviewForm from "./review_form";
 
-const mSTP = (state, ownProps) => ({
+const mSTP = (state) => ({
     reviews: Object.values(state.entities.reviews),
     review: {
         body: "",
         author_id: state.session.id,
     },
+    currentUser: state.entities.users[state.session.id],
     formType: "Create Review"
 })
 

@@ -1,38 +1,31 @@
 import React from "react";
 
-const Search = props => {
+const Search = (props) => {
 
     return(
         <div className="search-container">
-            <div>
-                <form className="search-form">
-                    <input type="search" className="input-search" />
+            <div className='search'>  
+                <form className='search-form'>
+                <div className='search-input'>
+                    <input type="text" placeholder="Try Yosemite, Napa, Moab..."/>
+                </div> 
                     <div className="search-dates">
-                        <div className="input-group">
-                        <label className="form-label" htmlFor="checkin">
-                            Check in:
-                        </label>
-                        <input
-                            className="form-control side-by-side"
-                            type="date"
-                            id="checkin"
-                        />
+                        <div>
+                            <input type="date" name="" id="" />
                         </div>
-
-                        <div className="input-group ">
-                        <label className="form-label" htmlFor="checkout">
-                            Check out:
-                        </label>
-                        <input
-                            className="form-control"
-                            type="date"
-                            id="checkout"
-                        />
+                        <div>
+                            <input type="date" name="" id="" />
                         </div>
+                        
                     </div>
-                </form>
-            </div>
-            
+                    <div className="search-button">
+                        <button type='submit' className='search-button'>
+                            <i className="fas fa-search"></i>
+                        </button>
+                    </div>
+                    </form>
+                </div>
+                <img src="https://picsum.photos/1200/475" className='search-img'/>
         </div>
     )
 }

@@ -6,7 +6,7 @@ const LocationsIndexItem = props => {
     const { location } = props
     return (
         <div className="location-index-items">
-            <Link to={`locations/${props.location.id}`}>
+            <Link to={`locations/${location.id}`}>
 
                 <img src="https://picsum.photos/400/400/?random" alt="" />
             </Link>

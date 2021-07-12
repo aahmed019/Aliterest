@@ -334,7 +334,7 @@ var getReviews = function getReviews(locationId) {
 var createReview = function createReview(formData) {
   return function (dispatch) {
     return _util_review__WEBPACK_IMPORTED_MODULE_0__.createReview(formData).then(function (review) {
-      return dispatch(receiveReview(review));
+      console.log(review), dispatch(receiveReview(review));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -1069,7 +1069,7 @@ var LocationsIndexItem = function LocationsIndexItem(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "location-index-items"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "locations/".concat(props.location.id)
+    to: "locations/".concat(location.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://picsum.photos/400/400/?random",
     alt: ""
@@ -1235,14 +1235,21 @@ var EditReview = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var body = this.state.body;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "review-edit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit your review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         type: "text",
         value: body,
         onChange: this.updateInput('body')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit Review")));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "formButton",
+        style: {
+          width: '100%'
+        }
+      }, "Edit review"))));
     }
   }]);
 
@@ -1275,13 +1282,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(state, ownProps) {
+var mSTP = function mSTP(state) {
   return {
     reviews: Object.values(state.entities.reviews),
     review: {
       body: "",
       author_id: state.session.id
     },
+    currentUser: state.entities.users[state.session.id],
     formType: "Create Review"
   };
 };
@@ -1382,6 +1390,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var review = Object.assign({}, this.state, {
         location_id: this.props.locationId
+      }, {
+        author_id: this.props.currentUser.id
       });
       this.props.postReview(review);
       this.setState(this.newState);
@@ -1420,7 +1430,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
             return _this3.props.removeReview(review.id);
           },
           style: {
-            display: review.author_id === _this3.state.author_id ? 'block' : 'none'
+            display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
           }
         }, "Delete Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           onClick: function onClick() {
@@ -1431,7 +1441,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
             }));
           },
           style: {
-            display: review.author_id === _this3.state.author_id ? 'block' : 'none'
+            display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
           }
         }, "Edit Review"));
       });
@@ -1510,32 +1520,36 @@ __webpack_require__.r(__webpack_exports__);
 var Search = function Search(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-    className: "search-form"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    type: "search",
-    className: "input-search"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-dates"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "form-label",
-    htmlFor: "checkin"
-  }, "Check in:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    className: "form-control side-by-side",
-    type: "date",
-    id: "checkin"
+    className: "search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    className: "search-form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "search-input"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    placeholder: "Try Yosemite, Napa, Moab..."
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "input-group "
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "form-label",
-    htmlFor: "checkout"
-  }, "Check out:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    className: "form-control",
+    className: "search-dates"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "date",
-    id: "checkout"
-  }))))));
+    name: "",
+    id: ""
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "date",
+    name: "",
+    id: ""
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "search-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    className: "search-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "fas fa-search"
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "https://picsum.photos/1200/475",
+    className: "search-img"
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);

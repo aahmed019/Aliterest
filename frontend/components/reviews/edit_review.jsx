@@ -19,11 +19,15 @@ export default class EditReview extends React.Component{
     render(){
         const { body} = this.state
         return(
-            <div> 
-                <form onSubmit={this.handleSubmit} className="form">
-                    <input type="text" value = {body} onChange={this.updateInput('body')}/>
-                    <button>Edit Review</button>
-                </form>
+            <div>
+                <div className='review-edit'>
+                    <h1>Edit your review</h1>
+                    <form onSubmit={this.handleSubmit} className="form">
+                        <textarea type="text" value = {body} onChange={this.updateInput('body')}/>
+                        <br />
+                        <button className="formButton" style={{width:'100%'}}>Edit review</button>
+                    </form>
+                </div>
             </div>
         )
     }

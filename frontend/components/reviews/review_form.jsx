@@ -14,7 +14,7 @@ export default class ReviewForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        const review = Object.assign({}, this.state, {location_id: this.props.locationId});
+        const review = Object.assign({}, this.state, {location_id: this.props.locationId}, {author_id: this.props.currentUser.id});
         this.props.postReview(review)
         this.setState(this.newState)
     }
@@ -40,13 +40,12 @@ export default class ReviewForm extends React.Component{
                 </div>
                 <button 
                 onClick={() => this.props.removeReview(review.id) }
-                style={{display: review.author_id === this.state.author_id ? 'block' : 'none' }}
+                style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none' }}
                 >Delete Review
                 </button>
-
                 <button 
                 onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }
-                style={{display: review.author_id === this.state.author_id ? 'block' : 'none' }}
+                style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none' }}
                 >
                 Edit Review
                 </button>
