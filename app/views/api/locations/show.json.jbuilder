@@ -17,3 +17,11 @@ json.set! 'activities' do
     end
 end
 
+json.set! 'terrains' do
+    @location.terrains.each do |terrain|
+        json.set! terrain.id do
+            json.extract! terrain, :name, :description
+        end
+    end
+end
+

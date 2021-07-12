@@ -74,6 +74,30 @@ lac7 = LocationActivity.create({location_id: 3, activity_id: 1})
 lac8 = LocationActivity.create({location_id: 3, activity_id: 2})
 lac9 = LocationActivity.create({location_id: 3, activity_id: 3})
 
-lac10 = LocationAmenity.create({location_id: 4, amenity_id: 1})
-lac11 = LocationAmenity.create({location_id: 4, amenity_id: 2})
-lac12 = LocationAmenity.create({location_id: 4, amenity_id: 3})
+lac10 = LocationActivity.create({location_id: 4, activity_id: 1})
+lac11 = LocationActivity.create({location_id: 4, activity_id: 2})
+lac12 = LocationActivity.create({location_id: 4, activity_id: 3})
+
+#Terrains 
+
+t1 = Terrain.create({name: "Forest", description:"The property is filled with a lush amount of pine trees."})
+t2 = Terrain.create({name: "River", description:"Nearby there is river used for fishing and swimming."})
+t3 = Terrain.create({name: "Mountain", description:"There is a mountain nearby often used for hiking."})
+
+#Location Terrains
+
+lac1 = LocationTerrain.create({location_id: 1, terrain_id: 1})
+lac2 = LocationTerrain.create({location_id: 1, terrain_id: 2})
+lac3 = LocationTerrain.create({location_id: 1, terrain_id: 3})
+
+lac4 = LocationTerrain.create({location_id: 2, terrain_id: 1})
+lac5 = LocationTerrain.create({location_id: 2, terrain_id: 2})
+lac6 = LocationTerrain.create({location_id: 2, terrain_id: 3})
+
+lac7 = LocationTerrain.create({location_id: 3, terrain_id: 1})
+lac8 = LocationTerrain.create({location_id: 3, terrain_id: 2})
+lac9 = LocationTerrain.create({location_id: 3, terrain_id: 3})
+
+lac10 = LocationTerrain.create({location_id: 4, terrain_id: 1})
+lac11 = LocationTerrain.create({location_id: 4, terrain_id: 2})
+lac12 = LocationTerrain.create({location_id: 4, terrain_id: 3})

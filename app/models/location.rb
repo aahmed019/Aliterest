@@ -35,5 +35,15 @@ class Location < ApplicationRecord
     has_many :amenities,
         through: :location_amenities,
         source: :amenity
+
+    has_many :location_terrains,
+        foreign_key: :location_id,
+        class_name: :LocationTerrain
+
+    has_many :terrains,
+        through: :location_terrains,
+        source: :terrain
+
+    
         
 end
