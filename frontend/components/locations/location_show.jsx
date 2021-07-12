@@ -65,20 +65,20 @@ export default class LocationShow extends React.Component {
     render() {
     if (this.props.location === undefined || this.props.location.activities === undefined) return null;
 
-    const activities = Object.values(this.props.location.activities).map((activity) => (
-        <div className="info-element">
+    const activities = Object.values(this.props.location.activities).map((activity, i) => (
+        <div className="info-element" key = {`activity-${i}`}>
             <div>{activity.name}</div>
         </div>
     ))
 
-    const amenities = Object.values(this.props.location.amenities).map((amenity) => (
-        <div className="info-element">
+    const amenities = Object.values(this.props.location.amenities).map((amenity, i) => (
+        <div className="info-element" key={`amenity-${i}`}>
             <div>{amenity.name}</div>
         </div>
     ))
 
     const activitiesDetails = Object.values(this.props.location.activities).map((activity, i) => (
-        <div className="info-card">
+        <div className="info-card" key={`details-${i}`}>
             <div className="title">{activity.name}</div>
             <div className="info-element">
                 <div>{activity.description}</div>
@@ -86,6 +86,15 @@ export default class LocationShow extends React.Component {
         </div>
     ))
 
+    const terrainsDetails = Object.values(this.props.location.terrains).map((terrain, i) => (
+        <div className="info-card" key={`details-${i}`}>
+            <div className="title">{terrain.name}</div>
+            <div className="info-element">
+                <div>{terrain.description}</div>
+            </div>
+        </div>
+    ))
+    
     const { price } = this.props.location;
     const { start, end, guests } = this.state;
     let days = 0;
@@ -116,6 +125,8 @@ export default class LocationShow extends React.Component {
             src="https://picsum.photos/550"
             alt=""
             />
+
+            
         </div>
 
         <div className="show-page-content">
@@ -150,16 +161,13 @@ export default class LocationShow extends React.Component {
                 <div className="info-card">
                     <div className="title">Campsite area</div>
                     <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
+                    <div>Bring your own vehicles and camping equipment </div>
                     </div>
                     <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
+                    <div>Up to a 1,000,000 guests</div>
                     </div>
                     <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
+                    <div>Parking available</div>
                     </div>
                 </div>
 
@@ -188,53 +196,7 @@ export default class LocationShow extends React.Component {
                 <h3>Terrain</h3>
                 <p>The world around you</p>
                 <div className="details">
-                    <div className="info-card">
-                    <div className="title">Forest</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Welands</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Farm</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
+                    {terrainsDetails}
                 </div>
               {/* END OF TERRAIN */}
             </div>
