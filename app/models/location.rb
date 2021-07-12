@@ -19,5 +19,21 @@ class Location < ApplicationRecord
     belongs_to :host,
         foreign_key: :host_id,
         class_name: :User
+
+    has_many :location_activities,
+        foreign_key: :location_id,
+        class_name: :LocationActivity
+
+    has_many :location_amenities,
+        foreign_key: :location_id,
+        class_name: :LocationAmenity
+
+    has_many :activities,
+        through: :location_activities,
+        source: :activity
+
+    has_many :amenities,
+        through: :location_amenities,
+        source: :amenity
         
 end

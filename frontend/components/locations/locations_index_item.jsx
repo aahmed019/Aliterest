@@ -5,13 +5,13 @@ const LocationsIndexItem = props => {
     
     const { location } = props
     return (
-        <div>
-            <Link to={`locations/${props.location.id}`}>
+        <div className="location-index-items">
+            <Link to={`locations/${location.id}`}>
 
                 <img src="https://picsum.photos/400/400/?random" alt="" />
             </Link>
 
-            <p>{location.title}</p>
+            {/* <p>{location.title}</p> */}
         </div>
     )
     

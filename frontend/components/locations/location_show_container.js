@@ -2,9 +2,10 @@ import { connect } from "react-redux";
 import { getLocation } from "../../actions/location_actions";
 import LocationShow from "./location_show";
 
-const mSTP = ({entities}, ownProps) => ({
+const mSTP = ({entities, session}, ownProps) => ({
     location: entities.locations[ownProps.match.params.locationId],
-    ownProps
+    ownProps,
+    currentUser: entities.users[session.id]
 })
 
 const mDTP = dispatch => ({

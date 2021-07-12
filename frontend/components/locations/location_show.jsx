@@ -63,8 +63,28 @@ export default class LocationShow extends React.Component {
     }
 
     render() {
+    if (this.props.location === undefined || this.props.location.activities === undefined) return null;
 
-    if (this.props.location === undefined) return null;
+    const activities = Object.values(this.props.location.activities).map((activity) => (
+        <div className="info-element">
+            <div>{activity.name}</div>
+        </div>
+    ))
+
+    const amenities = Object.values(this.props.location.amenities).map((amenity) => (
+        <div className="info-element">
+            <div>{amenity.name}</div>
+        </div>
+    ))
+
+    const activitiesDetails = Object.values(this.props.location.activities).map((activity, i) => (
+        <div className="info-card">
+            <div className="title">{activity.name}</div>
+            <div className="info-element">
+                <div>{activity.description}</div>
+            </div>
+        </div>
+    ))
 
     const { price } = this.props.location;
     const { start, end, guests } = this.state;
@@ -73,6 +93,8 @@ export default class LocationShow extends React.Component {
         let diff_time = end.getTime() - start.getTime();
         days = diff_time / (1000 * 3600 * 24);
     }
+
+
 
     return (
         <div>
@@ -119,14 +141,7 @@ export default class LocationShow extends React.Component {
                 </div>
                 <div className="location-desc">
                 <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est laborum.
+                    {this.props.location.description}
                 </h1>
                 </div>
             </div>
@@ -149,35 +164,13 @@ export default class LocationShow extends React.Component {
                 </div>
 
                 <div className="info-card">
-                    <div className="title">Essentials</div>
-                    <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
-                    </div>
-                    <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
-                    </div>
-                    <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
-                    </div>
+                    <div className="title">Activities</div>
+                    {activities}
                 </div>
 
                 <div className="info-card">
                     <div className="title">Amenities</div>
-                    <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
-                    </div>
-                    <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
-                    </div>
-                    <div className="info-element">
-                    <div>icon</div>
-                    <div>information</div>
-                    </div>
+                        {amenities}
                 </div>
             </div>
             {/* END OF CAMPSITE DETAILS */}
@@ -188,101 +181,7 @@ export default class LocationShow extends React.Component {
                 <p>Just some things you might wanna try</p>
 
                 <div className="details">
-                    <div className="info-card">
-                    <div className="title">Activity 1</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Activity 2</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Activity 3</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Activity 4</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Activity 5</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                </div>
-
-                <div className="info-card">
-                    <div className="title">Activity 6</div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    <div className="info-element">
-                        <div>icon</div>
-                        <div>information</div>
-                    </div>
-                    </div>
+                    {activitiesDetails}
                 </div>
 
               {/* TERRAIN */}
@@ -342,7 +241,7 @@ export default class LocationShow extends React.Component {
             {/* END OF ACTIVITIES */}
                 <div className="reviews">
                     <h3>Reviews</h3>
-                    <ReviewFormContainer locationId={this.props.ownProps.match.params.locationId}/>
+                    <ReviewFormContainer locationId={this.props.ownProps.match.params.locationId} currentUser={this.props.currentUser}/>
                 </div>
             </div>
 

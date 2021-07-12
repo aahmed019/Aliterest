@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_014120) do
+ActiveRecord::Schema.define(version: 2021_07_11_213957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+  end
+
+  create_table "amenities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+  end
+
+  create_table "location_activities", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "activity_id"
+  end
+
+  create_table "location_amenities", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "amenity_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "title", null: false
@@ -28,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_014120) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title", null: false
     t.text "body", null: false
     t.integer "author_id", null: false
     t.integer "location_id", null: false

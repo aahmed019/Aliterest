@@ -14,7 +14,7 @@ export default class ReviewForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        const review = Object.assign({}, this.state, {location_id: this.props.locationId});
+        const review = Object.assign({}, this.state, {location_id: this.props.locationId}, {author_id: this.props.currentUser.id});
         this.props.postReview(review)
         this.setState(this.newState)
     }
@@ -36,17 +36,16 @@ export default class ReviewForm extends React.Component{
                     <p>{review.f_name} {review.l_name} </p>
                 </div>
                 <div className="review-body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, tenetur nemo. Aperiam repellat reiciendis dolorum laudantium dolor necessitatibus hic. Quam cupiditate molestiae omnis at provident dolores aperiam nobis cum harum!</p>
+                    <p>{review.body}</p>
                 </div>
                 <button 
                 onClick={() => this.props.removeReview(review.id) }
-                style={{display: review.author_id === this.state.author_id ? 'block' : 'none' }}
+                style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none' }}
                 >Delete Review
                 </button>
-
                 <button 
                 onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }
-                style={{display: review.author_id === this.state.author_id ? 'block' : 'none' }}
+                style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none' }}
                 >
                 Edit Review
                 </button>
@@ -56,15 +55,9 @@ export default class ReviewForm extends React.Component{
             <div className ="review-container">
                 {reviews}
             
-                <form onSubmit={this.handleSubmit} className="form">
+                <form onSubmit={this.handleSubmit} className="form" style={{display: this.props.currentUser === undefined ? 'none' : 'block' }}>
 
                     <div>
-                        <input type="text" className="sessionInput"
-                        value={this.state.title}
-                        placeholder="Title"
-                        onChange = {this.updateInput('title')}
-                        />
-                        <br /><br />
                         <input type="text" className="sessionInput"
                         value ={this.state.body}
                         placeholder="type out your review here..."
@@ -73,10 +66,7 @@ export default class ReviewForm extends React.Component{
 
                         <br />
                         <br />
-
                         <button className="formButton">{this.props.formType}</button>
-                        <br />
-                        <br />
                     </div>
                 </form>
             </div>
