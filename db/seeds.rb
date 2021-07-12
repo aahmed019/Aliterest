@@ -25,7 +25,6 @@ loc1 = Location.create({title: 'Demo 1 Title', description: 'first', price: 20, 
 loc2 = Location.create({title: 'Demo 2 Title', description: 'second', price: 25, lat: '42.3658', lng: '71.0263', host_id: 2})
 loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, lat: '41.3129', lng: '74.0063', host_id: 3})
 loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '42.3658', lng: '71.0263', host_id: 2})
-loc5 = Location.create({title: 'Demo 5 Title', description: 'fifth', price: 40, lat: '42.3658', lng: '71.0263', host_id: 1})
 
 #Reviews
 review1 = Review.create({body: "I really enjoyed the property and the host was wonderful", author_id: 2 , location_id: 1})
@@ -57,6 +56,10 @@ lam7 = LocationAmenity.create({location_id: 3, amenity_id: 1})
 lam8 = LocationAmenity.create({location_id: 3, amenity_id: 2})
 lam9 = LocationAmenity.create({location_id: 3, amenity_id: 3})
 
+lam10 = LocationAmenity.create({location_id: 4, amenity_id: 1})
+lam11 = LocationAmenity.create({location_id: 4, amenity_id: 2})
+lam12 = LocationAmenity.create({location_id: 4, amenity_id: 3})
+
 #Location Activities
 
 lac1 = LocationActivity.create({location_id: 1, activity_id: 1})
@@ -70,3 +73,7 @@ lac6 = LocationActivity.create({location_id: 2, activity_id: 3})
 lac7 = LocationActivity.create({location_id: 3, activity_id: 1})
 lac8 = LocationActivity.create({location_id: 3, activity_id: 2})
 lac9 = LocationActivity.create({location_id: 3, activity_id: 3})
+
+lac10 = LocationAmenity.create({location_id: 4, amenity_id: 1})
+lac11 = LocationAmenity.create({location_id: 4, amenity_id: 2})
+lac12 = LocationAmenity.create({location_id: 4, amenity_id: 3})
