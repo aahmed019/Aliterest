@@ -14,5 +14,5 @@ class LocationAmenity < ApplicationRecord
 
     belongs_to :amenity,
         foreign_key: :amenity_id,
-        class_name: :Amenity    
+        class_name: :Amenity
 end

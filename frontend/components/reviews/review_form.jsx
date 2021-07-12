@@ -56,7 +56,7 @@ export default class ReviewForm extends React.Component{
             <div className ="review-container">
                 {reviews}
             
-                <form onSubmit={this.handleSubmit} className="form">
+                <form onSubmit={this.handleSubmit} className="form" style={{display: this.props.currentUser === undefined ? 'none' : 'block' }}>
 
                     <div>
                         <input type="text" className="sessionInput"
@@ -67,10 +67,7 @@ export default class ReviewForm extends React.Component{
 
                         <br />
                         <br />
-
                         <button className="formButton">{this.props.formType}</button>
-                        <br />
-                        <br />
                     </div>
                 </form>
             </div>

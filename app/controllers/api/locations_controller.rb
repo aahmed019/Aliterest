@@ -6,7 +6,7 @@ class Api::LocationsController < ApplicationController
     end
 
     def show
-        @location = Location.includes(:host).find_by(id: params[:id])
+        @location = Location.includes(:host, :activities, :amenities).find_by(id: params[:id])
         if @location
             render 'api/locations/show'
         else
