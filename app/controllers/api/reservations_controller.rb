@@ -11,7 +11,7 @@ class Api::ReservationsController < ApplicationController
     end
     
     def create
-        @reservation = Reservation.new(review_params)
+        @reservation = Reservation.new(reservation_params)
         if @reservation.save
             render 'api/reservations/show'
         else
@@ -20,8 +20,8 @@ class Api::ReservationsController < ApplicationController
     end
 
     def update
-        @reservation = Reservation.find_by(id: review_params[:id])
-        if @reservation && @reservation.update(review_params)
+        @reservation = Reservation.find_by(id: reservation_params[:id])
+        if @reservation && @reservation.update(reservation_params)
             # render json: {
             #     id: @review.id, body: @review.body, 
             #     f_name: @review.user.f_name, 

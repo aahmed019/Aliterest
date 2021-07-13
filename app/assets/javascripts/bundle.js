@@ -266,6 +266,93 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/reservation_actions.js":
+/*!*************************************************!*\
+  !*** ./frontend/actions/reservation_actions.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_RESERVATIONS": () => (/* binding */ RECEIVE_RESERVATIONS),
+/* harmony export */   "RECEIVE_RESERVATION": () => (/* binding */ RECEIVE_RESERVATION),
+/* harmony export */   "REMOVE_RESERVATION": () => (/* binding */ REMOVE_RESERVATION),
+/* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
+/* harmony export */   "createReservation": () => (/* binding */ createReservation),
+/* harmony export */   "updateReservation": () => (/* binding */ updateReservation),
+/* harmony export */   "deleteReservation": () => (/* binding */ deleteReservation),
+/* harmony export */   "removeErrors": () => (/* binding */ removeErrors)
+/* harmony export */ });
+/* harmony import */ var _util_reservations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reservations */ "./frontend/util/reservations.js");
+
+var RECEIVE_RESERVATIONS = "RECEIVE_RESERVATIONS";
+var RECEIVE_RESERVATION = "RECEIVE_RESERVATION";
+var REMOVE_RESERVATION = "REMOVE_RESERVATION";
+var RECEIVE_ERRORS = "RECEIVE_RESERVATION_ERRORS";
+
+var receiveReservations = function receiveReservations(reservations) {
+  return {
+    type: RECEIVE_RESERVATIONS,
+    reservations: reservations
+  };
+};
+
+var receiveReservation = function receiveReservation(reservation) {
+  return {
+    type: RECEIVE_RESERVATION,
+    reservation: reservation
+  };
+};
+
+var removeReservation = function removeReservation(reservationId) {
+  return {
+    type: REMOVE_RESERVATION,
+    reservationId: reservationId
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_ERRORS,
+    errors: errors
+  };
+};
+
+var createReservation = function createReservation(formData) {
+  return function (dispatch) {
+    // debugger
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.createReservation(formData).then(function (reservation) {
+      return dispatch(receiveReservation(reservation));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var updateReservation = function updateReservation(formData) {
+  return function (dispatch) {
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.updateReservation(formData).then(function (reservation) {
+      return dispatch(receiveReservation(reservation));
+    });
+  };
+};
+var deleteReservation = function deleteReservation(review_id) {
+  return function (dispatch) {
+    return ReviewUtil.deleteReview(review_id).then(function () {
+      return dispatch(removeReservation(review_id));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var removeErrors = function removeErrors() {
+  return function (dispatch) {
+    return dispatch(receiveErrors([]));
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/review_action.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/review_action.js ***!
@@ -1842,18 +1929,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _locations_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./locations_reducer */ "./frontend/reducers/locations_reducer.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
+/* harmony import */ var _reservations_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reservations_reducer */ "./frontend/reducers/reservations_reducer.js");
 
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
   locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__.default
+  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
+  reservations: _reservations_reducer__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1956,6 +2046,47 @@ var modalReducer = function modalReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modalReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/reservations_reducer.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/reservations_reducer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+
+
+var reservationReducer = function reservationReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RESERVATIONS:
+      return action.reservations;
+
+    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RESERVATION:
+      // console.log('HELLO')
+      return newState[action.reservation.id] = action.reservation;
+
+    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_RESERVATION:
+      delete newState[action.reservationId];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reservationReducer);
 
 /***/ }),
 
@@ -2211,6 +2342,58 @@ var getLocations = function getLocations() {
 var getLocation = function getLocation(locationId) {
   return $.ajax({
     url: "/api/locations/".concat(locationId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/reservations.js":
+/*!***************************************!*\
+  !*** ./frontend/util/reservations.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchReservations": () => (/* binding */ fetchReservations),
+/* harmony export */   "fetchReservation": () => (/* binding */ fetchReservation),
+/* harmony export */   "createReservation": () => (/* binding */ createReservation),
+/* harmony export */   "updateReservation": () => (/* binding */ updateReservation),
+/* harmony export */   "deleteReservation": () => (/* binding */ deleteReservation)
+/* harmony export */ });
+var fetchReservations = function fetchReservations() {
+  return $.ajax({
+    url: 'api/reservations'
+  });
+};
+var fetchReservation = function fetchReservation(id) {
+  return $.ajax({
+    url: "api/reservations/".concat(id)
+  });
+};
+var createReservation = function createReservation(reservation) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/reservations",
+    data: {
+      reservation: reservation
+    }
+  });
+};
+var updateReservation = function updateReservation(reservation) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/reservation/".concat(reservation),
+    data: {
+      reservation: reservation
+    }
+  });
+};
+var deleteReservation = function deleteReservation(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/Reservations/".concat(id)
   });
 };
 
@@ -38785,6 +38968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _util_locations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/locations */ "./frontend/util/locations.js");
+/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -38793,6 +38977,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
  // import { getLocation, getLocations } from "./actions/location_actions";
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -38817,6 +39002,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.getReviews = _actions_review_action__WEBPACK_IMPORTED_MODULE_2__.getReviews;
   window.getlocation = _util_locations__WEBPACK_IMPORTED_MODULE_6__.getLocation;
+  window.createR = _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_7__.createReservation;
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_4__.default, {
     store: store

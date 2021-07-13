@@ -6,6 +6,7 @@ import Root from "./components/root";
 import configureStore from "./store/store";
 // import { getLocation, getLocations } from "./actions/location_actions";
 import { getLocation } from './util/locations'
+import { createReservation } from "./actions/reservation_actions";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.get = getLocations
     window.getReviews = getReviews
     window.getlocation = getLocation
+    window.createR = createReservation
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store}/>, root);
 });
