@@ -1,10 +1,5 @@
 class Api::ReviewsController < ApplicationController
 
-    # def index
-    #     @reviews = Review.all
-    #     render 'api/reviews/index'
-    # end
-
     def show
         @reviews = Review.all.includes(:user).where(location_id: params[:id])
         render 'api/reviews/show'
