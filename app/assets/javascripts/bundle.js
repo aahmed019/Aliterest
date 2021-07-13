@@ -1407,14 +1407,10 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, review.f_name, " ", review.l_name, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "review-body"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, review.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          onClick: function onClick() {
-            return _this3.props.removeReview(review.id);
-          },
-          style: {
-            display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
-          }
-        }, "Delete Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, review.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "review-buttons"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "formButton",
           onClick: function onClick() {
             return _this3.props.openModal('edit_review', Object.assign({}, review, {
               patchReview: patchReview
@@ -1425,7 +1421,15 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           style: {
             display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
           }
-        }, "Edit Review"));
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "formButton delete",
+          onClick: function onClick() {
+            return _this3.props.removeReview(review.id);
+          },
+          style: {
+            display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
+          }
+        }, "Delete")));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "review-container"
@@ -1435,7 +1439,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         style: {
           display: this.props.currentUser === undefined ? 'none' : 'block'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         type: "text",
         className: "sessionInput",
         value: this.state.body,
@@ -1529,7 +1533,8 @@ var Search = function Search(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-search"
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: "https://picsum.photos/1200/475",
+    src: "https://tipichic.co.uk/wp-content/uploads/2014/06/cache/slide1-1200x475.jpg",
+    alt: "splash image",
     className: "search-img"
   }));
 };

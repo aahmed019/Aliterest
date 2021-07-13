@@ -119,18 +119,34 @@ lac11 = LocationTerrain.create({location_id: 4, terrain_id: 2})
 lac12 = LocationTerrain.create({location_id: 4, terrain_id: 3})
 
 #images
-f1 = File.open('app/assets/images/s1.jpg')
-f2 = File.open('app/assets/images/s2.jpg')
-f3 = File.open('app/assets/images/s3.jpg')
+f1 = File.open('app/assets/images/l1-a.jpg')
+f2 = File.open('app/assets/images/l1-b.jpg')
+f3 = File.open('app/assets/images/l1-c.jpg')
 
-f4 = File.open('app/assets/images/tele1.jpg')
-f5 = File.open('app/assets/images/tele2.jpg')
-f6 = File.open('app/assets/images/tele3.jpg')
+f4 = File.open('app/assets/images/l2-a.jpg')
+f5 = File.open('app/assets/images/l2-b.jpg')
+f6 = File.open('app/assets/images/l2-c.jpg')
 
-loc1.photos.attach(io: f1, filename: 's1.jpg')
-loc1.photos.attach(io: f2, filename: 's2.jpg')
-loc1.photos.attach(io: f3, filename: 's3.jpg')
+f7 = File.open('app/assets/images/l3-a.jpg')
+f8 = File.open('app/assets/images/l3-b.jpg')
+f9 = File.open('app/assets/images/l3-c.jpg')
 
-loc2.photos.attach(io: f4, filename: 'tele1.jpg')
-loc2.photos.attach(io: f5, filename: 'tele2.jpg')
-loc2.photos.attach(io: f6, filename: 'tele3.jpg')
+f10 = File.open('app/assets/images/l4-a.jpg')
+f11 = File.open('app/assets/images/l4-b.jpg')
+f12 = File.open('app/assets/images/l4-c.jpg')
+
+loc1.photos.attach(io: f1, filename: 'l1-a.jpg')
+loc1.photos.attach(io: f2, filename: 'l1-b.jpg')
+loc1.photos.attach(io: f3, filename: 'l1-c.jpg')
+
+loc2.photos.attach(io: f4, filename: 'l2-a.jpg')
+loc2.photos.attach(io: f5, filename: 'l2-b.jpg')
+loc2.photos.attach(io: f6, filename: 'l2-c.jpg')
+
+loc3.photos.attach(io: f7, filename: 'l3-a.jpg')
+loc3.photos.attach(io: f8, filename: 'l3-b.jpg')
+loc3.photos.attach(io: f9, filename: 'l3-c.jpg')
+
+loc4.photos.attach(io: f10, filename: 'l4-a.jpg')
+loc4.photos.attach(io: f11, filename: 'l4-b.jpg')
+loc4.photos.attach(io: f12, filename: 'l4-c.jpg')

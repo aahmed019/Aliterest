@@ -20,8 +20,9 @@
 
 .sessionInput{
     border: #333 1.5px solid;
-    height: 60px;
-    font-size: 20px;
+    min-height: 120px;
+    max-width: 400px;
+    font-size: 15px;
     padding-right: 90px;
     width: 76%;
 }
@@ -42,5 +43,18 @@
     transition: 0.3s;
 }
 
+.review-buttons{
+    display: flex;
+    justify-content: space-between;
+
+    >button{
+        width:"75px";
+        height:"25px";
+    }
+
+    .delete{
+        background-color: red;
+    }
+}
 
 

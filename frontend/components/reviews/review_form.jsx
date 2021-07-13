@@ -38,17 +38,23 @@ export default class ReviewForm extends React.Component{
                 <div className="review-body">
                     <p>{review.body}</p>
                 </div>
-                <button 
-                onClick={() => this.props.removeReview(review.id) }
-                style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none' }}
-                >Delete Review
-                </button>
-                <button 
-                onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }
-                style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none' }}
-                >
-                Edit Review
-                </button>
+                <div className="review-buttons">
+                    
+                    <button
+                    className="formButton"
+                    onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }
+                    style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none'}}
+                    >
+                    Edit
+                    </button>
+
+                    <button
+                    className="formButton delete"
+                    onClick={() => this.props.removeReview(review.id) }
+                    style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none'}}
+                    >Delete
+                    </button>
+                </div>
             </div>
         ))
         return(
@@ -58,7 +64,7 @@ export default class ReviewForm extends React.Component{
                 <form onSubmit={this.handleSubmit} className="form" style={{display: this.props.currentUser === undefined ? 'none' : 'block' }}>
 
                     <div>
-                        <input type="text" className="sessionInput"
+                        <textarea type="text" className="sessionInput"
                         value ={this.state.body}
                         placeholder="type out your review here..."
                         onChange = {this.updateInput('body')}

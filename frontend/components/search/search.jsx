@@ -25,7 +25,7 @@ const Search = (props) => {
                     </div>
                     </form>
                 </div>
-                <img src="https://picsum.photos/1200/475" className='search-img'/>
+                <img src="https://tipichic.co.uk/wp-content/uploads/2014/06/cache/slide1-1200x475.jpg" alt="splash image" className='search-img'/>
         </div>
     )
 }
