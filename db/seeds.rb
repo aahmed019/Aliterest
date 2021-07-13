@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'open-uri'
+
 
 
 User.destroy_all
@@ -118,35 +118,62 @@ lac10 = LocationTerrain.create({location_id: 4, terrain_id: 1})
 lac11 = LocationTerrain.create({location_id: 4, terrain_id: 2})
 lac12 = LocationTerrain.create({location_id: 4, terrain_id: 3})
 
+
+require 'open-uri'
+
+file1 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l1-a.jpg')
+
+file2 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l1-b.jpg')
+
+file3 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l1-c.jpg')
+
+file4 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l2-a.jpg')
+
+file5 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l2-b.jpg')
+
+file6 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l2-c.jpg')
+
+file7 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l3-a.jpg')
+
+file8 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l3-b.jpg')
+
+file9 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l3-c.jpg')
+
+file10 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l4-a.jpg')
+
+file11 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l4-b.jpg')
+
+file12 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l4-c.jpg')
+
 #images
-f1 = File.open('app/assets/images/l1-a.jpg')
-f2 = File.open('app/assets/images/l1-b.jpg')
-f3 = File.open('app/assets/images/l1-c.jpg')
+# f1 = File.open('app/assets/images/l1-a.jpg')
+# f2 = File.open('app/assets/images/l1-b.jpg')
+# f3 = File.open('app/assets/images/l1-c.jpg')
 
-f4 = File.open('app/assets/images/l2-a.jpg')
-f5 = File.open('app/assets/images/l2-b.jpg')
-f6 = File.open('app/assets/images/l2-c.jpg')
+# f4 = File.open('app/assets/images/l2-a.jpg')
+# f5 = File.open('app/assets/images/l2-b.jpg')
+# f6 = File.open('app/assets/images/l2-c.jpg')
 
-f7 = File.open('app/assets/images/l3-a.jpg')
-f8 = File.open('app/assets/images/l3-b.jpg')
-f9 = File.open('app/assets/images/l3-c.jpg')
+# f7 = File.open('app/assets/images/l3-a.jpg')
+# f8 = File.open('app/assets/images/l3-b.jpg')
+# f9 = File.open('app/assets/images/l3-c.jpg')
 
-f10 = File.open('app/assets/images/l4-a.jpg')
-f11 = File.open('app/assets/images/l4-b.jpg')
-f12 = File.open('app/assets/images/l4-c.jpg')
+# f10 = File.open('app/assets/images/l4-a.jpg')
+# f11 = File.open('app/assets/images/l4-b.jpg')
+# f12 = File.open('app/assets/images/l4-c.jpg')
 
-loc1.photos.attach(io: f1, filename: 'l1-a.jpg')
-loc1.photos.attach(io: f2, filename: 'l1-b.jpg')
-loc1.photos.attach(io: f3, filename: 'l1-c.jpg')
+loc1.photos.attach(io: file1, filename: 'l1-a.jpg')
+loc1.photos.attach(io: file2, filename: 'l1-b.jpg')
+loc1.photos.attach(io: file3, filename: 'l1-c.jpg')
 
-loc2.photos.attach(io: f4, filename: 'l2-a.jpg')
-loc2.photos.attach(io: f5, filename: 'l2-b.jpg')
-loc2.photos.attach(io: f6, filename: 'l2-c.jpg')
+loc2.photos.attach(io: file4, filename: 'l2-a.jpg')
+loc2.photos.attach(io: file5, filename: 'l2-b.jpg')
+loc2.photos.attach(io: file6, filename: 'l2-c.jpg')
 
-loc3.photos.attach(io: f7, filename: 'l3-a.jpg')
-loc3.photos.attach(io: f8, filename: 'l3-b.jpg')
-loc3.photos.attach(io: f9, filename: 'l3-c.jpg')
+loc3.photos.attach(io: file7, filename: 'l3-a.jpg')
+loc3.photos.attach(io: file8, filename: 'l3-b.jpg')
+loc3.photos.attach(io: file9, filename: 'l3-c.jpg')
 
-loc4.photos.attach(io: f10, filename: 'l4-a.jpg')
-loc4.photos.attach(io: f11, filename: 'l4-b.jpg')
-loc4.photos.attach(io: f12, filename: 'l4-c.jpg')
+loc4.photos.attach(io: file10, filename: 'l4-a.jpg')
+loc4.photos.attach(io: file11, filename: 'l4-b.jpg')
+loc4.photos.attach(io: file12, filename: 'l4-c.jpg')
