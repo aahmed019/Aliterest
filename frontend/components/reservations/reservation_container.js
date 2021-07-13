@@ -7,11 +7,10 @@ const mSTP = (state) => ({
     reservation: {
         start_date: null,
         end_date: null,
-        guests: 1,
+        guest_amount: 1,
         user_id: state.session.id, 
     },
     currentUser: state.entities.users[state.session.id],
-    formType: "Create Review"
 })
 
 const mDTP = dispatch => ({

@@ -3,8 +3,10 @@ import React from 'react'
 export default class ReservationForm extends React.Component {
     constructor(props) {
         super(props);
+        this.newState = Object.assign({}, this.props.reservation)
         this.state = this.props.reservation
         this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleDate(field) {
@@ -16,7 +18,9 @@ export default class ReservationForm extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        // this.props.createReservation()
+        const reservation = Object.assign({}, this.state, {location_id: this.props.location.id});
+        this.props.createReservation(reservation)
+        this.setState(this.newState)
     }
     handleInput(field) {
         return (e) => {
@@ -27,10 +31,10 @@ export default class ReservationForm extends React.Component {
     }
     render(){
         const { price } = this.props.location;
-        const { start, end, guests } = this.state;
+        const { start_date, end_date, guest_amount } = this.state;
         let days = 0;
-        if ((start, end)) {
-            let diff_time = end.getTime() - start.getTime();
+        if ((start_date, end_date)) {
+            let diff_time = end_date.getTime() - start_date.getTime();
             days = diff_time / (1000 * 3600 * 24);
         }
 
@@ -39,7 +43,7 @@ export default class ReservationForm extends React.Component {
                 <div className="price">
                     <h1> ${price}</h1>
                     <p>
-                    average per night ({guests} {guests > 1 ? "guests" : "guest"})
+                    average per night ({guest_amount} {guest_amount > 1 ? "guests" : "guest"})
                     </p>
                 </div>
                 <form onSubmit={this.handleSubmit} className="show-page-form">
@@ -53,7 +57,7 @@ export default class ReservationForm extends React.Component {
                                     className="form-control side-by-side"
                                     type="date"
                                     id="checkin"
-                                    onChange={this.handleDate("start")}
+                                    onChange={this.handleDate("start_date")}
                                 />
                             </div>
     
@@ -65,7 +69,7 @@ export default class ReservationForm extends React.Component {
                                     className="form-control"
                                     type="date"
                                     id="checkout"
-                                    onChange={this.handleDate("end")}
+                                    onChange={this.handleDate("end_date")}
                                 />
                             </div>
                         </div>
@@ -75,7 +79,7 @@ export default class ReservationForm extends React.Component {
                         <label htmlFor="guests_amount">Guests: </label>
                         <select
                             className="guest-select"
-                            onChange={this.handleInput("guests")}
+                            onChange={this.handleInput("guest_amount")}
                         >
                             <option value="1" defaultValue>
                             1 guest
@@ -89,11 +93,11 @@ export default class ReservationForm extends React.Component {
                     <div className="subtotal">
                         <p>
                             Subtotal: $
-                            {days * price * guests > 0 ? days * price * guests : 0}
+                            {days * price * guest_amount > 0 ? days * price * guest_amount : 0}
                         </p>
                     </div>
                     <div className="book-button">
-                    <button>Book!</button>
+                        <button style={{width:'100%'}}>Book!</button>
                     </div>
                 </form>
             </div>

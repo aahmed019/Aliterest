@@ -5,6 +5,7 @@ class CreateReservations < ActiveRecord::Migration[5.2]
         t.date :end_date, null: false
         t.integer :user_id
         t.integer :location_id
+        t.integer :guest_amount, null: false
         t.timestamps
     end
         add_index :reservations, :user_id

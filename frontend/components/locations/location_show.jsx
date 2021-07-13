@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewFormContainer from "../reviews/review_container";
 import ReservationFormContainer from "../reservations/reservation_container"
+import Map from "./map";
 
 export default class LocationShow extends React.Component {
     constructor(props) {
@@ -82,7 +83,6 @@ export default class LocationShow extends React.Component {
     ))
 
     const photos = this.props.location.photos.map((photo_url, i) => {
-        {console.log(photo_url)}
         return <img
             key ={`photo-${i}`}
             className="showpage-img"
@@ -90,6 +90,8 @@ export default class LocationShow extends React.Component {
             alt="location_photo"
         />
     })
+
+    const {lat, lng} = this.props.location
     
     
     return (
@@ -180,6 +182,8 @@ export default class LocationShow extends React.Component {
                 <ReservationFormContainer location={this.props.location}/>
             </div>
             </div>
+
+            <Map lat={lat} lng ={lng}/>
         </div>
         );
     }
