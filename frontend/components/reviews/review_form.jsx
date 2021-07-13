@@ -39,21 +39,24 @@ export default class ReviewForm extends React.Component{
                     <p>{review.body}</p>
                 </div>
                 <div className="review-buttons">
-                    
-                    <button
-                    className="formButton"
-                    onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }
-                    style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none'}}
-                    >
-                    Edit
-                    </button>
+                    <div>
+                        <button
+                        className="edit"
+                        onClick={() => this.props.openModal('edit_review', Object.assign({}, review, {patchReview: patchReview}, {closeModal: closeModal})) }
+                        style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none'}}
+                        >
+                        Edit
+                        </button>
+                    </div>
 
-                    <button
-                    className="formButton delete"
-                    onClick={() => this.props.removeReview(review.id) }
-                    style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none'}}
-                    >Delete
-                    </button>
+                    <div>
+                        <button
+                        className="delete"
+                        onClick={() => this.props.removeReview(review.id) }
+                        style={{display: this.props.currentUser ? review.author_id === this.props.currentUser.id ? 'block' : 'none' : 'none'}}
+                        >Delete
+                        </button>
+                    </div>
                 </div>
             </div>
         ))
@@ -64,7 +67,7 @@ export default class ReviewForm extends React.Component{
                 <form onSubmit={this.handleSubmit} className="form" style={{display: this.props.currentUser === undefined ? 'none' : 'block' }}>
 
                     <div>
-                        <textarea type="text" className="sessionInput"
+                        <textarea type="text" className="reviewInput"
                         value ={this.state.body}
                         placeholder="type out your review here..."
                         onChange = {this.updateInput('body')}

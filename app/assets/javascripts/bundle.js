@@ -1409,8 +1409,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, review.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "review-buttons"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "formButton",
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "edit",
           onClick: function onClick() {
             return _this3.props.openModal('edit_review', Object.assign({}, review, {
               patchReview: patchReview
@@ -1421,15 +1421,15 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           style: {
             display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
           }
-        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "formButton delete",
+        }, "Edit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "delete",
           onClick: function onClick() {
             return _this3.props.removeReview(review.id);
           },
           style: {
             display: _this3.props.currentUser ? review.author_id === _this3.props.currentUser.id ? 'block' : 'none' : 'none'
           }
-        }, "Delete")));
+        }, "Delete"))));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "review-container"
@@ -1441,7 +1441,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         type: "text",
-        className: "sessionInput",
+        className: "reviewInput",
         value: this.state.body,
         placeholder: "type out your review here...",
         onChange: this.updateInput('body')
