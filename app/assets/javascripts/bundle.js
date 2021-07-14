@@ -348,7 +348,7 @@ var createReservation = function createReservation(formData) {
 var updateReservation = function updateReservation(formData) {
   return function (dispatch) {
     return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.updateReservation(formData).then(function (reservation) {
-      return dispatch(receiveReservation(reservation));
+      console.log(reservation), dispatch(receiveReservation(reservation));
     });
   };
 };
@@ -1226,9 +1226,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _reviews_edit_review__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reviews/edit_review */ "./frontend/components/reviews/edit_review.jsx");
-/* harmony import */ var _sessions_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sessions/login_form_container */ "./frontend/components/sessions/login_form_container.js");
-/* harmony import */ var _sessions_signup_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sessions/signup_form_container */ "./frontend/components/sessions/signup_form_container.js");
+/* harmony import */ var _reservations_edit_reservation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reservations/edit_reservation */ "./frontend/components/reservations/edit_reservation.jsx");
+/* harmony import */ var _reviews_edit_review__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reviews/edit_review */ "./frontend/components/reviews/edit_review.jsx");
+/* harmony import */ var _sessions_login_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sessions/login_form_container */ "./frontend/components/sessions/login_form_container.js");
+/* harmony import */ var _sessions_signup_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../sessions/signup_form_container */ "./frontend/components/sessions/signup_form_container.js");
+
 
 
 
@@ -1248,16 +1250,22 @@ var Modal = function Modal(_ref) {
 
   switch (modal.type) {
     case 'login':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessions_login_form_container__WEBPACK_IMPORTED_MODULE_4__.default, null);
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessions_login_form_container__WEBPACK_IMPORTED_MODULE_5__.default, null);
       break;
 
     case 'signup':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessions_signup_form_container__WEBPACK_IMPORTED_MODULE_5__.default, null);
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessions_signup_form_container__WEBPACK_IMPORTED_MODULE_6__.default, null);
       break;
 
     case 'edit_review':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_edit_review__WEBPACK_IMPORTED_MODULE_3__.default, {
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_edit_review__WEBPACK_IMPORTED_MODULE_4__.default, {
         review: modal.props
+      });
+      break;
+
+    case 'edit_reservation':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservations_edit_reservation__WEBPACK_IMPORTED_MODULE_3__.default, {
+        reservation: modal.props
       });
       break;
 
@@ -1359,25 +1367,40 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      if (this.state.loading) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...");
+      if (this.state.loading) return null; // console.log(this.props)
+
       var _this$props$currentUs = this.props.currentUser,
           f_name = _this$props$currentUs.f_name,
           l_name = _this$props$currentUs.l_name;
       var reservations = this.props.reservations.map(function (reservation, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          key: "reservation-".concat(i)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.start_date, " to ", reservation.end_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          key: "reservation-".concat(i),
+          className: "reservations"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "reservation-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.start_date, " to ", reservation.end_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Guests: ", reservation.guest_amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           onClick: function onClick() {
             return _this2.props.deleteReservation(reservation.id);
           }
-        }, "Cancel Reservation"));
+        }, "Cancel Reservation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "edit",
+          onClick: function onClick() {
+            return _this2.props.openModal('edit_reservation', Object.assign({}, {
+              reservation: reservation
+            }, {
+              patchReview: _this2.props.updateReservation
+            }, {
+              closeModal: _this2.props.closeModal
+            }));
+          }
+        }, "Edit Reservation"));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "users-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Hello ", f_name, " ", l_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "reservations"
+        className: "reservations-container"
       }, reservations));
     }
   }]);
@@ -1401,13 +1424,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
 
 
 
 
 var mSTP = function mSTP(state) {
+  // debugger
   return {
     reservations: Object.values(state.entities.reservations),
     currentUser: state.entities.users[state.session.id]
@@ -1417,18 +1443,154 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch) {
   return {
     fetchReservations: function fetchReservations() {
-      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__.fetchReservations)());
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__.fetchReservations)());
+    },
+    updateReservation: function updateReservation(form) {
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__.updateReservation)(form));
     },
     fetchReservation: function fetchReservation(user_id) {
-      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__.fetchReservation)(user_id));
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__.fetchReservation)(user_id));
     },
     deleteReservation: function deleteReservation(id) {
-      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__.deleteReservation)(id));
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__.deleteReservation)(id));
+    },
+    openModal: function openModal(modalType, props) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)(modalType, props));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.closeModal)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_3__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/reservations/edit_reservation.jsx":
+/*!***************************************************************!*\
+  !*** ./frontend/components/reservations/edit_reservation.jsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EditReservation)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var EditReservation = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditReservation, _React$Component);
+
+  var _super = _createSuper(EditReservation);
+
+  function EditReservation(props) {
+    var _this;
+
+    _classCallCheck(this, EditReservation);
+
+    _this = _super.call(this, props);
+    _this.state = _this.props.reservation.reservation;
+    _this.functions = _this.props.reservation;
+    _this.handleDate = _this.handleDate.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(EditReservation, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      console.log(this.state);
+      this.functions.patchReview(this.state).then(this.functions.closeModal);
+    }
+  }, {
+    key: "handleDate",
+    value: function handleDate(field) {
+      var _this2 = this;
+
+      return function (e) {
+        var date = new Date(e.target.value);
+        var utc = date.getTime() + date.getTimezoneOffset() * 60000;
+
+        _this2.setState(_defineProperty({}, field, new Date(utc + 3600000 * 10)));
+      };
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(field) {
+      var _this3 = this;
+
+      return function (e) {
+        return _this3.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(this.props.reservation.reservation);
+      var _this$state = this.state,
+          start_date = _this$state.start_date,
+          end_date = _this$state.end_date,
+          guest_amount = _this$state.guest_amount;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "review-edit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit your review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "date",
+        defaultValue: start_date,
+        onChange: this.handleDate("start_date")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "date",
+        defaultValue: end_date,
+        onChange: this.handleDate("end_date")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        defaultValue: guest_amount,
+        onChange: this.handleInput('guest_amount')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "1"
+      }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "2"
+      }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "3"
+      }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "4"
+      }, "4")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit Reservation"))));
+    }
+  }]);
+
+  return EditReservation;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
 
 /***/ }),
 
@@ -1536,13 +1698,17 @@ var ReservationForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, field, new Date(e.target.value)));
+        var date = new Date(e.target.value);
+        var utc = date.getTime() + date.getTimezoneOffset() * 60000;
+
+        _this2.setState(_defineProperty({}, field, new Date(utc + 3600000 * 10)));
       };
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      if (this.state.end_date < this.state.start_date) return null;
       var reservation = Object.assign({}, this.state, {
         location_id: this.props.location.id
       });
@@ -1568,7 +1734,7 @@ var ReservationForm = /*#__PURE__*/function (_React$Component) {
           guest_amount = _this$state.guest_amount;
       var days = 0;
 
-      if (start_date, end_date) {
+      if (start_date && end_date) {
         var diff_time = end_date.getTime() - start_date.getTime();
         days = diff_time / (1000 * 3600 * 24);
       }
@@ -1603,6 +1769,7 @@ var ReservationForm = /*#__PURE__*/function (_React$Component) {
       }, "Check out:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "form-control",
         type: "date",
+        min: new Date().toISOString().split('T')[0],
         id: "checkout",
         onChange: this.handleDate("end_date")
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1701,8 +1868,8 @@ var EditReview = /*#__PURE__*/function (_React$Component) {
       this.state.patchReview(this.state).then(this.state.closeModal);
     }
   }, {
-    key: "updateInput",
-    value: function updateInput(field) {
+    key: "handleInput",
+    value: function handleInput(field) {
       var _this2 = this;
 
       return function (e) {
@@ -1721,7 +1888,7 @@ var EditReview = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         type: "text",
         value: body,
-        onChange: this.updateInput('body')
+        onChange: this.handleInput('body')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "formButton",
         style: {
@@ -1875,8 +2042,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       this.setState(this.newState);
     }
   }, {
-    key: "updateInput",
-    value: function updateInput(field) {
+    key: "handleInput",
+    value: function handleInput(field) {
       var _this2 = this;
 
       return function (e) {
@@ -1942,7 +2109,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "reviewInput",
         value: this.state.body,
         placeholder: "type out your review here...",
-        onChange: this.updateInput('body')
+        onChange: this.handleInput('body')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "formButton"
       }, this.props.formType))));
@@ -2187,8 +2354,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
-    key: "updateInput",
-    value: function updateInput(field) {
+    key: "handleInput",
+    value: function handleInput(field) {
       var _this3 = this;
 
       return function (e) {
@@ -2210,25 +2377,25 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         className: "sessionInput",
         value: this.state.email,
         placeholder: "Email address",
-        onChange: this.updateInput('email')
+        onChange: this.handleInput('email')
       }), this.props.formType === "Sign Up" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "sessionInput",
         value: this.state.f_name,
         placeholder: "First Name",
-        onChange: this.updateInput('f_name')
+        onChange: this.handleInput('f_name')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "sessionInput",
         value: this.state.l_name,
         placeholder: "Last Name",
-        onChange: this.updateInput('l_name')
+        onChange: this.handleInput('l_name')
       })) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "password",
         className: "sessionInput",
         value: this.state.password,
         placeholder: "Password",
-        onChange: this.updateInput('password')
+        onChange: this.handleInput('password')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "formButton"
       }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.props.formType === "Sign Up" ? "Already have an account?" : "Don't have an account?", " ", this.props.otherModal, " ")));
@@ -2472,6 +2639,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var reservationReducer = function reservationReducer() {
@@ -2485,7 +2654,7 @@ var reservationReducer = function reservationReducer() {
       return action.reservations;
 
     case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RESERVATION:
-      return newState[action.reservation.id] = action.reservation;
+      return Object.assign({}, state, _defineProperty({}, action.reservation.id, action.reservation));
 
     case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_RESERVATION:
       delete newState[action.reservationId];
@@ -2794,7 +2963,7 @@ var createReservation = function createReservation(reservation) {
 var updateReservation = function updateReservation(reservation) {
   return $.ajax({
     method: "PATCH",
-    url: "/api/reservation/".concat(reservation),
+    url: "/api/reservations/".concat(reservation),
     data: {
       reservation: reservation
     }

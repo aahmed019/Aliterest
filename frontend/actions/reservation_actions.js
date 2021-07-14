@@ -46,7 +46,7 @@ export const createReservation = formData => dispatch => {
 export const updateReservation = formData => dispatch => {
     return ReservationUtil.updateReservation(formData)
         .then(
-            reservation =>  dispatch(receiveReservation(reservation)),
+            reservation =>  {console.log(reservation), dispatch(receiveReservation(reservation))},
             )
 }
 

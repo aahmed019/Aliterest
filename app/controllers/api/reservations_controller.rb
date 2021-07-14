@@ -21,14 +21,18 @@ class Api::ReservationsController < ApplicationController
     end
 
     def update
-        @reservation = Reservation.find_by(id: reservation_params[:id])
+        @reservation = Reservation.all.includes(:user, :location).find_by(id: reservation_params[:id])
+        # debugger
         if @reservation && @reservation.update(reservation_params)
-            # render json: {
-            #     id: @review.id, body: @review.body, 
-            #     f_name: @review.user.f_name, 
-            #     l_name: @review.user.l_name,
-            #     author_id: @review.author_id
-            # }
+            render json: {
+                id: @reservation.id, 
+                start_date: @reservation.start_date, 
+                end_date: @reservation.end_date,
+                user_id: @reservation.user_id,
+                location_id: @reservation.location_id,
+                guest_amount: @reservation.guest_amount,
+                title: @reservation.location.title
+            }
         else
             render json: ["FAIL"]
         end

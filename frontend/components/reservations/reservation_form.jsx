@@ -11,13 +11,16 @@ export default class ReservationForm extends React.Component {
     
     handleDate(field) {
         return (e) => {
-        this.setState({
-            [field]: new Date(e.target.value),
-            });
-        };
+            let date = new Date(e.target.value)
+            let utc = date.getTime() + (date.getTimezoneOffset() * 60000)
+            this.setState({
+                [field]: new Date(utc + (3600000 * 10))
+                });
+            };
     }
     handleSubmit(e) {
         e.preventDefault();
+        if(this.state.end_date < this.state.start_date) return null
         const reservation = Object.assign({}, this.state, {location_id: this.props.location.id});
         this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'))
         this.setState(this.newState)
@@ -30,10 +33,11 @@ export default class ReservationForm extends React.Component {
         };
     }
     render(){
+        
         const { price } = this.props.location;
         const { start_date, end_date, guest_amount } = this.state;
         let days = 0;
-        if ((start_date, end_date)) {
+        if(start_date && end_date) {
             let diff_time = end_date.getTime() - start_date.getTime();
             days = diff_time / (1000 * 3600 * 24);
         }
@@ -69,6 +73,7 @@ export default class ReservationForm extends React.Component {
                                 <input
                                     className="form-control"
                                     type="date"
+                                    min={new Date().toISOString().split('T')[0]}
                                     id="checkout"
                                     onChange={this.handleDate("end_date")}
                                 />

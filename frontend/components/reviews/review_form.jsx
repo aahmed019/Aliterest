@@ -19,7 +19,7 @@ export default class ReviewForm extends React.Component{
         this.setState(this.newState)
     }
 
-    updateInput(field){
+    handleInput(field){
         return e => this.setState({[field]: e.target.value})
     }
 
@@ -70,7 +70,7 @@ export default class ReviewForm extends React.Component{
                         <textarea type="text" className="reviewInput"
                         value ={this.state.body}
                         placeholder="type out your review here..."
-                        onChange = {this.updateInput('body')}
+                        onChange = {this.handleInput('body')}
                         />
 
                         <br />

@@ -19,10 +19,6 @@ const LocationsIndexItem = props => {
                             <a href={`#locations/${location.id}`}>Book now</a>
                         </div>
                     </div>
-
-                    
-                    
-
                 </div>
             </div>
         </div>
