@@ -20,11 +20,10 @@ const NavBarContainer = (props) =>{
 
             {props.user ?
                 <div className="dropdown">
-                    <p>{props.user.f_name} {props.user.l_name}</p>
                     <img src={props.user.user_photo} alt=""
                     style={{borderRadius:'50%', width:'50px', height:'50px'}}/>
                     <div className="dropdown-content">
-                        <ul className="dropdown-content-items">
+                        <ul>
                             <li><a href="#/profile">Account</a></li>
                             <li onClick={props.logout}>Help</li>
                             <li onClick={props.logout}>About</li>

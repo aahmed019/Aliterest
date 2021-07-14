@@ -57,6 +57,7 @@ export default class ReservationForm extends React.Component {
                                     className="form-control side-by-side"
                                     type="date"
                                     id="checkin"
+                                    min={new Date().toISOString().split('T')[0]}
                                     onChange={this.handleDate("start_date")}
                                 />
                             </div>
