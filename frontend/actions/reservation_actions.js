@@ -26,6 +26,14 @@ const receiveErrors = (errors) => ({
     errors
 })
 
+export const fetchReservations = () => dispatch => (
+    ReservationUtil.fetchReservations().then(reservations => dispatch(receiveReservations(reservations)))
+)
+
+export const fetchReservation = (id) => dispatch => (
+    ReservationUtil.fetchReservation(id).then(reservations => dispatch(receiveReservations(reservations)))
+)
+
 export const createReservation = formData => dispatch => {
     // debugger
     return ReservationUtil.createReservation(formData)
@@ -43,7 +51,7 @@ export const updateReservation = formData => dispatch => {
 }
 
 export const deleteReservation = review_id => dispatch => {
-    return ReviewUtil.deleteReview(review_id).then(
+    return ReservationUtil.deleteReservation(review_id).then(
         () => dispatch(removeReservation(review_id)),
         errors => dispatch(receiveErrors(errors.responseJSON))
     )

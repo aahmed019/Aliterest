@@ -30,8 +30,8 @@ export default class ReviewForm extends React.Component{
             <div key ={review.id} className = "review">
                 <div className ="user-photo">
                 <img
-                        src="https://picsum.photos/100"
-                        style={{ borderRadius: "50%" }}
+                        src={review.user_photo}
+                        style={{ borderRadius: "50%", width:'100px', height:'100px' }}
                     />
                     <p>{review.f_name} {review.l_name} </p>
                 </div>

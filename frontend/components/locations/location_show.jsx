@@ -92,7 +92,7 @@ export default class LocationShow extends React.Component {
     })
 
     const {lat, lng} = this.props.location
-    
+    const {currentUser} = this.props
     
     return (
         <div>
@@ -110,8 +110,8 @@ export default class LocationShow extends React.Component {
                 <div className="host-info">
                     <div>
                     <img
-                        src="https://picsum.photos/100"
-                        style={{ borderRadius: "50%" }}
+                        src={this.props.location.user_photo}
+                        style={{ borderRadius: "50%", width:'100px', height:'100px' }}
                     />
                 </div>
                 <div>
@@ -178,8 +178,9 @@ export default class LocationShow extends React.Component {
                 </div>
             </div>
 
-            <div>
-                <ReservationFormContainer location={this.props.location}/>
+            <div style={{display: this.props.currentUser ? 'block' : 'none'}}>
+                <ReservationFormContainer location={this.props.location} ownProps={this.props.ownProps} 
+                />
             </div>
             </div>
 

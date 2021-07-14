@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.getReviews = getReviews
     window.getlocation = getLocation
     window.createR = createReservation
-    window.test = test
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store}/>, root);
 });

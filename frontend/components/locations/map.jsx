@@ -1,15 +1,14 @@
 import React from 'react'
 
 export default class Map extends React.Component{
-
+    
     componentDidMount(){
         const options = {
-            center:{lat: 26.820553, lng: 30.802498},
-            zoom: 13,
+            center:{lat: +this.props.lat, lng: +this.props.lng},
+            zoom: 20,
             disableDefaultUI: true,
             mapTypeId: 'terrain'
         }
-
         this.map = new google.maps.Map(this.mapNode, options)
     }
 

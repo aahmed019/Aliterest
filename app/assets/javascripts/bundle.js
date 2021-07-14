@@ -279,6 +279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_RESERVATION": () => (/* binding */ RECEIVE_RESERVATION),
 /* harmony export */   "REMOVE_RESERVATION": () => (/* binding */ REMOVE_RESERVATION),
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
+/* harmony export */   "fetchReservations": () => (/* binding */ fetchReservations),
+/* harmony export */   "fetchReservation": () => (/* binding */ fetchReservation),
 /* harmony export */   "createReservation": () => (/* binding */ createReservation),
 /* harmony export */   "updateReservation": () => (/* binding */ updateReservation),
 /* harmony export */   "deleteReservation": () => (/* binding */ deleteReservation),
@@ -319,6 +321,20 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
+var fetchReservations = function fetchReservations() {
+  return function (dispatch) {
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.fetchReservations().then(function (reservations) {
+      return dispatch(receiveReservations(reservations));
+    });
+  };
+};
+var fetchReservation = function fetchReservation(id) {
+  return function (dispatch) {
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.fetchReservation(id).then(function (reservations) {
+      return dispatch(receiveReservations(reservations));
+    });
+  };
+};
 var createReservation = function createReservation(formData) {
   return function (dispatch) {
     // debugger
@@ -338,7 +354,7 @@ var updateReservation = function updateReservation(formData) {
 };
 var deleteReservation = function deleteReservation(review_id) {
   return function (dispatch) {
-    return ReviewUtil.deleteReview(review_id).then(function () {
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.deleteReservation(review_id).then(function () {
       return dispatch(removeReservation(review_id));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
@@ -421,7 +437,7 @@ var getReviews = function getReviews(locationId) {
 var createReview = function createReview(formData) {
   return function (dispatch) {
     return _util_review__WEBPACK_IMPORTED_MODULE_0__.createReview(formData).then(function (review) {
-      console.log(review), dispatch(receiveReview(review));
+      return dispatch(receiveReview(review));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -565,19 +581,27 @@ var NavBarContainer = function NavBarContainer(props) {
     className: "logo"
   }, "CampCentral"), props.user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "dropdown"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, props.user.f_name, " ", props.user.l_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-    className: "far fa-user-circle profileIcon"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, props.user.f_name, " ", props.user.l_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: props.user.user_photo,
+    alt: "",
+    style: {
+      borderRadius: '50%',
+      width: '50px',
+      height: '50px'
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "dropdown-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    onClick: props.logout
-  }, "Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "dropdown-content-items"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "#/profile"
+  }, "Account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: props.logout
   }, "Help"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: props.logout
   }, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: props.logout
-  }, "Logout"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "Logout")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "navButton",
     onClick: function onClick() {
       return props.openModal('login');
@@ -634,13 +658,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/route.util */ "./frontend/util/route.util.js");
 /* harmony import */ var _splash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash */ "./frontend/components/splash.jsx");
 /* harmony import */ var _Nav_navbar_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Nav/navbar_container */ "./frontend/components/Nav/navbar_container.jsx");
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modal/modal */ "./frontend/components/modal/modal.jsx");
 /* harmony import */ var _locations_locations_index_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./locations/locations_index_container */ "./frontend/components/locations/locations_index_container.js");
 /* harmony import */ var _locations_location_show_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./locations/location_show_container */ "./frontend/components/locations/location_show_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -653,22 +679,25 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "webpage"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/",
     component: _Nav_navbar_container__WEBPACK_IMPORTED_MODULE_3__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     style: {
       paddingTop: '120px'
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__.ProtectedRoute, {
+    path: "/profile",
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_7__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     exact: true,
     path: "/",
     component: _splash__WEBPACK_IMPORTED_MODULE_2__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     exact: true,
     path: "/",
     component: _locations_locations_index_container__WEBPACK_IMPORTED_MODULE_5__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     exact: true,
     path: "/locations/:locationId",
     component: _locations_location_show_container__WEBPACK_IMPORTED_MODULE_6__.default
@@ -825,6 +854,7 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       var _this$props$location = this.props.location,
           lat = _this$props$location.lat,
           lng = _this$props$location.lng;
+      var currentUser = this.props.currentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "showpage-img-container"
       }, photos), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -838,9 +868,11 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "host-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://picsum.photos/100",
+        src: this.props.location.user_photo,
         style: {
-          borderRadius: "50%"
+          borderRadius: "50%",
+          width: '100px',
+          height: '100px'
         }
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Hosted by"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, this.props.location.f_name, " ", this.props.location.l_name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "location-desc"
@@ -875,8 +907,13 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_1__.default, {
         locationId: this.props.ownProps.match.params.locationId,
         currentUser: this.props.currentUser
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservations_reservation_container__WEBPACK_IMPORTED_MODULE_2__.default, {
-        location: this.props.location
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        style: {
+          display: this.props.currentUser ? 'block' : 'none'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservations_reservation_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+        location: this.props.location,
+        ownProps: this.props.ownProps
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map__WEBPACK_IMPORTED_MODULE_3__.default, {
         lat: lat,
         lng: lng
@@ -1128,10 +1165,10 @@ var Map = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var options = {
         center: {
-          lat: 26.820553,
-          lng: 30.802498
+          lat: +this.props.lat,
+          lng: +this.props.lng
         },
-        zoom: 13,
+        zoom: 20,
         disableDefaultUI: true,
         mapTypeId: 'terrain'
       };
@@ -1240,6 +1277,144 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(Modal));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/profile/profile.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Profile)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Profile = /*#__PURE__*/function (_React$Component) {
+  _inherits(Profile, _React$Component);
+
+  var _super = _createSuper(Profile);
+
+  function Profile(props) {
+    var _this;
+
+    _classCallCheck(this, Profile);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      loading: true
+    };
+    return _this;
+  }
+
+  _createClass(Profile, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchReservation(this.props.currentUser.id).then(this.setState({
+        loading: false
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      if (this.state.loading) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...");
+      var _this$props$currentUs = this.props.currentUser,
+          f_name = _this$props$currentUs.f_name,
+          l_name = _this$props$currentUs.l_name;
+      var reservations = this.props.reservations.map(function (reservation, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          key: "reservation-".concat(i)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.start_date, " to ", reservation.end_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          onClick: function onClick() {
+            return _this2.props.deleteReservation(reservation.id);
+          }
+        }, "Cancel Reservation"));
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "users-name"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Hello ", f_name, " ", l_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "reservations"
+      }, reservations));
+    }
+  }]);
+
+  return Profile;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/profile/profile_container.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/reservation_actions */ "./frontend/actions/reservation_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    reservations: Object.values(state.entities.reservations),
+    currentUser: state.entities.users[state.session.id]
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchReservations: function fetchReservations() {
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__.fetchReservations)());
+    },
+    fetchReservation: function fetchReservation(user_id) {
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__.fetchReservation)(user_id));
+    },
+    deleteReservation: function deleteReservation(id) {
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_1__.deleteReservation)(id));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -1357,7 +1532,7 @@ var ReservationForm = /*#__PURE__*/function (_React$Component) {
       var reservation = Object.assign({}, this.state, {
         location_id: this.props.location.id
       });
-      this.props.createReservation(reservation);
+      this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'));
       this.setState(this.newState);
     }
   }, {
@@ -1707,9 +1882,11 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "user-photo"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          src: "https://picsum.photos/100",
+          src: review.user_photo,
           style: {
-            borderRadius: "50%"
+            borderRadius: "50%",
+            width: '100px',
+            height: '100px'
           }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, review.f_name, " ", review.l_name, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "review-body"
@@ -2291,9 +2468,8 @@ var reservationReducer = function reservationReducer() {
   switch (action.type) {
     case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RESERVATIONS:
       return action.reservations;
-
-    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RESERVATION:
-      return newState[action.reservation.id] = action.reservation;
+    // case RECEIVE_RESERVATION:
+    //     return newState[action.reservation.id] = action.reservation
 
     case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_RESERVATION:
       delete newState[action.reservationId];
@@ -2611,7 +2787,7 @@ var updateReservation = function updateReservation(reservation) {
 var deleteReservation = function deleteReservation(id) {
   return $.ajax({
     method: "DELETE",
-    url: "/api/Reservations/".concat(id)
+    url: "/api/reservations/".concat(id)
   });
 };
 
@@ -39221,7 +39397,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.getReviews = _actions_review_action__WEBPACK_IMPORTED_MODULE_2__.getReviews;
   window.getlocation = _util_locations__WEBPACK_IMPORTED_MODULE_6__.getLocation;
   window.createR = _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_7__.createReservation;
-  window.test = _util_locations__WEBPACK_IMPORTED_MODULE_6__.test;
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_4__.default, {
     store: store

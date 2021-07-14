@@ -6,15 +6,14 @@ class Api::ReservationsController < ApplicationController
     # end
 
     def show
-        @reservations = Reservation.all.includes(:user).where(user_id: params[:id])
+        @reservations = Reservation.all.includes(:user, :location).where(user_id: params[:id])
         render 'api/reservations/show'
     end
     
     def create
         @reservation = Reservation.new(reservation_params)
-        debugger
         if @reservation.save
-            render 'api/reservations/show'
+            # render 'api/reservations/show'
         else
             render json: @reservation.errors.full_messages, status: 422
         end
