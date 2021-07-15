@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Profile extends React.Component{
     constructor(props){
@@ -19,24 +20,30 @@ export default class Profile extends React.Component{
         if(this.state.loading) return null
         const {f_name, l_name} = this.props.currentUser
         const reservations = this.props.reservations.map((reservation, i) => (
-            <div key={`reservation-${i}`} className="reservations">
-                <div className="reservation-details">
-                    <h1>{reservation.title}</h1>
-                    <p>{reservation.start_date} to {reservation.end_date}</p>
-                    <p>Guests: {reservation.guest_amount}</p>
-                </div>
-                <div className="reservation-buttons">
-                    <button
-                        className="edit"
-                        onClick={() => this.props.openModal('edit_reservation', Object.assign({}, {reservation: reservation }, {patchReview: this.props.updateReservation}, {closeModal: this.props.closeModal})) }
-                        >
-                        Edit Reservation
-                    </button>
+                <div key={`reservation-${i}`} className="reservations">
+                    <Link to={`locations/${reservation.location_id}`}>
+                        <div className="reservation-details">
+                        <div className="location-index-img">
+                            <img src={reservation.photos[0]} alt="location-img"/>
+                        </div>
+                            <h1>{reservation.title}</h1>
+                            <p>{reservation.start_date} to {reservation.end_date}</p>
+                            <p>Guests: {reservation.guest_amount}</p>
+                        </div>
+                    </Link>
+                        <div className="reservation-buttons">
+                            <button
+                                className="edit"
+                                onClick={() => this.props.openModal('edit_reservation', Object.assign({}, {reservation: reservation }, {patchReview: this.props.updateReservation}, {closeModal: this.props.closeModal})) }
+                                >
+                                Edit Reservation
+                            </button>
 
-                    <button className="delete" onClick={() => this.props.deleteReservation(reservation.id)}>Cancel Reservation</button>
+                            <button className="delete" onClick={() => this.props.deleteReservation(reservation.id)}>Cancel Reservation</button>
+                            
+                        </div>
                     
                 </div>
-            </div>
         ))
         return(
             <div className="profile">

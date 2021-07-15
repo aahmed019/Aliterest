@@ -39,7 +39,7 @@ export default class EditReservation extends React.Component{
             days = diff_time / (1000 * 3600 * 24);
         }
         return(
-            <div>
+            <div className='review-edit'>
                 {/* <div className='review-edit'>
                     <h1>Edit your review</h1>
                     <form onSubmit={this.handleSubmit} className="form">
