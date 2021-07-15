@@ -8,6 +8,7 @@ const LocationsIndexItem = props => {
     console.log(location)
     return (
         <div className="index-items-container">
+            <Link to={`/locations/${location.id}`} style={{textDecoration:'none', color: 'black'}}>
             <div className="location-index-items">
                 <div className="location-index-img">
                     <img src={photos[0]} alt="location-img"/>
@@ -27,6 +28,7 @@ const LocationsIndexItem = props => {
                     </div>
                 </div>
             </div>
+            </Link>
         </div>
     )
     
