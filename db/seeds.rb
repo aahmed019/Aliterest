@@ -14,6 +14,7 @@ Review.destroy_all
 Amenity.destroy_all
 Activity.destroy_all
 Terrain.destroy_all
+Reservation.destroy_all
 LocationAmenity.destroy_all
 LocationActivity.destroy_all
 LocationTerrain.destroy_all
@@ -25,6 +26,7 @@ Review.connection.execute('ALTER SEQUENCE reviews_id_seq RESTART WITH 1')
 Amenity.connection.execute('ALTER SEQUENCE amenities_id_seq RESTART WITH 1')
 Activity.connection.execute('ALTER SEQUENCE activities_id_seq RESTART WITH 1')
 Terrain.connection.execute('ALTER SEQUENCE terrains_id_seq RESTART WITH 1')
+Reservation.connection.execute('ALTER SEQUENCE reservations_id_seq RESTART WITH 1')
 LocationAmenity.connection.execute('ALTER SEQUENCE location_amenities_id_seq RESTART WITH 1')
 LocationActivity.connection.execute('ALTER SEQUENCE location_activities_id_seq RESTART WITH 1')
 LocationTerrain.connection.execute('ALTER SEQUENCE location_terrains_id_seq RESTART WITH 1')
@@ -150,6 +152,12 @@ jack_photo = open('https://campcentral-seed.s3.amazonaws.com/profile-images/jack
 sam_photo = open('https://campcentral-seed.s3.amazonaws.com/profile-images/sam_photo.jpg')
 
 justin_photo = open('https://campcentral-seed.s3.amazonaws.com/profile-images/justin_photo.jpg')
+
+#Reservation
+
+r1 = Reservation.create({start_date: Date.new(2021, 11, 1), end_date: Date.new(2021, 11, 4), user_id: 1, location_id: 1, guest_amount: 3 })
+r1 = Reservation.create({start_date: Date.new(2021, 11, 9), end_date: Date.new(2021, 11, 12), user_id: 1, location_id: 2, guest_amount: 2 })
+r1 = Reservation.create({start_date: Date.new(2021, 12, 2), end_date: Date.new(2022, 1, 12), user_id: 1, location_id: 3, guest_amount: 1 })
 
 #images
 # f1 = File.open('app/assets/images/l1-a.jpg')

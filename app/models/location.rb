@@ -15,8 +15,6 @@
 class Location < ApplicationRecord
     validates :title, :price, :host_id, presence: true
     validates :lng, :lat, presence: true
-
-    validates :column, presence: true
     
     has_many_attached :photos
 
