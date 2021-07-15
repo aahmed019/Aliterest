@@ -2,11 +2,11 @@ class Api::LocationsController < ApplicationController
 
     def index
         locations = Location.all
-        if !params[:search].nil? 
-            locations = locations.where(amenity: params[:search])
-            locations = locations.where(activity: params[:search])
+        # debugger
+        if !params[:amenity].nil? 
+            locations = locations.joins(:amenities).where("amenities.name LIKE ? ", params[:amenity])
         end
-        
+
         @locations = locations.includes(:host)
         render 'api/locations/index'
     end

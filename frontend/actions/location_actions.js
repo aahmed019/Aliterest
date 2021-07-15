@@ -13,7 +13,7 @@ const receiveLocation = location => ({
     location
 })
 
-export const getLocations = () => dispatch => LocationUtil.getLocations()
+export const getLocations = (filters) => dispatch => LocationUtil.getLocations(filters)
 .then(
     locations => dispatch(receiveLocations(locations)))
 

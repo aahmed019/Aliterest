@@ -185,6 +185,49 @@ function _setPrototypeOf(o, p) {
 
 /***/ }),
 
+/***/ "./frontend/actions/filter_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/filter_actions.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UPDATE_FILTER": () => (/* binding */ UPDATE_FILTER),
+/* harmony export */   "CLEAR_FILTER": () => (/* binding */ CLEAR_FILTER),
+/* harmony export */   "changeFilter": () => (/* binding */ changeFilter),
+/* harmony export */   "clearFilter": () => (/* binding */ clearFilter),
+/* harmony export */   "updateFilter": () => (/* binding */ updateFilter),
+/* harmony export */   "clearFilters": () => (/* binding */ clearFilters)
+/* harmony export */ });
+var UPDATE_FILTER = 'UPDATE_FILTER';
+var CLEAR_FILTER = 'CLEAR_FILER';
+var changeFilter = function changeFilter(filter, value) {
+  return {
+    type: UPDATE_FILTER,
+    filter: filter,
+    value: value
+  };
+};
+var clearFilter = function clearFilter() {
+  return {
+    type: CLEAR_FILTER
+  };
+};
+var updateFilter = function updateFilter(filter, value) {
+  return function (dispatch) {
+    dispatch(changeFilter(filter, value));
+  };
+};
+var clearFilters = function clearFilters() {
+  return function (dispatch) {
+    dispatch(clearFilter());
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/location_actions.js":
 /*!**********************************************!*\
   !*** ./frontend/actions/location_actions.js ***!
@@ -218,9 +261,9 @@ var receiveLocation = function receiveLocation(location) {
   };
 };
 
-var getLocations = function getLocations() {
+var getLocations = function getLocations(filters) {
   return function (dispatch) {
-    return _util_locations__WEBPACK_IMPORTED_MODULE_0__.getLocations().then(function (locations) {
+    return _util_locations__WEBPACK_IMPORTED_MODULE_0__.getLocations(filters).then(function (locations) {
       return dispatch(receiveLocations(locations));
     });
   };
@@ -1059,7 +1102,8 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(LocationsIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLocations();
+      // console.log(this.props.filters)
+      this.props.fetchLocations(this.props.filters);
     }
   }, {
     key: "render",
@@ -1119,18 +1163,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(_ref, ownProps) {
-  var entities = _ref.entities;
+var mSTP = function mSTP(_ref) {
+  var entities = _ref.entities,
+      filters = _ref.ui.filters;
   return {
     locations: Object.values(entities.locations),
-    query: ownProps.location.search
+    filters: filters
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
-    fetchLocations: function fetchLocations() {
-      return dispatch((0,_actions_location_actions__WEBPACK_IMPORTED_MODULE_1__.getLocations)());
+    fetchLocations: function fetchLocations(filters) {
+      return dispatch((0,_actions_location_actions__WEBPACK_IMPORTED_MODULE_1__.getLocations)(filters));
     }
   };
 };
@@ -2318,6 +2363,12 @@ var Search = function Search(props) {
       search = _useState2[0],
       setSearch = _useState2[1];
 
+  var handleChange = function handleChange(filter) {
+    return function (e) {
+      return props.updateFilter(filter, e.currentTarget.value);
+    };
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2333,23 +2384,18 @@ var Search = function Search(props) {
     onChange: function onChange(e) {
       return setSearch(e.target.value);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-dates"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    type: "date",
-    name: "",
-    id: ""
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    type: "date",
-    name: "",
-    id: ""
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    onChange: handleChange('amenity')
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "Shower"
+  }, "Shower"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "Water"
+  }, "Water"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "Wifi"
+  }, "Wifi"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: {
-      pathname: '/locations',
-      search: search
-    }
+    to: "/locations"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
     className: "search-button"
@@ -2378,16 +2424,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search */ "./frontend/components/search/search.jsx");
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search */ "./frontend/components/search/search.jsx");
+
 
 
 
 var mDTP = function mDTP(dispatch) {
-  return {//function goes here for filter
+  return {
+    //function goes here for filter
+    updateFilter: function updateFilter(filter, value) {
+      return dispatch((0,_actions_filter_actions__WEBPACK_IMPORTED_MODULE_1__.updateFilter)(filter, value));
+    }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, mDTP)(_search__WEBPACK_IMPORTED_MODULE_1__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, mDTP)(_search__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -2732,6 +2784,48 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
 
 /***/ }),
 
+/***/ "./frontend/reducers/filters_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/filters_reducer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var defaultFilters = Object.freeze({
+  amenity: "Shower"
+});
+
+var filtersReducer = function filtersReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultFilters;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_FILTER:
+      var newState = _defineProperty({}, action.filter, action.value);
+
+      return Object.assign({}, state, newState);
+
+    case _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_FILTER:
+      return defaultFilters;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (filtersReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/locations_reducer.js":
 /*!************************************************!*\
   !*** ./frontend/reducers/locations_reducer.js ***!
@@ -3010,12 +3104,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _modal_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal_reducer */ "./frontend/reducers/modal_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _filters_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./filters_reducer */ "./frontend/reducers/filters_reducer.js");
+/* harmony import */ var _modal_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal_reducer */ "./frontend/reducers/modal_reducer.js");
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  filters: _filters_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 }));
 
 /***/ }),
@@ -3097,6 +3194,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getLocation": () => (/* binding */ getLocation)
 /* harmony export */ });
 var getLocations = function getLocations(data) {
+  console.log(data); // debugger
+
   return $.ajax({
     url: "/api/locations",
     data: data

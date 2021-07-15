@@ -63,15 +63,15 @@ ac3 = Activity.create({name: "Swimming", description:"We got a pool too"})
 
 #Location Amenities
 lam1 = LocationAmenity.create({location_id: 1, amenity_id: 1})
-lam2 = LocationAmenity.create({location_id: 1, amenity_id: 2})
-lam3 = LocationAmenity.create({location_id: 1, amenity_id: 3})
+# lam2 = LocationAmenity.create({location_id: 1, amenity_id: 2})
+# lam3 = LocationAmenity.create({location_id: 1, amenity_id: 3})
 
-lam4 = LocationAmenity.create({location_id: 2, amenity_id: 1})
+# lam4 = LocationAmenity.create({location_id: 2, amenity_id: 1})
 lam5 = LocationAmenity.create({location_id: 2, amenity_id: 2})
-lam6 = LocationAmenity.create({location_id: 2, amenity_id: 3})
+# lam6 = LocationAmenity.create({location_id: 2, amenity_id: 3})
 
-lam7 = LocationAmenity.create({location_id: 3, amenity_id: 1})
-lam8 = LocationAmenity.create({location_id: 3, amenity_id: 2})
+# lam7 = LocationAmenity.create({location_id: 3, amenity_id: 1})
+# lam8 = LocationAmenity.create({location_id: 3, amenity_id: 2})
 lam9 = LocationAmenity.create({location_id: 3, amenity_id: 3})
 
 lam10 = LocationAmenity.create({location_id: 4, amenity_id: 1})

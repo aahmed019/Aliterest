@@ -2,13 +2,13 @@ import { connect } from "react-redux";
 import { getLocations } from "../../actions/location_actions";
 import LocationsIndex from "./locations_index";
 
-const mSTP = ({entities}, ownProps) => ({
+const mSTP = ({entities, ui: {filters}}) => ({
     locations: Object.values(entities.locations),
-    query: ownProps.location.search
+    filters
 })
 
 const mDTP = dispatch => ({
-    fetchLocations: () => dispatch(getLocations())
+    fetchLocations: (filters) => dispatch(getLocations(filters))
 })
 
 export default connect(mSTP, mDTP)(LocationsIndex)

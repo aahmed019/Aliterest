@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const Search = (props) => {
     const [search, setSearch] = useState('')
 
+    const handleChange = (filter) => e => (
+        props.updateFilter(filter, e.currentTarget.value)
+    );
+
     return(
         <div className="search-container">
             <div className='search'>  
@@ -13,17 +17,24 @@ const Search = (props) => {
                         e => setSearch(e.target.value)
                     }/>
                 </div> 
-                    <div className="search-dates">
+                    {/* <div className="search-dates">
                         <div>
                             <input type="date" name="" id="" />
                         </div>
                         <div>
                             <input type="date" name="" id="" />
                         </div>
-                        
+                    </div> */}
+
+                    <div>
+                        <select onChange = {handleChange('amenity')}>
+                            <option value="Shower">Shower</option>
+                            <option value="Water">Water</option>
+                            <option value="Wifi">Wifi</option>
+                        </select>
                     </div>
                     <div className="search-button">
-                        <Link to ={{pathname: '/locations', search: search}}>
+                        <Link to = '/locations'>
                             <button type='submit' className='search-button'>
                                 <i className="fas fa-search"></i>
                             </button>

@@ -10,7 +10,8 @@ export default class LocationsIndex extends React.Component{
     }
 
     componentDidMount(){
-        this.props.fetchLocations()
+        // console.log(this.props.filters)
+        this.props.fetchLocations(this.props.filters)
     }
 
     render(){
