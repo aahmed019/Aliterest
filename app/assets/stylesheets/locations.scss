@@ -1,8 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+//INDEX AND SPLASH PAGE
 *{
     font-family: Playfair Display;;
 }
+
+.location-index-container{
+    display: flex;
+    align-content: center;
+
+    .locations{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .location-index-title{
+        h1{
+            font-size: 24px;
+            line-height: 30px;
+            font-weight: 600px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .location-index-description{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-top: 60px;
+        padding-bottom: 10px;
+        align-content: center;
+
+        .location-price{
+            display: flex;
+            flex-wrap: nowrap;
+            h1{
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+//SPLASH
 .index-wrapper{
     display: flex;
     flex-wrap: nowrap;
@@ -15,10 +56,8 @@
 }
 
 .index-items-container{
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
     padding: 20px;
     border: none;
     
@@ -26,9 +65,15 @@
 
 .location-index-img{
     position: relative;
-    border-radius: 24px;
     top: 0;
     left: 0;
+    
+    img{
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        width: 350px;
+        height: 200px;
+    }
     
 }
 
@@ -77,8 +122,8 @@
 
 .location-index-items{
     list-style: none;
-    border-radius: 24px;
-    border: none;
+    // border-radius: 24px;
+    border-bottom: 1px solid lightgray;
     transform: translateY(5px);
     transition: 0.5s ease-in-out;
 }
@@ -92,6 +137,8 @@
     // box-shadow: 0px 2px 4px 0px rgb(0, 0, 0);
 }
 
+
+//SHOW PAGE
 
 .showpage-img-container{
     display: flex;

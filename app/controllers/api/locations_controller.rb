@@ -1,7 +1,7 @@
 class Api::LocationsController < ApplicationController
 
     def index
-        @locations = Location.all
+        @locations = Location.all.includes(:host)
         render 'api/locations/index'
     end
 

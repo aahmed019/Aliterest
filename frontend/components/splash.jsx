@@ -1,5 +1,5 @@
 import React from 'react'
-import Search from './search/search'
+import SearchContainer from './search/search_container'
 
 const Splash = (props) => {
     return(
@@ -7,7 +7,7 @@ const Splash = (props) => {
             <h1>Find your adventure</h1>
             <h3>Discover the adventure for you from our amazing selection of themes</h3>
             <div className="search">
-                <Search/>
+                <SearchContainer/>
             </div>
             
         </div>

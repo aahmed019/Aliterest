@@ -183,8 +183,9 @@ export default class LocationShow extends React.Component {
                 />
             </div>
             </div>
-
-            <Map lat={lat} lng ={lng}/>
+            <div style={{width:'100%', height: '450px'}}>
+                <Map lat={lat} lng ={lng}/>
+            </div>
         </div>
         );
     }

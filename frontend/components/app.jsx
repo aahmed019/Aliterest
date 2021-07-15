@@ -16,7 +16,7 @@ const App = () => (
         <h1 style={{paddingTop:'120px'}}></h1>
         <ProtectedRoute path='/profile' component={ProfileContainer}/>
         <Route exact path= "/" component={Splash}/>
-        <Route exact path="/" component={LocationsIndexContainer} />
+        <Route exact path="/locations" component={LocationsIndexContainer} />
         {/* <Route exact path="/locations" component={LocationsContainer} /> */}
         <Route exact path="/locations/:locationId" component={LocationShowContainer} />
 

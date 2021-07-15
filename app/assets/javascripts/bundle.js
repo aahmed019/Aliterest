@@ -693,7 +693,7 @@ var App = function App() {
     component: _splash__WEBPACK_IMPORTED_MODULE_2__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     exact: true,
-    path: "/",
+    path: "/locations",
     component: _locations_locations_index_container__WEBPACK_IMPORTED_MODULE_5__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     exact: true,
@@ -912,10 +912,15 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservations_reservation_container__WEBPACK_IMPORTED_MODULE_2__.default, {
         location: this.props.location,
         ownProps: this.props.ownProps
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map__WEBPACK_IMPORTED_MODULE_3__.default, {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        style: {
+          width: '100%',
+          height: '450px'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map__WEBPACK_IMPORTED_MODULE_3__.default, {
         lat: lat,
         lng: lng
-      }));
+      })));
     }
   }]);
 
@@ -979,6 +984,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _locations_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./locations_index_item */ "./frontend/components/locations/locations_index_item.jsx");
+/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./map */ "./frontend/components/locations/map.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1000,6 +1006,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -1029,11 +1036,26 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
           key: "location-".concat(i)
         });
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "index-wrapper"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "locations-index"
-      }, locations));
+      return (
+        /*#__PURE__*/
+        // <div className="index-wrapper">
+        //     <div className="locations-index">
+        //         {locations}
+        //     </div>
+        // </div>
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "location-index-wrapper"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "location-index-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "locations"
+        }, locations), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          style: {
+            width: '100%',
+            height: 'inherit'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map__WEBPACK_IMPORTED_MODULE_2__.default, null))))
+      );
     }
   }]);
 
@@ -1108,22 +1130,29 @@ var LocationsIndexItem = function LocationsIndexItem(props) {
     className: "location-index-img"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: photos[0],
-    alt: "",
-    style: {
-      width: '560px',
-      height: '420x',
-      borderRadius: '24px'
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "overlap"
+    alt: "location-img"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "location-index-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "overlap-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, location.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "#locations/".concat(location.id)
-  }, "Book now"))))));
+    className: "location-index-title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, location.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "location-index-description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "host-name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Hosted by ", location.f_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "location-price"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "$", location.price), "/NIGHT"))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LocationsIndexItem);
+{
+  /* <div className="overlap">
+                         <div className="overlap-content">
+                             <h1>{location.title}</h1>
+                             <a href={`#locations/${location.id}`}>Book now</a>
+                         </div>
+                     </div> */
+}
 
 /***/ }),
 
@@ -1179,9 +1208,10 @@ var Map = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var options = {
         center: {
-          lat: +this.props.lat,
-          lng: +this.props.lng
+          lat: 40.622090,
+          lng: -74.027770
         },
+        // center:{lat: +this.props.lat, lng: +this.props.lng},
         zoom: 20,
         disableDefaultUI: true,
         mapTypeId: 'terrain'
@@ -1196,7 +1226,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         style: {
           width: '100%',
-          height: '450px'
+          height: '100%'
         },
         ref: function ref(map) {
           return _this.mapNode = map;
@@ -2217,6 +2247,31 @@ var Search = function Search(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/search/search_container.js":
+/*!********************************************************!*\
+  !*** ./frontend/components/search/search_container.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search */ "./frontend/components/search/search.jsx");
+
+
+
+var mDTP = function mDTP(dispatch) {
+  return {//function goes here for filter
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, mDTP)(_search__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/sessions/login_form_container.js":
 /*!**************************************************************!*\
   !*** ./frontend/components/sessions/login_form_container.js ***!
@@ -2489,7 +2544,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _search_search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search/search */ "./frontend/components/search/search.jsx");
+/* harmony import */ var _search_search_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search/search_container */ "./frontend/components/search/search_container.js");
 
 
 
@@ -2498,7 +2553,7 @@ var Splash = function Splash(props) {
     className: "splash"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Find your adventure"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Discover the adventure for you from our amazing selection of themes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search__WEBPACK_IMPORTED_MODULE_1__.default, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_1__.default, null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Splash);
