@@ -239,13 +239,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_LOCATIONS": () => (/* binding */ RECEIVE_LOCATIONS),
 /* harmony export */   "RECEIVE_LOCATION": () => (/* binding */ RECEIVE_LOCATION),
+/* harmony export */   "CLEAR_LOCATIONS": () => (/* binding */ CLEAR_LOCATIONS),
+/* harmony export */   "clearLocation": () => (/* binding */ clearLocation),
 /* harmony export */   "getLocations": () => (/* binding */ getLocations),
-/* harmony export */   "getLocation": () => (/* binding */ getLocation)
+/* harmony export */   "getLocation": () => (/* binding */ getLocation),
+/* harmony export */   "clearLocations": () => (/* binding */ clearLocations)
 /* harmony export */ });
 /* harmony import */ var _util_locations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/locations */ "./frontend/util/locations.js");
 
 var RECEIVE_LOCATIONS = 'RECEIVE_LOCATIONS';
 var RECEIVE_LOCATION = 'RECEIVE_LOCATION';
+var CLEAR_LOCATIONS = 'CLEAR_LOCATIONS';
 
 var receiveLocations = function receiveLocations(locations) {
   return {
@@ -261,6 +265,11 @@ var receiveLocation = function receiveLocation(location) {
   };
 };
 
+var clearLocation = function clearLocation() {
+  return {
+    type: CLEAR_LOCATIONS
+  };
+};
 var getLocations = function getLocations(filters) {
   return function (dispatch) {
     return _util_locations__WEBPACK_IMPORTED_MODULE_0__.getLocations(filters).then(function (locations) {
@@ -273,6 +282,11 @@ var getLocation = function getLocation(locationId) {
     return _util_locations__WEBPACK_IMPORTED_MODULE_0__.getLocation(locationId).then(function (location) {
       return dispatch(receiveLocation(location));
     });
+  };
+};
+var clearLocations = function clearLocations() {
+  return function (dispatch) {
+    dispatch(clearLocation());
   };
 };
 
@@ -1106,6 +1120,11 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
       this.props.fetchLocations(this.props.filters);
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearLocations();
+    }
+  }, {
     key: "render",
     value: function render() {
       console.log(this.props);
@@ -1176,6 +1195,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchLocations: function fetchLocations(filters) {
       return dispatch((0,_actions_location_actions__WEBPACK_IMPORTED_MODULE_1__.getLocations)(filters));
+    },
+    clearLocations: function clearLocations() {
+      return dispatch((0,_actions_location_actions__WEBPACK_IMPORTED_MODULE_1__.clearLocations)());
     }
   };
 };
@@ -2369,6 +2391,11 @@ var Search = function Search(props) {
     };
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return function cleanup() {
+      props.clearFilters();
+    };
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2435,6 +2462,9 @@ var mDTP = function mDTP(dispatch) {
     //function goes here for filter
     updateFilter: function updateFilter(filter, value) {
       return dispatch((0,_actions_filter_actions__WEBPACK_IMPORTED_MODULE_1__.updateFilter)(filter, value));
+    },
+    clearFilters: function clearFilters() {
+      return dispatch((0,_actions_filter_actions__WEBPACK_IMPORTED_MODULE_1__.clearFilters)());
     }
   };
 };
@@ -2855,6 +2885,9 @@ var locationReducer = function locationReducer() {
       return _defineProperty({}, action.location.id, action.location);
     // const newState = {[action.location.id]: action.location}
     // return Object.assign({}, state, newState)
+
+    case _actions_location_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_LOCATIONS:
+      return {};
 
     default:
       return state;

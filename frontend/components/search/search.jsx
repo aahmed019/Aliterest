@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Search = (props) => {
@@ -7,6 +7,12 @@ const Search = (props) => {
     const handleChange = (filter) => e => (
         props.updateFilter(filter, e.currentTarget.value)
     );
+
+    useEffect(() => {
+        return function cleanup() {
+            props.clearFilters()
+        }; 
+    })
 
     return(
         <div className="search-container">

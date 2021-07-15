@@ -14,6 +14,10 @@ export default class LocationsIndex extends React.Component{
         this.props.fetchLocations(this.props.filters)
     }
 
+    componentWillUnmount(){
+        this.props.clearLocations()
+    }
+
     render(){
         console.log(this.props)
         const locations = this.props.locations.map((location, i) => (
