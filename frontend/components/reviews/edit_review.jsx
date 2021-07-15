@@ -12,7 +12,7 @@ export default class EditReview extends React.Component{
         this.state.patchReview(this.state).then(this.state.closeModal)
     }
 
-    updateInput(field){
+    handleInput(field){
         return e => this.setState({[field]: e.target.value})
     }
 
@@ -23,7 +23,7 @@ export default class EditReview extends React.Component{
                 <div className='review-edit'>
                     <h1>Edit your review</h1>
                     <form onSubmit={this.handleSubmit} className="form">
-                        <textarea type="text" value = {body} onChange={this.updateInput('body')}/>
+                        <textarea type="text" value = {body} onChange={this.handleInput('body')}/>
                         <br />
                         <button className="formButton" style={{width:'100%'}}>Edit review</button>
                     </form>

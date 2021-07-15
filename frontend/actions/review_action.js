@@ -39,7 +39,7 @@ export const getReviews = locationId => dispatch => {
 export const createReview = formData => dispatch => {
     return ReviewUtil.createReview(formData)
         .then(
-            review => {console.log(review), dispatch(receiveReview(review))},
+            review => dispatch(receiveReview(review)),
             errors => dispatch(receiveErrors(errors.responseJSON))
             )
 }

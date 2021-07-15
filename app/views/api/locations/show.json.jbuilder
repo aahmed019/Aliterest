@@ -1,5 +1,6 @@
 json.extract! @location, :id, :title, :description, :price, :lng, :lat
 json.extract! @location.host, :f_name, :l_name
+json.set! :user_photo, url_for(@location.host.photo)
 json.photos @location.photos.map { |file| url_for(file) }
 
 

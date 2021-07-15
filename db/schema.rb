@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_150951) do
     t.date "end_date", null: false
     t.integer "user_id"
     t.integer "location_id"
+    t.integer "guest_amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_reservations_on_location_id"

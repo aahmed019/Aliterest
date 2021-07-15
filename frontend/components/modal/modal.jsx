@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { closeModal } from '../../actions/modal_actions'
+import EditReservation from '../reservations/edit_reservation'
 import EditReview from '../reviews/edit_review'
 import LoginFormContainer from "../sessions/login_form_container"
 import SignupFormContainer from "../sessions/signup_form_container"
@@ -20,6 +21,9 @@ const Modal = ({modal, closeModal}) =>{
             break;
         case 'edit_review':
             component = <EditReview review = {modal.props}/>;
+            break;
+        case 'edit_reservation':
+            component = <EditReservation reservation = {modal.props}/>
             break;
         default:
           return null;

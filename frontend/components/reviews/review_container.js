@@ -26,4 +26,3 @@ const mDTP = dispatch => ({
 
 export default connect(mSTP, mDTP)(ReviewForm)
 
-//state.entities.review[ownProps.match.params.reviewId]

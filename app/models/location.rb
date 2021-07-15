@@ -46,6 +46,4 @@ class Location < ApplicationRecord
         through: :location_terrains,
         source: :terrain
 
-    
-        
 end

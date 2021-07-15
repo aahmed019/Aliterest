@@ -17,8 +17,10 @@ export default class LocationsIndex extends React.Component{
             )
         )
         return(
-            <div className="locations-index">
-                {locations}
+            <div className="index-wrapper">
+                <div className="locations-index">
+                    {locations}
+                </div>
             </div>
         )
     }

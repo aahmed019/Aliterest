@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script src="https://kit.fontawesome.com/605c9d0d8c.js" crossorigin="anonymous"></script>
@@ -14,7 +15,10 @@
     <script>
         window.current_user = {
             "id": <%= current_user.id %>,
-            "email": "<%= current_user.email %>"
+            "email": "<%= current_user.email %>",
+            "f_name": "<%= current_user.f_name %>",
+            "l_name": "<%= current_user.l_name %>",
+            "user_photo": "<%= url_for(current_user.photo) %>"
         }
     </script>
   <% end %>

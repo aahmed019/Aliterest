@@ -13,6 +13,8 @@
 class Reservation < ApplicationRecord
 
     validates :start_date, :end_date, presence: true
+    validates_uniqueness_of :start_date, :scope => [:end_date]
+
 
     belongs_to :user
     belongs_to :location

@@ -12,7 +12,8 @@ class Api::ReviewsController < ApplicationController
                 id: @review.id, body: @review.body, 
                 f_name: @review.user.f_name, 
                 l_name: @review.user.l_name,
-                author_id: @review.author_id
+                author_id: @review.author_id,
+                user_photo: url_for(@review.user.photo)
             }
         else
             render json: @review.errors.full_messages, status: 422
@@ -26,7 +27,8 @@ class Api::ReviewsController < ApplicationController
                 id: @review.id, body: @review.body, 
                 f_name: @review.user.f_name, 
                 l_name: @review.user.l_name,
-                author_id: @review.author_id
+                author_id: @review.author_id,
+                user_photo: url_for(@review.user.photo)
             }
         else
             render json: ["FAIL"]

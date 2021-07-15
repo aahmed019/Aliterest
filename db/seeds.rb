@@ -14,6 +14,7 @@ Review.destroy_all
 Amenity.destroy_all
 Activity.destroy_all
 Terrain.destroy_all
+Reservation.destroy_all
 LocationAmenity.destroy_all
 LocationActivity.destroy_all
 LocationTerrain.destroy_all
@@ -25,6 +26,7 @@ Review.connection.execute('ALTER SEQUENCE reviews_id_seq RESTART WITH 1')
 Amenity.connection.execute('ALTER SEQUENCE amenities_id_seq RESTART WITH 1')
 Activity.connection.execute('ALTER SEQUENCE activities_id_seq RESTART WITH 1')
 Terrain.connection.execute('ALTER SEQUENCE terrains_id_seq RESTART WITH 1')
+Reservation.connection.execute('ALTER SEQUENCE reservations_id_seq RESTART WITH 1')
 LocationAmenity.connection.execute('ALTER SEQUENCE location_amenities_id_seq RESTART WITH 1')
 LocationActivity.connection.execute('ALTER SEQUENCE location_activities_id_seq RESTART WITH 1')
 LocationTerrain.connection.execute('ALTER SEQUENCE location_terrains_id_seq RESTART WITH 1')
@@ -37,10 +39,10 @@ justin = User.create({email: 'justin@fakeemail.com', f_name: 'Justin', l_name: '
 
 
 #Locations
-loc1 = Location.create({title: 'Demo 1 Title', description: 'first', price: 20, lat: '41.3129', lng: '74.0063', host_id: 1})
-loc2 = Location.create({title: 'Demo 2 Title', description: 'second', price: 25, lat: '42.3658', lng: '71.0263', host_id: 2})
-loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, lat: '41.3129', lng: '74.0063', host_id: 3})
-loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '42.3658', lng: '71.0263', host_id: 1})
+loc1 = Location.create({title: 'Demo 1 Title', description: 'first', price: 20, lat: '40.622090', lng: '-74.027770', host_id: 1})
+loc2 = Location.create({title: 'Demo 2 Title', description: 'second', price: 25, lat: '40.622090', lng: '-74.027770', host_id: 2})
+loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, lat: '40.622090', lng: '-74.027770', host_id: 3})
+loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '40.622090', lng: '-74.027770', host_id: 1})
 
 #Reviews
 review1 = Review.create({body: "I really enjoyed the property and the host was wonderful", author_id: 2 , location_id: 1})
@@ -145,6 +147,18 @@ file11 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l4-b.j
 
 file12 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l4-c.jpg')
 
+jack_photo = open('https://campcentral-seed.s3.amazonaws.com/profile-images/jack_photo.jpg')
+
+sam_photo = open('https://campcentral-seed.s3.amazonaws.com/profile-images/sam_photo.jpg')
+
+justin_photo = open('https://campcentral-seed.s3.amazonaws.com/profile-images/justin_photo.jpg')
+
+#Reservation
+
+r1 = Reservation.create({start_date: Date.new(2021, 11, 1), end_date: Date.new(2021, 11, 4), user_id: 1, location_id: 1, guest_amount: 3 })
+r1 = Reservation.create({start_date: Date.new(2021, 11, 9), end_date: Date.new(2021, 11, 12), user_id: 1, location_id: 2, guest_amount: 2 })
+r1 = Reservation.create({start_date: Date.new(2021, 12, 2), end_date: Date.new(2022, 1, 12), user_id: 1, location_id: 3, guest_amount: 1 })
+
 #images
 # f1 = File.open('app/assets/images/l1-a.jpg')
 # f2 = File.open('app/assets/images/l1-b.jpg')
@@ -161,6 +175,11 @@ file12 = open('https://campcentral-seed.s3.amazonaws.com/locations-images/l4-c.j
 # f10 = File.open('app/assets/images/l4-a.jpg')
 # f11 = File.open('app/assets/images/l4-b.jpg')
 # f12 = File.open('app/assets/images/l4-c.jpg')
+
+jack.photo.attach(io: jack_photo, filename: 'jack_photo.jpg')
+sam.photo.attach(io: sam_photo, filename: 'sam_photo.jpg')
+justin.photo.attach(io: justin_photo, filename: 'justin_photo.jpg')
+
 
 loc1.photos.attach(io: file1, filename: 'l1-a.jpg')
 loc1.photos.attach(io: file2, filename: 'l1-b.jpg')
