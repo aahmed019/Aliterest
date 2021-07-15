@@ -11,29 +11,30 @@
     border-bottom: 1px solid lightgray;
     width: 100%;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
     
     .review-body{
         width: 600px;
-        font-size: 15px;
     }
 }
 
 .review-edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: whitesmoke;
     padding:100px;
     width: 100%;
     text-align: center;
 
-    h1{
-        font-size: 22px;
-    }
+    // h1{
+    //     font-size: 22px;
+    // }
 
-    textarea{
-        min-width: 391px;
-        min-height: 150px;
-        max-width: 391px;
-        max-height: 300px;
-    }
+    // textarea{
+    //     min-width: 391px;
+    //     min-height: 150px;
+    //     max-width: 391px;
+    //     max-height: 300px;
+    // }
 
 }

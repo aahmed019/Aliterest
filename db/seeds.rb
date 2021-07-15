@@ -40,9 +40,9 @@ justin = User.create({email: 'justin@fakeemail.com', f_name: 'Justin', l_name: '
 
 #Locations
 loc1 = Location.create({title: 'Demo 1 Title', description: 'first', price: 20, lat: '40.622090', lng: '-74.027770', host_id: 1})
-loc2 = Location.create({title: 'Demo 2 Title', description: 'second', price: 25, lat: '40.622090', lng: '-74.027770', host_id: 2})
-loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, lat: '40.622090', lng: '-74.027770', host_id: 3})
-loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '40.622090', lng: '-74.027770', host_id: 1})
+loc2 = Location.create({title: 'Demo 2 Title', description: 'second', price: 25, lat: '40.61875788213594', lng: '-74.02135541745368', host_id: 2})
+loc3 = Location.create({title: 'Demo 3 Title', description: 'third', price: 30, lat: '40.62188557436985', lng: '-74.02603805437263', host_id: 3})
+loc4 = Location.create({title: 'Demo 4 Title', description: 'fourth', price: 35, lat: '40.61173432002289', lng: '-74.00952715634452', host_id: 1})
 
 #Reviews
 review1 = Review.create({body: "I really enjoyed the property and the host was wonderful", author_id: 2 , location_id: 1})
@@ -63,15 +63,15 @@ ac3 = Activity.create({name: "Swimming", description:"We got a pool too"})
 
 #Location Amenities
 lam1 = LocationAmenity.create({location_id: 1, amenity_id: 1})
-lam2 = LocationAmenity.create({location_id: 1, amenity_id: 2})
-lam3 = LocationAmenity.create({location_id: 1, amenity_id: 3})
+# lam2 = LocationAmenity.create({location_id: 1, amenity_id: 2})
+# lam3 = LocationAmenity.create({location_id: 1, amenity_id: 3})
 
-lam4 = LocationAmenity.create({location_id: 2, amenity_id: 1})
+# lam4 = LocationAmenity.create({location_id: 2, amenity_id: 1})
 lam5 = LocationAmenity.create({location_id: 2, amenity_id: 2})
-lam6 = LocationAmenity.create({location_id: 2, amenity_id: 3})
+# lam6 = LocationAmenity.create({location_id: 2, amenity_id: 3})
 
-lam7 = LocationAmenity.create({location_id: 3, amenity_id: 1})
-lam8 = LocationAmenity.create({location_id: 3, amenity_id: 2})
+# lam7 = LocationAmenity.create({location_id: 3, amenity_id: 1})
+# lam8 = LocationAmenity.create({location_id: 3, amenity_id: 2})
 lam9 = LocationAmenity.create({location_id: 3, amenity_id: 3})
 
 lam10 = LocationAmenity.create({location_id: 4, amenity_id: 1})

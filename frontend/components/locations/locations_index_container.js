@@ -1,13 +1,16 @@
 import { connect } from "react-redux";
-import { getLocations } from "../../actions/location_actions";
+import { clearLocations, getLocations } from "../../actions/location_actions";
 import LocationsIndex from "./locations_index";
 
-const mSTP = ({entities}) => ({
-    locations: Object.values(entities.locations)
+
+const mSTP = ({entities, ui: {filters}}) => ({
+    locations: Object.values(entities.locations),
+    filters
 })
 
 const mDTP = dispatch => ({
-    fetchLocations: () => dispatch(getLocations())
+    fetchLocations: (filters) => dispatch(getLocations(filters)),
+    clearLocations: () => dispatch(clearLocations())
 })
 
 export default connect(mSTP, mDTP)(LocationsIndex)

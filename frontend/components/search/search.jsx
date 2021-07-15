@@ -1,27 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Search = (props) => {
+    const [search, setSearch] = useState('')
+
+    const handleChange = (filter) => e => (
+        props.updateFilter(filter, e.currentTarget.value)
+    );
+
+    useEffect(() => {
+        return function cleanup() {
+            props.clearFilters()
+        }; 
+    })
 
     return(
         <div className="search-container">
             <div className='search'>  
                 <form className='search-form'>
                 <div className='search-input'>
-                    <input type="text" placeholder="Try Yosemite, Napa, Moab..."/>
+                    <input type="text" placeholder="Try Yosemite, Napa, Moab..." value={search} onChange={
+                        e => setSearch(e.target.value)
+                    }/>
                 </div> 
-                    <div className="search-dates">
+                    {/* <div className="search-dates">
                         <div>
                             <input type="date" name="" id="" />
                         </div>
                         <div>
                             <input type="date" name="" id="" />
                         </div>
-                        
+                    </div> */}
+
+                    <div>
+                        <select onChange = {handleChange('amenity')}>
+                            <option value="Shower">Shower</option>
+                            <option value="Water">Water</option>
+                            <option value="Wifi">Wifi</option>
+                        </select>
                     </div>
                     <div className="search-button">
-                        <button type='submit' className='search-button'>
-                            <i className="fas fa-search"></i>
-                        </button>
+                        <Link to = '/locations'>
+                            <button type='submit' className='search-button'>
+                                <i className="fas fa-search"></i>
+                            </button>
+                        </Link>
                     </div>
                     </form>
                 </div>

@@ -10,20 +10,26 @@
     width: 1200px;
     padding: 10px;
     gap: 10px;
+    
 
     .reservations{
         width: 400px;
         padding: 10px;
         border: 1px solid lightgray;
+        
     
         h1{
             font-size: 30px;
             padding-bottom: 10px;
             text-decoration: underline;
+            color:black;
         }
     
         p{
             font-size: 20px;
+            padding-bottom: 10px;
+            text-decoration: none;
+            color: black;
         }
     }
     .reservation-details{
@@ -58,9 +64,17 @@
 
     .delete{
         background-color: red;
+        font-size: 20px;
     }
 
     .edit{
+        font-size: 20px;
         background-color: darkcyan;
     }
+}
+
+.review-edit{
+    // input, select{
+    //     font-size: 20px;
+    // }
 }
