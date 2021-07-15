@@ -21,7 +21,8 @@ export default class Profile extends React.Component{
         const {f_name, l_name} = this.props.currentUser
         const reservations = this.props.reservations.map((reservation, i) => (
                 <div key={`reservation-${i}`} className="reservations">
-                    <Link to={`locations/${reservation.location_id}`}>
+                    <Link to={`locations/${reservation.location_id}`}
+                    style={{textDecoration:'none', color: 'black'}}>
                         <div className="reservation-details">
                         <div className="location-index-img">
                             <img src={reservation.photos[0]} alt="location-img"/>

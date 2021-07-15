@@ -34,6 +34,11 @@
     }
     .reservation-details{
         text-align: center;
+
+        > p{
+            text-decoration: none;
+            color: black;
+        }
     }
 }
 

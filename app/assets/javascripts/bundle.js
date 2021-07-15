@@ -1573,7 +1573,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           key: "reservation-".concat(i),
           className: "reservations"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          to: "locations/".concat(reservation.location_id)
+          to: "locations/".concat(reservation.location_id),
+          style: {
+            textDecoration: 'none',
+            color: 'black'
+          }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "reservation-details"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
