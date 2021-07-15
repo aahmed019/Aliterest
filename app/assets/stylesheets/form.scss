@@ -48,6 +48,7 @@ textarea {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .formButton:hover{
@@ -81,10 +82,12 @@ textarea {
 
     .delete{
         background-color: red;
+        font-size: 20px;
     }
 
     .edit{
         background-color: darkcyan;
+        font-size: 20px;
     }
 }
 

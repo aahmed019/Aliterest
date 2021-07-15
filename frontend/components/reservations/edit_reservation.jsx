@@ -37,7 +37,7 @@ export default class EditReservation extends React.Component{
                 <div className='review-edit'>
                     <h1>Edit your review</h1>
                     <form onSubmit={this.handleSubmit} className="form">
-                        <input type="date" defaultValue = {start_date} onChange={this.handleDate("start_date")}  />
+                        <input type="date" defaultValue = {start_date} onChange={this.handleDate("start_date")} />
                         <input type="date" defaultValue = {end_date} onChange={this.handleDate("end_date")}/>
                         <select defaultValue = {guest_amount} onChange = {this.handleInput('guest_amount')}>
                             <option value="1">1</option>
@@ -45,7 +45,9 @@ export default class EditReservation extends React.Component{
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                        <button>Edit Reservation</button>
+                        <div className="reservation-buttons">
+                            <button className="edit">Edit Reservation</button>
+                        </div>
                     </form>
                 </div>
             </div>

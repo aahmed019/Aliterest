@@ -1623,7 +1623,11 @@ var EditReservation = /*#__PURE__*/function (_React$Component) {
         value: "3"
       }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "4"
-      }, "4")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit Reservation"))));
+      }, "4")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "reservation-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "edit"
+      }, "Edit Reservation")))));
     }
   }]);
 

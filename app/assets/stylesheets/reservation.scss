@@ -58,9 +58,17 @@
 
     .delete{
         background-color: red;
+        font-size: 20px;
     }
 
     .edit{
+        font-size: 20px;
         background-color: darkcyan;
+    }
+}
+
+.review-edit{
+    input, select{
+        font-size: 20px;
     }
 }
