@@ -8,7 +8,15 @@ export default class Map extends React.Component{
             // center:{lat: +this.props.lat, lng: +this.props.lng},
             zoom: 15,
             disableDefaultUI: true,
-            mapTypeId: 'terrain'
+            mapTypeId: 'terrain',
+            styles: [ 
+                { 
+                "featureType": "poi", 
+                // "stylers": [ 
+                //     { "visibility": "off" } 
+                // ] 
+                } 
+            ] 
         }
         this.map = new google.maps.Map(this.mapNode, options)
 
