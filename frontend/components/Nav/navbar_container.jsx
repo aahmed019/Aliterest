@@ -24,9 +24,9 @@ const NavBarContainer = (props) =>{
                     style={{borderRadius:'50%', width:'50px', height:'50px'}}/>
                     <div className="dropdown-content">
                         <ul>
-                            <li><a href="#/profile">Account</a></li>
-                            <li onClick={props.logout}>Help</li>
-                            <li onClick={props.logout}>About</li>
+                            <li> <a href="#/profile">Account</a> </li>
+                            <li> <a href="https://www.github.com/aahmed019">GitHub</a> </li>
+                            <li> <a href="https://www.github.com/aahmed019">LinkedIn</a> </li>
                             <li onClick={props.logout}>Logout</li>
                         </ul>
                     </div>
