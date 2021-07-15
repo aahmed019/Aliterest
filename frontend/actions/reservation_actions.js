@@ -3,7 +3,7 @@ import * as ReservationUtil from '../util/reservations'
 export const RECEIVE_RESERVATIONS = "RECEIVE_RESERVATIONS"
 export const RECEIVE_RESERVATION = "RECEIVE_RESERVATION"
 export const REMOVE_RESERVATION = "REMOVE_RESERVATION"
-export const RECEIVE_ERRORS = "RECEIVE_RESERVATION_ERRORS"
+export const RECEIVE_ERRORS = "RECEIVE_ERRORS"
 
 const receiveReservations = (reservations) => ({
     type: RECEIVE_RESERVATIONS,

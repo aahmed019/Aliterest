@@ -22,7 +22,7 @@ export default class ReservationForm extends React.Component {
         e.preventDefault();
         if(this.state.end_date < this.state.start_date) return null
         const reservation = Object.assign({}, this.state, {location_id: this.props.location.id});
-        this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'))
+        this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'), err => alert(err.errors[0]))
         this.setState(this.newState)
     }
     handleInput(field) {

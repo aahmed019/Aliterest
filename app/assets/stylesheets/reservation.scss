@@ -1,0 +1,66 @@
+.reservations-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.reservations-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 1200px;
+    padding: 10px;
+    gap: 10px;
+
+    .reservations{
+        width: 400px;
+        padding: 10px;
+        border: 1px solid lightgray;
+    
+        h1{
+            font-size: 30px;
+            padding-bottom: 10px;
+            text-decoration: underline;
+        }
+    
+        p{
+            font-size: 20px;
+        }
+    }
+    .reservation-details{
+        text-align: center;
+    }
+}
+
+
+.reservation-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 5px;
+    gap: 10px;
+    button{
+        display: flex;
+        justify-content: space-around;
+        width:"50px";
+        height:"15px";
+        border-radius: 4px;
+        padding: 5px 10px;
+        border: none;
+        color: white;
+    }
+
+    button:hover{
+        box-shadow: 0px 3px 3px #888888;
+        transition: 0.3s;
+        border: none;
+    }
+
+    .delete{
+        background-color: red;
+    }
+
+    .edit{
+        background-color: darkcyan;
+    }
+}

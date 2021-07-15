@@ -291,7 +291,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_RESERVATIONS = "RECEIVE_RESERVATIONS";
 var RECEIVE_RESERVATION = "RECEIVE_RESERVATION";
 var REMOVE_RESERVATION = "REMOVE_RESERVATION";
-var RECEIVE_ERRORS = "RECEIVE_RESERVATION_ERRORS";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 
 var receiveReservations = function receiveReservations(reservations) {
   return {
@@ -1376,13 +1376,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: "reservation-".concat(i),
           className: "reservations"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "reservation-details"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.start_date, " to ", reservation.end_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Guests: ", reservation.guest_amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          onClick: function onClick() {
-            return _this2.props.deleteReservation(reservation.id);
-          }
-        }, "Cancel Reservation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, reservation.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, reservation.start_date, " to ", reservation.end_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Guests: ", reservation.guest_amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "reservation-buttons"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "edit",
           onClick: function onClick() {
             return _this2.props.openModal('edit_reservation', Object.assign({}, {
@@ -1393,15 +1391,20 @@ var Profile = /*#__PURE__*/function (_React$Component) {
               closeModal: _this2.props.closeModal
             }));
           }
-        }, "Edit Reservation"));
+        }, "Edit Reservation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "delete",
+          onClick: function onClick() {
+            return _this2.props.deleteReservation(reservation.id);
+          }
+        }, "Cancel Reservation")));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hey there ", f_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "reservations-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "users-name"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Hello ", f_name, " ", l_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "reservations-container"
-      }, reservations));
+      }, reservations)));
     }
   }]);
 
@@ -1712,7 +1715,9 @@ var ReservationForm = /*#__PURE__*/function (_React$Component) {
       var reservation = Object.assign({}, this.state, {
         location_id: this.props.location.id
       });
-      this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'));
+      this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'), function (err) {
+        return alert(err.errors[0]);
+      });
       this.setState(this.newState);
     }
   }, {

@@ -25,20 +25,20 @@
         text-decoration: none;
         border: none;
         background-color: transparent;
-        font-size: 16px;
+        font-size: 20px;
+        font-weight: 500;
         padding: 0px;
     }
 
     .navButton:hover{
-        border-bottom: 2px solid darkcyan;
-        font-size: 16px;
+        border-bottom: 3px solid darkcyan;
         overflow: hidden;
-        width: inherit;
+        // width: inherit;
     }
 
     .demo{
         border-radius: 20px;
-        padding: 5px;
+        // padding: 5px;
         color: white;
         background-color: darkcyan;
         padding: 5px 20px;
@@ -87,7 +87,7 @@
         }
 
         li{
-            padding-top: 5px;
+            // padding-top: 5px;
             color: black;
             height: 30px;
         }

@@ -13,8 +13,15 @@ class Api::ReservationsController < ApplicationController
     def create
         @reservation = Reservation.new(reservation_params)
         if @reservation.save
-            @reservations = Reservation.all.includes(:user, :location).where(user_id: @reservation.user_id)
-            render 'api/reservations/show'
+            render json: {
+                id: @reservation.id, 
+                start_date: @reservation.start_date, 
+                end_date: @reservation.end_date,
+                user_id: @reservation.user_id,
+                location_id: @reservation.location_id,
+                guest_amount: @reservation.guest_amount,
+                title: @reservation.location.title
+            }
         else
             render json: @reservation.errors.full_messages, status: 422
         end
