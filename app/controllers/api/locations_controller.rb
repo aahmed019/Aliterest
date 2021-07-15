@@ -1,7 +1,13 @@
 class Api::LocationsController < ApplicationController
 
     def index
-        @locations = Location.all.includes(:host)
+        locations = Location.all
+        if !params[:search].nil? 
+            locations = locations.where(amenity: params[:search])
+            locations = locations.where(activity: params[:search])
+        end
+        
+        @locations = locations.includes(:host)
         render 'api/locations/index'
     end
 

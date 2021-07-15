@@ -11,7 +11,6 @@ export default class EditReservation extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        console.log(this.state)
         this.functions.patchReview(this.state).then(this.functions.closeModal)
     }
 
@@ -30,7 +29,6 @@ export default class EditReservation extends React.Component{
     }
 
     render(){
-        console.log(this.props.reservation.reservation)
         const { start_date, end_date, guest_amount } = this.state
         return(
             <div>

@@ -1,7 +1,8 @@
 import React from "react";
 import ReviewFormContainer from "../reviews/review_container";
 import ReservationFormContainer from "../reservations/reservation_container"
-import Map from "./map";
+import MapContainer from "./map_container";
+import Footer  from "../footer/footer";
 
 export default class LocationShow extends React.Component {
     constructor(props) {
@@ -92,8 +93,6 @@ export default class LocationShow extends React.Component {
     })
 
     const {lat, lng} = this.props.location
-    const {currentUser} = this.props
-    
     return (
         <div>
         <div className="showpage-img-container">
@@ -184,8 +183,9 @@ export default class LocationShow extends React.Component {
             </div>
             </div>
             <div style={{width:'100%', height: '450px'}}>
-                <Map lat={lat} lng ={lng}/>
+                <MapContainer lat={lat} lng ={lng}/>
             </div>
+            <Footer/>
         </div>
         );
     }

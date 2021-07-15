@@ -17,7 +17,6 @@ export default class Profile extends React.Component{
 
     render(){
         if(this.state.loading) return null
-        // console.log(this.props)
         const {f_name, l_name} = this.props.currentUser
         const reservations = this.props.reservations.map((reservation, i) => (
             <div key={`reservation-${i}`} className="reservations">

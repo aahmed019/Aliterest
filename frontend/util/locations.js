@@ -1,6 +1,7 @@
-export const getLocations = () => (
+export const getLocations = data => (
     $.ajax({
         url: "/api/locations",
+        data
     })
 )
 

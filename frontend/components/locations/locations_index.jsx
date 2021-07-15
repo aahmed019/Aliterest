@@ -1,6 +1,7 @@
 import React from 'react'
 import LocationsIndexItem from './locations_index_item'
-import Map from "./map";
+// import Map from "./map";
+import MapContainer from './map_container';
 
 
 export default class LocationsIndex extends React.Component{
@@ -13,10 +14,12 @@ export default class LocationsIndex extends React.Component{
     }
 
     render(){
+        console.log(this.props)
         const locations = this.props.locations.map((location, i) => (
             <LocationsIndexItem location = {location} key={`location-${i}`} />
             )
         )
+
         return(
             // <div className="index-wrapper">
             //     <div className="locations-index">
@@ -29,7 +32,7 @@ export default class LocationsIndex extends React.Component{
                         {locations}
                     </div>
                     <div style={{width:'100%', height: 'inherit'}}>
-                        <Map />
+                        <MapContainer />
                     </div>
                 </div>
             </div>
