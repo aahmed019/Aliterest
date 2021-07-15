@@ -7,7 +7,7 @@ import Modal from './modal/modal'
 import LocationsIndexContainer from "./locations/locations_index_container";
 import LocationShowContainer from "./locations/location_show_container";
 import ProfileContainer from "./profile/profile_container";
-
+ 
 
 const App = () => (
     <div className="webpage">
@@ -17,6 +17,7 @@ const App = () => (
         <ProtectedRoute path='/profile' component={ProfileContainer}/>
         <Route exact path= "/" component={Splash}/>
         <Route exact path="/" component={LocationsIndexContainer} />
+        {/* <Route exact path="/locations" component={LocationsContainer} /> */}
         <Route exact path="/locations/:locationId" component={LocationShowContainer} />
 
     </div>

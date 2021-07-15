@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Search = (props) => {
 
@@ -19,9 +20,11 @@ const Search = (props) => {
                         
                     </div>
                     <div className="search-button">
-                        <button type='submit' className='search-button'>
-                            <i className="fas fa-search"></i>
-                        </button>
+                        <Link to ='/locations'>
+                            <button type='submit' className='search-button'>
+                                <i className="fas fa-search"></i>
+                            </button>
+                        </Link>
                     </div>
                     </form>
                 </div>
