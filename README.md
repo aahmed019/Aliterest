@@ -16,3 +16,12 @@ CampCentral is a clone of the popular outdoor/camping marketplace, [Hipcamp](htt
 * Searching by amenity
     * Users can search for a specific amenity they would like
     * the matching locations are then displayed on the page as well as their corresponding lat and lng values
+    
+     ![alt text](https://github.com/aahmed019/CampCentral/blob/main/app/assets/images/search_by_amenity.png)
+     
+     ![alt text](https://github.com/aahmed019/CampCentral/blob/main/app/assets/images/search_by_shower.png)
+     
+* Booking a reservation
+    * Users can book avaliable dates for a location
+    * After a successful booking, a user is redirected to their reservations
+    * Users can edit/delete their reservations.
