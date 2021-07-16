@@ -24,7 +24,7 @@ const Search = (props) => {
                         }/>
                     </div> 
                     <div>
-                        <select onChange = {handleChange('amenity')}>
+                        <select onChange = {handleChange('amenity')} style={{outline:'none', height:'45px'}}>
                             <option value="">Choose an amenity</option>
                             <option value="Shower">Shower</option>
                             <option value="Water">Water</option>

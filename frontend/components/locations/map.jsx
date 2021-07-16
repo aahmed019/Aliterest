@@ -6,6 +6,7 @@ export default class Map extends React.Component{
     }
     
     componentDidMount(){
+        console.log(this.props)
         const options = {
             // center:{lat: 40.622090, lng: -74.027770},
             center:{lat: +this.props.lat || 40.622090 , lng: +this.props.lng || -74.027770},
@@ -22,7 +23,12 @@ export default class Map extends React.Component{
             ] 
         }
         this.map = new google.maps.Map(this.mapNode, options)
+
+        this.map.addListener('idle', () => {
+            
+        })
     }
+
     
     render(){
         let marker;

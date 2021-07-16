@@ -4,6 +4,7 @@ import Map from "./map";
 
 const mSTP = ({entities, session}, ownProps) => ({
     locations: Object.values(entities.locations),
+    history: ownProps.history
 })
 
 const mDTP = dispatch => ({

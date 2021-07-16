@@ -1029,7 +1029,11 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_container__WEBPACK_IMPORTED_MODULE_3__.default, {
         lat: lat,
         lng: lng
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_4__.default, null));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        style: {
+          paddingTop: '100px'
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_4__.default, null));
     }
   }]);
 
@@ -1350,6 +1354,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
   _createClass(Map, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      console.log(this.props);
       var options = {
         // center:{lat: 40.622090, lng: -74.027770},
         center: {
@@ -1367,6 +1372,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
         }]
       };
       this.map = new google.maps.Map(this.mapNode, options);
+      this.map.addListener('idle', function () {});
     }
   }, {
     key: "render",
@@ -1422,7 +1428,8 @@ var mSTP = function mSTP(_ref, ownProps) {
   var entities = _ref.entities,
       session = _ref.session;
   return {
-    locations: Object.values(entities.locations)
+    locations: Object.values(entities.locations),
+    history: ownProps.history
   };
 };
 
@@ -2517,7 +2524,11 @@ var Search = function Search(props) {
       return setSearch(e.target.value);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-    onChange: handleChange('amenity')
+    onChange: handleChange('amenity'),
+    style: {
+      outline: 'none',
+      height: '45px'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: ""
   }, "Choose an amenity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {

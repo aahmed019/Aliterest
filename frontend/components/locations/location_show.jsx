@@ -189,6 +189,7 @@ export default class LocationShow extends React.Component {
             <div style={{width:'100%', height: '450px'}}>
                 <MapContainer lat={lat} lng ={lng}/>
             </div>
+            <div style={{paddingTop: '100px'}}></div>
             <Footer/>
         </div>
         );
