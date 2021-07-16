@@ -336,11 +336,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_RESERVATION": () => (/* binding */ RECEIVE_RESERVATION),
 /* harmony export */   "REMOVE_RESERVATION": () => (/* binding */ REMOVE_RESERVATION),
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
+/* harmony export */   "CLEAR_RESERVATIONS": () => (/* binding */ CLEAR_RESERVATIONS),
 /* harmony export */   "fetchReservations": () => (/* binding */ fetchReservations),
 /* harmony export */   "fetchReservation": () => (/* binding */ fetchReservation),
+/* harmony export */   "clearReservation": () => (/* binding */ clearReservation),
 /* harmony export */   "createReservation": () => (/* binding */ createReservation),
 /* harmony export */   "updateReservation": () => (/* binding */ updateReservation),
 /* harmony export */   "deleteReservation": () => (/* binding */ deleteReservation),
+/* harmony export */   "clearReservations": () => (/* binding */ clearReservations),
 /* harmony export */   "removeErrors": () => (/* binding */ removeErrors)
 /* harmony export */ });
 /* harmony import */ var _util_reservations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reservations */ "./frontend/util/reservations.js");
@@ -349,6 +352,7 @@ var RECEIVE_RESERVATIONS = "RECEIVE_RESERVATIONS";
 var RECEIVE_RESERVATION = "RECEIVE_RESERVATION";
 var REMOVE_RESERVATION = "REMOVE_RESERVATION";
 var RECEIVE_ERRORS = "RECEIVE_ERRORS";
+var CLEAR_RESERVATIONS = "CLEAR_RESERVATIONS";
 
 var receiveReservations = function receiveReservations(reservations) {
   return {
@@ -392,6 +396,11 @@ var fetchReservation = function fetchReservation(id) {
     });
   };
 };
+var clearReservation = function clearReservation() {
+  return {
+    type: CLEAR_RESERVATIONS
+  };
+};
 var createReservation = function createReservation(formData) {
   return function (dispatch) {
     // debugger
@@ -416,6 +425,11 @@ var deleteReservation = function deleteReservation(review_id) {
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
+  };
+};
+var clearReservations = function clearReservations() {
+  return function (dispatch) {
+    dispatch(clearReservation());
   };
 };
 var removeErrors = function removeErrors() {
@@ -1577,11 +1591,17 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearReservations();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       if (this.state.loading) return null;
+      console.log(this.props);
       var _this$props$currentUs = this.props.currentUser,
           f_name = _this$props$currentUs.f_name,
           l_name = _this$props$currentUs.l_name;
@@ -1686,6 +1706,9 @@ var mDTP = function mDTP(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.closeModal)());
+    },
+    clearReservations: function clearReservations() {
+      return dispatch((0,_actions_reservation_actions__WEBPACK_IMPORTED_MODULE_2__.clearReservations)());
     }
   };
 };
@@ -1985,9 +2008,7 @@ var ReservationForm = /*#__PURE__*/function (_React$Component) {
       var reservation = Object.assign({}, this.state, {
         location_id: this.props.location.id
       });
-      this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'), function (err) {
-        return alert(err.errors[0]);
-      });
+      this.props.createReservation(reservation).then(this.props.ownProps.history.push('/profile'));
       this.setState(this.newState);
     }
   }, {
@@ -3055,6 +3076,9 @@ var reservationReducer = function reservationReducer() {
     case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_RESERVATION:
       delete newState[action.reservationId];
       return newState;
+
+    case _actions_reservation_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_RESERVATIONS:
+      return {};
 
     default:
       return state;

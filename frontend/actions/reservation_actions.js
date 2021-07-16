@@ -4,6 +4,7 @@ export const RECEIVE_RESERVATIONS = "RECEIVE_RESERVATIONS"
 export const RECEIVE_RESERVATION = "RECEIVE_RESERVATION"
 export const REMOVE_RESERVATION = "REMOVE_RESERVATION"
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS"
+export const CLEAR_RESERVATIONS = "CLEAR_RESERVATIONS"
 
 const receiveReservations = (reservations) => ({
     type: RECEIVE_RESERVATIONS,
@@ -34,6 +35,10 @@ export const fetchReservation = (id) => dispatch => (
     ReservationUtil.fetchReservation(id).then(reservations => dispatch(receiveReservations(reservations)))
 )
 
+export const clearReservation = () => ({
+    type: CLEAR_RESERVATIONS,
+})
+
 export const createReservation = formData => dispatch => {
     // debugger
     return ReservationUtil.createReservation(formData)
@@ -55,6 +60,10 @@ export const deleteReservation = review_id => dispatch => {
         () => dispatch(removeReservation(review_id)),
         errors => dispatch(receiveErrors(errors.responseJSON))
     )
+}
+
+export const clearReservations = () => dispatch => {
+    dispatch(clearReservation())
 }
 
 export const removeErrors = () => dispatch => dispatch(receiveErrors([]))

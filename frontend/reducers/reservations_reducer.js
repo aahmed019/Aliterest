@@ -1,4 +1,5 @@
-import { RECEIVE_RESERVATION, RECEIVE_RESERVATIONS, REMOVE_RESERVATION } from "../actions/reservation_actions"
+import { CLEAR_RESERVATIONS, RECEIVE_RESERVATION, RECEIVE_RESERVATIONS, REMOVE_RESERVATION } from "../actions/reservation_actions"
+
 
 const reservationReducer = (state = {}, action) => {
     Object.freeze(state)
@@ -11,6 +12,8 @@ const reservationReducer = (state = {}, action) => {
         case REMOVE_RESERVATION:
             delete newState[action.reservationId]
             return newState
+        case CLEAR_RESERVATIONS:
+            return {}
         default:
             return state;
     }

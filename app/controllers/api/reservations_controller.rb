@@ -20,7 +20,8 @@ class Api::ReservationsController < ApplicationController
                 user_id: @reservation.user_id,
                 location_id: @reservation.location_id,
                 guest_amount: @reservation.guest_amount,
-                title: @reservation.location.title
+                title: @reservation.location.title,
+                photos: @reservation.location.photos.map { |file| url_for(file) }
             }
         else
             render json: @reservation.errors.full_messages, status: 422

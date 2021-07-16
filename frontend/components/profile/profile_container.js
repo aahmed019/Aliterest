@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { closeModal, openModal } from "../../actions/modal_actions";
-import { deleteReservation, fetchReservation, fetchReservations, updateReservation } from "../../actions/reservation_actions";
+import { deleteReservation, fetchReservation, fetchReservations, updateReservation, clearReservations } from "../../actions/reservation_actions";
 import Profile from "./profile";
 
 
@@ -18,7 +18,8 @@ const mDTP = dispatch => ({
     fetchReservation: (user_id) => dispatch(fetchReservation(user_id)),
     deleteReservation: (id) => dispatch(deleteReservation(id)),
     openModal: (modalType, props) => dispatch(openModal(modalType, props)),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    clearReservations: () => dispatch(clearReservations())
 })
 
 export default connect(mSTP, mDTP)(Profile)
