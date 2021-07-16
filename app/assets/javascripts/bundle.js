@@ -404,8 +404,8 @@ var clearReservation = function clearReservation() {
 var createReservation = function createReservation(formData) {
   return function (dispatch) {
     // debugger
-    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.createReservation(formData).then(function (reservation) {
-      return dispatch(receiveReservation(reservation));
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.createReservation(formData).then(function (reservations) {
+      return dispatch(receiveReservations(reservations));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });

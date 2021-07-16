@@ -43,7 +43,7 @@ export const createReservation = formData => dispatch => {
     // debugger
     return ReservationUtil.createReservation(formData)
         .then(
-            reservation =>  dispatch(receiveReservation(reservation)),
+            reservations =>  dispatch(receiveReservations(reservations)),
             errors => dispatch(receiveErrors(errors.responseJSON))
             )
 }

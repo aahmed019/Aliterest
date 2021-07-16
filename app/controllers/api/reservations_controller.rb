@@ -13,16 +13,18 @@ class Api::ReservationsController < ApplicationController
     def create
         @reservation = Reservation.new(reservation_params)
         if @reservation.save
-            render json: {
-                id: @reservation.id, 
-                start_date: @reservation.start_date, 
-                end_date: @reservation.end_date,
-                user_id: @reservation.user_id,
-                location_id: @reservation.location_id,
-                guest_amount: @reservation.guest_amount,
-                title: @reservation.location.title,
-                photos: @reservation.location.photos.map { |file| url_for(file) }
-            }
+            @reservations = Reservation.all.includes(:user, :location).where(user_id: @reservation.user_id)
+            # render json: {
+            #     id: @reservation.id, 
+            #     start_date: @reservation.start_date, 
+            #     end_date: @reservation.end_date,
+            #     user_id: @reservation.user_id,
+            #     location_id: @reservation.location_id,
+            #     guest_amount: @reservation.guest_amount,
+            #     title: @reservation.location.title,
+            #     photos: @reservation.location.photos.map { |file| url_for(file) }
+            # }
+            render 'api/reservations/show'
         else
             render json: @reservation.errors.full_messages, status: 422
         end
