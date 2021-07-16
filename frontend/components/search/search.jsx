@@ -12,7 +12,7 @@ const Search = (props) => {
     //     return function cleanup() {
     //         props.clearFilters()
     //     }; 
-    // })
+    // }, [])
 
     return(
         <div style={{display:'flex', justifyContent:'center'}} key={Math.random()}>

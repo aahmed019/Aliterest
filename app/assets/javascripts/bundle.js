@@ -202,7 +202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "clearFilters": () => (/* binding */ clearFilters)
 /* harmony export */ });
 var UPDATE_FILTER = 'UPDATE_FILTER';
-var CLEAR_FILTER = 'CLEAR_FILER';
+var CLEAR_FILTER = 'CLEAR_FILTER';
 var changeFilter = function changeFilter(filter, value) {
   return {
     type: UPDATE_FILTER,
@@ -2494,7 +2494,7 @@ var Search = function Search(props) {
   //     return function cleanup() {
   //         props.clearFilters()
   //     }; 
-  // })
+  // }, [])
 
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
