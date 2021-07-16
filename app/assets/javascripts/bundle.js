@@ -413,8 +413,8 @@ var createReservation = function createReservation(formData) {
 };
 var updateReservation = function updateReservation(formData) {
   return function (dispatch) {
-    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.updateReservation(formData).then(function (reservation) {
-      return dispatch(receiveReservation(reservation));
+    return _util_reservations__WEBPACK_IMPORTED_MODULE_0__.updateReservation(formData).then(function (reservations) {
+      return dispatch(receiveReservations(reservations));
     });
   };
 };
