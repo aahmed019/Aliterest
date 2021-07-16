@@ -7,8 +7,8 @@ export default class Map extends React.Component{
     
     componentDidMount(){
         const options = {
-            center:{lat: 40.622090, lng: -74.027770},
-            // center:{lat: +this.props.lat, lng: +this.props.lng},
+            // center:{lat: 40.622090, lng: -74.027770},
+            center:{lat: +this.props.lat || 40.622090 , lng: +this.props.lng || -74.027770},
             zoom: 15,
             disableDefaultUI: true,
             mapTypeId: 'terrain',

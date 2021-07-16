@@ -1351,11 +1351,11 @@ var Map = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var options = {
+        // center:{lat: 40.622090, lng: -74.027770},
         center: {
-          lat: 40.622090,
-          lng: -74.027770
+          lat: +this.props.lat || 40.622090,
+          lng: +this.props.lng || -74.027770
         },
-        // center:{lat: +this.props.lat, lng: +this.props.lng},
         zoom: 15,
         disableDefaultUI: true,
         mapTypeId: 'terrain',
