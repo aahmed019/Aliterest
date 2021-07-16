@@ -25,6 +25,10 @@ export default class LocationShow extends React.Component {
         }
     }
 
+    componentWillUnmount(){
+        this.props.clearLocations()
+    }
+
     handleInput(field) {
         return (e) => {
         this.setState({

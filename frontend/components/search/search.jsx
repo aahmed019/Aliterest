@@ -8,32 +8,24 @@ const Search = (props) => {
         props.updateFilter(filter, e.currentTarget.value)
     );
 
-    useEffect(() => {
-        return function cleanup() {
-            props.clearFilters()
-        }; 
-    })
+    // useEffect(() => {
+    //     return function cleanup() {
+    //         props.clearFilters()
+    //     }; 
+    // })
 
     return(
-        <div className="search-container">
+        <div style={{display:'flex', justifyContent:'center'}} key={Math.random()}>
             <div className='search'>  
                 <form className='search-form'>
-                <div className='search-input'>
-                    <input type="text" placeholder="Try Yosemite, Napa, Moab..." value={search} onChange={
-                        e => setSearch(e.target.value)
-                    }/>
-                </div> 
-                    {/* <div className="search-dates">
-                        <div>
-                            <input type="date" name="" id="" />
-                        </div>
-                        <div>
-                            <input type="date" name="" id="" />
-                        </div>
-                    </div> */}
-
+                    <div className='search-input'>
+                        <input type="text" placeholder="Try Yosemite, Napa, Moab..." value={search} onChange={
+                            e => setSearch(e.target.value)
+                        }/>
+                    </div> 
                     <div>
                         <select onChange = {handleChange('amenity')}>
+                            <option value="">Choose an amenity</option>
                             <option value="Shower">Shower</option>
                             <option value="Water">Water</option>
                             <option value="Wifi">Wifi</option>
@@ -46,9 +38,9 @@ const Search = (props) => {
                             </button>
                         </Link>
                     </div>
-                    </form>
+                </form>
                 </div>
-                <img src="https://tipichic.co.uk/wp-content/uploads/2014/06/cache/slide1-1200x475.jpg" alt="splash image" className='search-img'/>
+                
         </div>
     )
 }

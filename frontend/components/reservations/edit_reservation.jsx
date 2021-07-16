@@ -31,7 +31,6 @@ export default class EditReservation extends React.Component{
     }
 
     render(){
-        console.log(this.state)
         const { start_date, end_date, guest_amount, price } = this.state
         let days = 0;
         if(start_date && end_date) {

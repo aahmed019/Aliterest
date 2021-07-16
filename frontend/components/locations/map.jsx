@@ -1,6 +1,9 @@
 import React from 'react'
 
 export default class Map extends React.Component{
+    constructor(props){
+        super(props)
+    }
     
     componentDidMount(){
         const options = {
@@ -19,30 +22,20 @@ export default class Map extends React.Component{
             ] 
         }
         this.map = new google.maps.Map(this.mapNode, options)
-
-        
-
-        
     }
-
+    
     render(){
         let marker;
         this.props.locations.forEach((location) => {
             marker = new google.maps.Marker({
             position: new google.maps.LatLng(location.lat, location.lng),
-            map: this.map
+            map: this.map,
+            animation:google.maps.Animation.Drop
             });
-
-            // google.maps.event.addListener(marker, 'click', (function (marker, count) {
-            //     return function () {
-            //         infowindow.setContent(locations[count][0]);
-            //         infowindow.open(map, marker);
-            //     }
-            // })(marker, count));
         })
         
         return (
             <div style={{width:'100%', height: '100%'}} ref={ map => this.mapNode = map }></div>
         )
-        }
+    }
 }

@@ -2,8 +2,8 @@ class Api::LocationsController < ApplicationController
 
     def index
         locations = Location.all
-        # debugger
-        if !params[:amenity].nil? 
+        
+        unless params[:amenity] == ""
             locations = locations.joins(:amenities).where("amenities.name LIKE ? ", params[:amenity])
         end
 

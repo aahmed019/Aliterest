@@ -871,6 +871,11 @@ var LocationShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearLocations();
+    }
+  }, {
     key: "handleInput",
     value: function handleInput(field) {
       var _this2 = this;
@@ -1053,6 +1058,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchLocation: function fetchLocation(id) {
       return dispatch((0,_actions_location_actions__WEBPACK_IMPORTED_MODULE_1__.getLocation)(id));
+    },
+    clearLocations: function clearLocations() {
+      return dispatch((0,_actions_location_actions__WEBPACK_IMPORTED_MODULE_1__.clearLocations)());
     }
   };
 };
@@ -1075,6 +1083,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _locations_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./locations_index_item */ "./frontend/components/locations/locations_index_item.jsx");
 /* harmony import */ var _map_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./map_container */ "./frontend/components/locations/map_container.js");
+/* harmony import */ var _search_search_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../search/search_container */ "./frontend/components/search/search_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1102,6 +1111,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var LocationsIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(LocationsIndex, _React$Component);
 
@@ -1116,8 +1126,14 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(LocationsIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // console.log(this.props.filters)
       this.props.fetchLocations(this.props.filters);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.filters !== this.props.filters) {
+        this.props.fetchLocations(this.props.filters);
+      }
     }
   }, {
     key: "componentWillUnmount",
@@ -1127,7 +1143,6 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
       var locations = this.props.locations.map(function (location, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_locations_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           location: location,
@@ -1141,7 +1156,13 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
         //         {locations}
         //     </div>
         // </div>
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "search search-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          style: {
+            paddingTop: '150px'
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "location-index-wrapper"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "location-index-container"
@@ -1152,7 +1173,7 @@ var LocationsIndex = /*#__PURE__*/function (_React$Component) {
             width: '100%',
             height: 'inherit'
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_container__WEBPACK_IMPORTED_MODULE_2__.default, null))))
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_container__WEBPACK_IMPORTED_MODULE_2__.default, null)))))
       );
     }
   }]);
@@ -1306,10 +1327,10 @@ var Map = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Map);
 
-  function Map() {
+  function Map(props) {
     _classCallCheck(this, Map);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(Map, [{
@@ -1342,13 +1363,9 @@ var Map = /*#__PURE__*/function (_React$Component) {
       this.props.locations.forEach(function (location) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.lat, location.lng),
-          map: _this.map
-        }); // google.maps.event.addListener(marker, 'click', (function (marker, count) {
-        //     return function () {
-        //         infowindow.setContent(locations[count][0]);
-        //         infowindow.open(map, marker);
-        //     }
-        // })(marker, count));
+          map: _this.map,
+          animation: google.maps.Animation.Drop
+        });
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         style: {
@@ -1765,7 +1782,6 @@ var EditReservation = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
       var _this$state = this.state,
           start_date = _this$state.start_date,
           end_date = _this$state.end_date,
@@ -2453,15 +2469,19 @@ var Search = function Search(props) {
     return function (e) {
       return props.updateFilter(filter, e.currentTarget.value);
     };
-  };
+  }; // useEffect(() => {
+  //     return function cleanup() {
+  //         props.clearFilters()
+  //     }; 
+  // })
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    return function cleanup() {
-      props.clearFilters();
-    };
-  });
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-container"
+    style: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    key: Math.random()
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -2478,6 +2498,8 @@ var Search = function Search(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     onChange: handleChange('amenity')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: ""
+  }, "Choose an amenity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "Shower"
   }, "Shower"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "Water"
@@ -2492,11 +2514,7 @@ var Search = function Search(props) {
     className: "search-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-search"
-  })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: "https://tipichic.co.uk/wp-content/uploads/2014/06/cache/slide1-1200x475.jpg",
-    alt: "splash image",
-    className: "search-img"
-  }));
+  })))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
@@ -2817,8 +2835,12 @@ var Splash = function Splash(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Find your adventure"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Discover the adventure for you from our amazing selection of themes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_1__.default, null)));
+    className: "search search-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "https://tipichic.co.uk/wp-content/uploads/2014/06/cache/slide1-1200x475.jpg",
+    alt: "splash image",
+    className: "search-img"
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Splash);
@@ -2894,7 +2916,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var defaultFilters = Object.freeze({
-  amenity: "Shower"
+  amenity: ""
 });
 
 var filtersReducer = function filtersReducer() {
@@ -3291,8 +3313,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getLocation": () => (/* binding */ getLocation)
 /* harmony export */ });
 var getLocations = function getLocations(data) {
-  console.log(data); // debugger
-
   return $.ajax({
     url: "/api/locations",
     data: data
